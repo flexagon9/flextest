@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<IDataXMLCoder version="1.0">
+  <record javaclass="com.wm.data.ISMemDataImpl">
+    <record name="version" javaclass="com.wm.data.ISMemDataImpl">
+      <value name="major">9</value>
+      <value name="minor">0</value>
+    </record>
+    <array name="fp" type="record" depth="1">
+      <record javaclass="com.wm.data.ISMemDataImpl">
+        <value name="FunctionalPrivilageID">53000q00cgfe3mok0000005s</value>
+        <value name="Permission">fp_submit_doc</value>
+        <value name="Role">My webMethods Users</value>
+        <value name="FPName">Submit Document to Trading Networks Server(My webMethods Users)</value>
+      </record>
+    </array>
+  </record>
+</IDataXMLCoder>

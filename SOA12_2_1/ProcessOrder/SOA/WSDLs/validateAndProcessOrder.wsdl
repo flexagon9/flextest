@@ -1,0 +1,33 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="validateAndProcessOrder"
+     targetNamespace="http://xmlns.oracle.com/e2e_1201_composites/ProcessOrderTemplate/validateAndProcessOrder"
+     xmlns:ns1="http://www.oracle.com/soasample"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:client="http://xmlns.oracle.com/e2e_1201_composites/ProcessOrderTemplate/validateAndProcessOrder"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <plnk:partnerLinkType name="validateAndProcessOrder">
+        <plnk:role name="validateAndProcessOrderProvider" portType="client:validateAndProcessOrder"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.oracle.com/soasample"
+             xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:client="http://xmlns.oracle.com/e2e_1201_composites/ProcessOrderTemplate/validateAndProcessOrder"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            <import namespace="http://www.oracle.com/soasample" schemaLocation="../Schemas/CanonicalOrder.xsd"/>
+        </schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.oracle.com/soasample"
+             xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:client="http://xmlns.oracle.com/e2e_1201_composites/ProcessOrderTemplate/validateAndProcessOrder"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            <xsd:import namespace="http://www.oracle.com/soasample" schemaLocation="oramds:/apps/CustomSchema/CanonicalOrder.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="validateAndProcessOrderRequestMessage">
+        <wsdl:part name="payload" element="ns1:Order"/>
+    </wsdl:message>
+    <wsdl:portType name="validateAndProcessOrder">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:validateAndProcessOrderRequestMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

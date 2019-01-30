@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: builder
+Build-Jdk: 1.6.0_20
+Extension-Name: extend.spaces.webapp
+Implementation-Label: 11.1.1.8.0
+Implementation-Title: extend.spaces.webapp
+Implementation-Vendor: Oracle
+Implementation-Version: 11.1.2
+Specification-Title: extend.spaces.webapp
+Specification-Vendor: Oracle
+Specification-Version: 11.1.1
+

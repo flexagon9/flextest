@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CountriesDefaultVO"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="CountriesEO.COUNTRY_ID, 
+       CountriesEO.COUNTRY_NAME, 
+       CountriesEO.REGION_ID"
+  FromList="HR.COUNTRIES CountriesEO"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  RowClass="flexagon.fusion.hrdemo.model.views.CountriesDefaultVORowImpl"
+  ComponentClass="flexagon.fusion.hrdemo.model.views.CountriesDefaultVOImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <EntityUsage
+    Name="CountriesEO"
+    Entity="flexagon.fusion.hrdemo.model.entities.CountriesEO"/>
+  <ViewAttribute
+    Name="CountryId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CountryId"
+    EntityUsage="CountriesEO"
+    AliasName="COUNTRY_ID"/>
+  <ViewAttribute
+    Name="CountryName"
+    PrecisionRule="true"
+    EntityAttrName="CountryName"
+    EntityUsage="CountriesEO"
+    AliasName="COUNTRY_NAME"/>
+  <ViewAttribute
+    Name="RegionId"
+    PrecisionRule="true"
+    EntityAttrName="RegionId"
+    EntityUsage="CountriesEO"
+    AliasName="REGION_ID"/>
+  <ViewLinkAccessor
+    Name="Locations"
+    ViewLink="flexagon.fusion.hrdemo.model.views.links.LocCIdFkVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

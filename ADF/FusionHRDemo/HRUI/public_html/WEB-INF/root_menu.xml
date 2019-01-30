@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<menu xmlns="http://myfaces.apache.org/trinidad/menu">
+  <itemNode id="itemNode_departments" label="Departments" action="departments" focusViewId="/departments"/>
+  <itemNode id="itemNode_employees" label="Employees" action="employees" focusViewId="/employees"/>
+</menu>

@@ -1,0 +1,26 @@
+{
+	"description": "Storage volumes for ${{ORCHESTRATION_NAME}}",
+	"name": "/Compute-${{IDD}}/${{USER}}/${{ORCHESTRATION_NAME}}_storage",
+	"oplans": [{
+		"label": "${{ORCHESTRATION_NAME}}_storage",
+		"obj_type": "storage/volume",
+		"objects": [{
+			"name": "/Compute-${{IDD}}/${{USER}}/${{ORCHESTRATION_NAME}}_boot",
+			"bootable": true,
+			"imagelist": "/oracle/public/oel_6.4_5GB_v1",
+			"properties": ["/oracle/public/storage/default"],
+			"size": "6G"
+		},
+		{
+			"name": "/Compute-${{IDD}}/${{USER}}/${{ORCHESTRATION_NAME}}_data1",
+			"properties": ["/oracle/public/storage/default"],
+			"size": "30G"
+		},
+		{
+			"name": "/Compute-${{IDD}}/${{USER}}/${{ORCHESTRATION_NAME}}_data2",
+			"properties": ["/oracle/public/storage/default"],
+			"size": "30G"
+		}],
+		"ha_policy": "monitor"
+	}]
+}

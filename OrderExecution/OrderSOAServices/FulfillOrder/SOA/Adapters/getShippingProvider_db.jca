@@ -1,0 +1,14 @@
+<adapter-config name="getShippingProvider" adapter="db" wsdlLocation="../WSDLs/getShippingProvider.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SOA" location="eis/DB/SOA"/>
+  <endpoint-interaction portType="getShippingProvider_ptt" operation="getShippingProviderSelect">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="getShippingProvider.E2E1201_ShippingMethods"/>
+      <property name="QueryName" value="getShippingProviderSelect"/>
+      <property name="MappingsMetaDataURL" value="getShippingProvider-or-mappings.xml"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

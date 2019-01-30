@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sensors xmlns="http://xmlns.oracle.com/bpel/sensor">
+    <sensor sensorName="OrderNumber" kind="service" target="undefined" filter="" xmlns:types="http://www.oracle.com/soasample">
+        <serviceConfig service="receiveorder_client_ep" expression="$out.ack/types:OrderAck/types:OrderNumber" operation="process" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+</sensors>

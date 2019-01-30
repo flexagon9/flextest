@@ -1,0 +1,36 @@
+<wsdl:definitions
+     name="putIntoCoherence"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/coherence/e2e-1201-composites/FulfillOrder/putIntoCoherence"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/coherence/e2e-1201-composites/FulfillOrder/putIntoCoherence"
+     xmlns:imp2="http://xmlns.oracle.com/pcbpel/adapter/coherence/putIntoCoherence/response"
+     xmlns:imp1="http://xmlns.oracle.com/pcbpel/adapter/db/top/getShippingProvider"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+    >
+  <plt:partnerLinkType name="Put_plt" >
+    <plt:role name="Put_role" >
+      <plt:portType name="tns:Put_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/getShippingProvider" schemaLocation="../Schemas/getShippingProvider_table.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/coherence/putIntoCoherence/response" schemaLocation="../Schemas/putIntoCoherenceResponse.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="Put_msg">
+        <wsdl:part name="body" element="imp1:E2E1201_ShippingMethodsCollection"/>
+    </wsdl:message>
+    <wsdl:message name="PutResponse_msg">
+        <wsdl:part name="body" element="imp2:PutResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="Put_ptt">
+        <wsdl:operation name="Put">
+            <wsdl:input message="tns:Put_msg"/>
+            <wsdl:output message="tns:PutResponse_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,14 @@
+<adapter-config name="ProcessPurchasedbReference" adapter="db" wsdlLocation="../WSDLs/ProcessPurchasedbReference.wsdl"
+                xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+    <connection-factory UIConnectionName="ProcessPurchaseOrderDS" location="eis/DB/ProcessPurchase"/>
+    <endpoint-interaction portType="ProcessPurchasedbReference_ptt" operation="merge">
+        <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+            <property name="DescriptorName" value="ProcessPurchasedbReference.Purchaseorder"/>
+            <property name="DmlType" value="merge"/>
+            <property name="MappingsMetaDataURL" value="ProcessPurchasedbReference-or-mappings.xml"/>
+            <property name="GetActiveUnitOfWork" value="false"/>
+            <property name="OptimizeMerge" value="true"/>
+            <property name="DetectOmissions" value="true"/>
+        </interaction-spec>
+    </endpoint-interaction>
+</adapter-config>

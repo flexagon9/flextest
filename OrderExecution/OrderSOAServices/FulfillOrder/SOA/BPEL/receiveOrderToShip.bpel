@@ -1,0 +1,62 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Mon Apr 15 05:23:25 PDT 2013
+  Author:  sgeib
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="receiveOrderToShip"
+               targetNamespace="http://xmlns.oracle.com/e2e_1201_composites_templates/FulfillOrder/receiveOrderToShip"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/e2e_1201_composites_templates/FulfillOrder/receiveOrderToShip"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites-templates/FulfillOrder/ReceiveOrdersReadyForShipment"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:ns2="http://www.oracle.com/soasample"
+         xmlns:ns3="http://xmlns.oracle.com/e2e_1201_composites_templates/FulfillOrder/BPELProcess1"
+         xmlns:ns4="http://xmlns.oracle.com/e2e_1201_composites_templates/FulfillOrder/fulfillOrder">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process .                
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="http://www.oracle.com/soasample" location="../Schemas/CanonicalOrder.xsd"
+          importType="http://www.w3.org/2001/XMLSchema"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites-templates/FulfillOrder/ReceiveOrdersReadyForShipment"
+          location="../WSDLs/ReceiveOrdersReadyForShipment.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"
+          ui:processWSDL="true"/>
+  <partnerLinks>
+    <partnerLink name="ReceiveOrdersReadyForShipment" partnerLinkType="ns1:ReceiveOrdersReadyForShipment_plt"
+                 myRole="ReceiveOrdersReadyForShipment_role"/>
+    <partnerLink name="fulfillOrder.fulfillorder_client" partnerLinkType="ns4:fulfillOrder"
+                 partnerRole="fulfillOrderProvider"/>
+  </partnerLinks>
+  <variables>
+    <variable name="receiveOrder_receive_InputVariable" messageType="ns1:E2E1201_OrdersCollection_msg"/>
+    <variable name="order" element="ns2:Order"/>
+  </variables>
+  <sequence name="main">
+    <receive name="receiveOrder" createInstance="yes" partnerLink="ReceiveOrdersReadyForShipment"
+             portType="ns1:ReceiveOrdersReadyForShipment_ptt" operation="receive"
+             variable="receiveOrder_receive_InputVariable"/>
+    <assign name="MapOrderFromDBToCanonical">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"/>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("../Transformations/mapOrderFromDB.xsl", $receiveOrder_receive_InputVariable.E2E1201_OrdersCollection)</from>
+        <to variable="order"/>
+      </copy>
+    </assign>
+    <invoke name="invokeFulfillOrder" portType="ns4:fulfillOrder" partnerLink="fulfillOrder.fulfillorder_client"
+            operation="process" inputVariable="order"/>
+  </sequence>
+</process>

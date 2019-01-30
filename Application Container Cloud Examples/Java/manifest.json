@@ -1,0 +1,12 @@
+{
+    "runtime": {
+        "majorVersion": "8"
+    },
+    "command": "java -jar employees-app-1.0-SNAPSHOT-jar-with-dependencies.jar",
+    "release": {
+        "build": "2015-09",
+        "commit": "commitString",
+        "version": "v2.0"
+    },
+    "notes": "Oracle Sample Application - Web application Bootstrap"
+}

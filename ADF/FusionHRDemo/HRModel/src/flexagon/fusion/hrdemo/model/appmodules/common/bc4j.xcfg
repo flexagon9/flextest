@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="flexagon.fusion.hrdemo.model.appmodules.HRUIAM">
+      <AppModuleConfig name="HRUIAMLocal" jbo.project="flexagon.fusion.hrdemo.model.HRModel" ApplicationName="flexagon.fusion.hrdemo.model.appmodules.HRUIAM" DeployPlatform="LOCAL">
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="flexagon.fusion.hrdemo.model.appmodules.HRUIAM"/>
+         <Custom ns0:JDBCDataSource="java:comp/env/jdbc/hrdbDS" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="HRUIAMShared" jbo.project="flexagon.fusion.hrdemo.model.HRModel" ApplicationName="flexagon.fusion.hrdemo.model.appmodules.HRUIAM" DeployPlatform="LOCAL">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="flexagon.fusion.hrdemo.model.appmodules.HRUIAM"/>
+         <Custom ns0:JDBCDataSource="java:comp/env/jdbc/hrdbDS" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

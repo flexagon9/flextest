@@ -1,0 +1,7 @@
+<cust-layers xmlns="http://xmlns.oracle.com/mds/dt">
+  <cust-layer name="site" id-prefix="s">
+    <cust-layer-value value="webcenter" display-name="WebCenter" id-prefix="wc"/>
+  </cust-layer>
+  <cust-layer name="runtime_only_layer" value-set-size="no_values"/>
+  <cust-layer name="user" value-set-size="no_values"/>
+</cust-layers>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd">
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="${HTTP_PORT}" doc:name="HTTP Listener Configuration"/>
+    <ws:consumer-config name="Web_Service_Consumer" service="OrderServiceService" port="OrderServicePort" serviceAddress="http://training-u.cloudhub.io/advanced/orders" wsdlLocation="orders.wsdl" doc:name="Web Service Consumer"/>
+    <flow name="retrieveOrders">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP"/>
+        <set-variable variableName="dateRange" value="#[message.inboundProperties.'http.query.params'.range]" doc:name="dateRange"/>
+        <parse-template location="orderRequest.xml" doc:name="Parse Template"/>
+        <ws:consumer config-ref="Web_Service_Consumer" operation="provisionOrder" doc:name="Web Service Consumer"/>
+        <dw:transform-message doc:name="Transform Message">
+            <dw:input-payload doc:sample="sample_data\provisionOrderResponse.xml"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+---
+payload.provisionOrderResponse.*return
+]]></dw:set-payload>
+        </dw:transform-message>
+    </flow>
+    <flow name="processOrders">
+        <set-variable variableName="orders" value="#[payload]" doc:name="orders"/>
+        <dw:transform-message doc:name="collate orders">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+---
+payload groupBy $.location]]></dw:set-payload>
+        </dw:transform-message>
+    </flow>
+</mule>

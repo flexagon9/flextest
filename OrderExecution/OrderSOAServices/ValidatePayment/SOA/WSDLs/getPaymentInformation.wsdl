@@ -1,0 +1,32 @@
+<wsdl:definitions
+     name="getPaymentInformation"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/ValidatePayment/getPaymentInformation"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/ValidatePayment/getPaymentInformation"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/getPaymentInformation"
+    >
+  <plt:partnerLinkType name="getPaymentInformation_plt" >
+    <plt:role name="getPaymentInformation_role" >
+      <plt:portType name="tns:getPaymentInformation_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/getPaymentInformation" schemaLocation="../Schemas/getPaymentInformation_table.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="getPaymentInformationSelect_inputParameters">
+        <wsdl:part name="getPaymentInformationSelect_inputParameters" element="top:getPaymentInformationSelect_ccnbInputParameters"/>
+    </wsdl:message>
+    <wsdl:message name="E2E1201_PaymentinfoCollection_msg">
+        <wsdl:part name="E2E1201_PaymentinfoCollection" element="top:E2E1201_PaymentinfoCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="getPaymentInformation_ptt">
+        <wsdl:operation name="getPaymentInformationSelect">
+            <wsdl:input message="tns:getPaymentInformationSelect_inputParameters"/>
+            <wsdl:output message="tns:E2E1201_PaymentinfoCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

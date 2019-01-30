@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="0f6bdd80-d586-44a7-9a6e-f4180d41396f" activeEnvironment="Default" name="purchaseorders" resourceRoot="" soapui-version="5.1.3" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="6dc1f803-c136-40f5-9918-af216090b2b2" wsaVersion="200508" name="ProcessPurchaseBPELBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL}ProcessPurchaseBPELBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/prod/samples/ProcessPurchaseOrder/devlnx07.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://devlnx07:8001/soa-infra/services/PO/ProcessPurchaseOrder/processpurchasebpel_client_ep</con:endpoint></con:endpoints><con:operation id="fa0cc9c9-9833-44ff-802b-55b196b1d53a" isOneWay="false" action="process" name="process" bindingOperationName="process" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b010f192-285d-449b-b24f-5541b81c3036" name="Request 1" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://devlnx07:8001/soa-infra/services/PO/ProcessPurchaseOrder/processpurchasebpel_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:proc="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <proc:process>\r
+         <proc:input>112</proc:input>\r
+      </proc:process>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="0913387e-b419-49bb-a02a-a68ba883085a" wsaVersion="NONE" name="ProcessPurchaseBPELCallbackBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL}ProcessPurchaseBPELCallbackBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/prod/samples/ProcessPurchaseOrder/devlnx07.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/prod/samples/ProcessPurchaseOrder/devlnx07.wsdl"><con:part><con:url>file:/C:/prod/samples/ProcessPurchaseOrder/devlnx07.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ProcessPurchaseBPEL" targetNamespace="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://devlnx07:8001/soa-infra/services/PO/ProcessPurchaseOrder!1.00/WSDLs/ProcessPurchaseBPEL.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="ProcessPurchaseBPEL">
+    <plnk:role name="ProcessPurchaseBPELRequester" portType="client:ProcessPurchaseBPELCallback"/>
+    <plnk:role name="ProcessPurchaseBPELProvider" portType="client:ProcessPurchaseBPEL"/>
+  </plnk:partnerLinkType>
+  <wsp:Policy wsu:Id="wsaddr_policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"/>
+  </wsp:Policy>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL" schemaLocation="http://devlnx07:8001/soa-infra/services/PO/ProcessPurchaseOrder/processpurchasebpel_client_ep?XSD=../Schemas/ProcessPurchaseBPEL.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="ProcessPurchaseBPELRequestMessage">
+    <wsdl:part name="payload" element="client:process"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessPurchaseBPELResponseMessage">
+    <wsdl:part name="payload" element="client:processResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ProcessPurchaseBPEL">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:ProcessPurchaseBPELRequestMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ProcessPurchaseBPELCallback">
+    <wsdl:operation name="processResponse">
+      <wsdl:input message="client:ProcessPurchaseBPELResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProcessPurchaseBPELBinding" type="client:ProcessPurchaseBPEL">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsp:PolicyReference URI="#wsaddr_policy" wsdl:required="false" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"/>
+    <wsdl:operation name="process">
+      <soap:operation style="document" soapAction="process"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProcessPurchaseBPELCallbackBinding" type="client:ProcessPurchaseBPELCallback">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="processResponse">
+      <soap:operation style="document" soapAction="processResponse"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="processpurchasebpel_client_ep">
+    <wsdl:port name="ProcessPurchaseBPEL_pt" binding="client:ProcessPurchaseBPELBinding">
+      <soap:address location="http://devlnx07:8001/soa-infra/services/PO/ProcessPurchaseOrder/processpurchasebpel_client_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://devlnx07:8001/soa-infra/services/PO/ProcessPurchaseOrder/processpurchasebpel_client_ep?XSD=../Schemas/ProcessPurchaseBPEL.xsd</con:url><con:content><![CDATA[<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="process">
+    <complexType>
+      <sequence>
+        <element name="input" type="long"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processResponse">
+    <complexType>
+      <sequence>
+        <element name="result" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints/><con:operation id="c2291a06-c1fd-4fff-8004-8dfe5d21c2a5" isOneWay="false" action="processResponse" name="processResponse" bindingOperationName="processResponse" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d01fd7ed-3bc1-4622-82a3-83c0f00f7766" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:proc="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <proc:processResponse>\r
+         <proc:result>112</proc:result>\r
+      </proc:processResponse>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="processResponse"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="92220700-3813-4bd5-9376-e7e0fcad38f6" name="ProcessPurchaseOrder_TestSuite1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a4cf02ff-a6dd-49d9-9449-649d250a948d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestSuite1" searchProperties="true"><con:settings/><con:testStep type="request" id="5306fdb7-8ea9-4fa1-9910-a30a44fd5e5b" name="process - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProcessPurchaseBPELBinding</con:interface><con:operation>process</con:operation><con:request name="process - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="true" useWsReliableMessaging="false" wssPasswordType="" id="2274e63a-60d2-43ac-89d3-2d9317a5bde4"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://devlnx07:8001/soa-infra/services/PO/ProcessPurchaseOrder/processpurchasebpel_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:proc="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <proc:process>\r
+         <proc:input>112</proc:input>\r
+      </proc:process>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Valid HTTP Status Codes" id="df0d8694-6ce3-469a-a3d8-e7b36294a6e8" name="Valid HTTP Status Codes"><con:configuration><codes>200,202</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="TRUE" version="200508" action="" addDefaultAction="true" replyTo="http://flexagon05:9898/ProcessPurchaseBPELProcessCallbackBinding/processResponse" generateMessageId="true"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="mockresponse" name="SOAP Mock Response" id="bd4c9afe-1f37-46a6-ab0a-460637c3be56" disabled="true"><con:settings/><con:config xsi:type="con:MockResponseStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProcessPurchaseBPELCallbackBinding</con:interface><con:operation>processResponse</con:operation><con:path>/ProcessPurchaseBPELProcessCallbackBinding/processResponse</con:path><con:port>9898</con:port><con:response id="394db16e-b114-4e71-bfa3-794dca9f72dc"><con:settings/><con:responseContent xsi:nil="true"/><con:wsaConfig mustUnderstand="NONE" version="200508"/></con:response><con:assertion type="SOAP Request" id="704765d0-0a96-4094-8aee-bdf40c38ea4e"/><con:assertion type="Schema Compliance" id="aae41949-1d7d-4e05-ae77-88a8fadc32f5"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="WS-A Request Assertion" id="1219acdd-9743-4470-b21c-2e11a0a3f2ee"><con:configuration><asertWsaAction>true</asertWsaAction><asertWsaTo>false</asertWsaTo><assertWsaReplyTo>true</assertWsaReplyTo><assertWsaMessageId>true</assertWsaMessageId></con:configuration></con:assertion><con:assertion type="XPath Match" id="20ce4bdd-2262-43dd-8da6-fb10357c03c9"><con:configuration><path>declare namespace pre='http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL'
+//pre:result</path><content>87654321</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>true</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

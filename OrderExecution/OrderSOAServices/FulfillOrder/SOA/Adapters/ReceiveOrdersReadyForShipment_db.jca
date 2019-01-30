@@ -1,0 +1,21 @@
+<adapter-config name="ReceiveOrdersReadyForShipment" adapter="db" wsdlLocation="../WSDLs/ReceiveOrdersReadyForShipment.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SOA" location="eis/DB/SOA"/>
+  <endpoint-activation portType="ReceiveOrdersReadyForShipment_ptt" operation="receive">
+    <activation-spec className="oracle.tip.adapter.db.DBActivationSpec">
+      <property name="DescriptorName" value="ReceiveOrdersReadyForShipment.E2E1201_Orders"/>
+      <property name="QueryName" value="ReceiveOrdersReadyForShipmentSelect"/>
+      <property name="MappingsMetaDataURL" value="ReceiveOrdersReadyForShipment-or-mappings.xml"/>
+      <property name="PollingStrategy" value="LogicalDeletePollingStrategy"/>
+      <property name="MarkReadColumn" value="STATUS"/>
+      <property name="MarkReadValue" value="ReadyForPack"/>
+      <property name="MarkUnreadValue" value="ReadyForShip"/>
+      <property name="PollingInterval" value="5"/>
+      <property name="MaxRaiseSize" value="1"/>
+      <property name="MaxTransactionSize" value="1"/>
+      <property name="NumberOfThreads" value="1"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+    </activation-spec>
+  </endpoint-activation>
+
+</adapter-config>

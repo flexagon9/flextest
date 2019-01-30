@@ -1,0 +1,12 @@
+<adapter-config name="dbRead" adapter="db" wsdlLocation="../WSDLs/dbRead.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  <connection-factory UIConnectionName="FD XA Data Source" location="eis/db/ProcessPurchase"/>
+  <endpoint-interaction portType="dbRead_ptt" operation="dbReadSelect">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="dbRead.Purchaseorder"/>
+      <property name="QueryName" value="dbReadSelect"/>
+      <property name="MappingsMetaDataURL" value="dbRead-or-mappings.xml"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+</adapter-config>

@@ -1,0 +1,14 @@
+<adapter-config name="getPaymentInformation" adapter="db" wsdlLocation="../WSDLs/getPaymentInformation.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SOA" location="eis/DB/SOA"/>
+  <endpoint-interaction portType="getPaymentInformation_ptt" operation="getPaymentInformationSelect">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="getPaymentInformation.E2E1201_Paymentinfo"/>
+      <property name="QueryName" value="getPaymentInformationSelect"/>
+      <property name="MappingsMetaDataURL" value="getPaymentInformation-or-mappings.xml"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

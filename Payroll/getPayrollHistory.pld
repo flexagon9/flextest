@@ -1,0 +1,435 @@
+
+
+PACKAGE rp2rro IS
+  
+  procedure INIT;
+
+	/* Default Substitute for run_product, directing the request to Reports Server.                     *
+	*/
+ 
+ 
+	/* RUN PRODUCT TO RUN_REPORT_OBJECT WITH DISPLAY IN BROWSER */
+	  -- First, define overloaded procedures for all possibilities in which run_product can be called
+  -- Parameter List as type of paramList with display variable
+	 
+  PROCEDURE rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER,mparamlist_id ParamList,display   VARCHAR2);  
+  
+  -- Parameter List as type of varchar2 with display variable
+  PROCEDURE rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER,mparamlist_id Varchar2,display   VARCHAR2);  
+  
+  -- Parameter List as type of paramList without display variable
+  PROCEDURE rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER,mparamlist_id ParamList);  
+ 
+  PROCEDURE rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER); 
+  
+  -- Parameter List as type of varchar2 without display variable    
+  PROCEDURE rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER,mparamlist_id Varchar2);  
+  
+  -- No parameter list used. Additional parameters must be set using setOthers 
+  PROCEDURE Handle_rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER,mparamlist_id ParamList);  
+    
+  /* SET REPORTS_OBJECT_PROPERTIES SYSTEM PARAMETER 
+   	 Procedures to manually set destype, desname, reports_server, desformat, others and communication mode, overwriting the default settings during runtime */
+  
+  -- the destype is set to Cache by default and can be overwritten using setDestype before running rp2rro_run_product
+  
+  PROCEDURE setDestype (vDestype varchar2);
+  
+  -- desname is normally is left empty because a Report printed to teh cache doe not need to specify a desname. To send the Report Output to the 
+  -- printer, desname holds the name of the network printer. This procedure does not check if the specified printer is accessible
+  
+  PROCEDURE setDesname (vDesname varchar2);
+  
+  -- Communication mode can be set to Synchronous (default) or Asynchronous. The latter case doesn't provide the Reports success status to the 
+  -- Forms application so that errors with e.g. printing a Report output are not displayed in the Forms message bar
+  
+  PROCEDURE setCommunicationMode (vCommMode Number);
+  
+  -- Change the Report Server used for execution
+  PROCEDURE setReportsServer (vReportServer varchar2);
+  
+  -- change the Reports output format HTMLCSS, HTML, PDF, RTF, DELIMITED, XML
+    PROCEDURE setDesformat (vDesformat varchar2);
+  
+  -- Others is used to set additional Reports Parameters like "deptno=10" or "pagestream=yes". This can be used with all custom Reports Parameters. This procedure 
+  -- does not check the passed parameters for validness
+  
+  PROCEDURE setOthers (vOthers varchar2);
+  
+END rp2rro;
+
+
+
+
+/* ------------------------------------------------------------------------
+
+ rp2rro utility 
+	
+ Authors: Duncan Mills (drmills) ,Frank Nimphius (fnimphiu)
+ Copyright Oracle Corporation 2001, 2008
+ Dependencies: rp2rrp utility (this)
+	
+ list of changes
+ ----------------
+
+ 10. September 2001 fnimphiu initial creation
+ 12. September 2001 drmills  initialization of Reports parameters
+ 14. November  2001 fnimphiu added procedures to handle run_product calls with paramlist null and no display variable
+ 										Bug#	
+ 03. Juni      2002 Bug# 2371098, added procedures to manually set destype, desname and communication mode overwriting the 
+                    default values set during migration. The procedures don't change the global values used which means that
+                    overwriting the default setting for destype in one Forms module doesn't change the setting in other modules 
+                    of the same application	
+ 04. July      2002 Bug# 2351931 Modified the arguments to web.show_document(Removed = from getjobid and using 
+                    rp2rro_jobidPartial instead of rp2rro_jobidFull).
+ 26. September 2002	fnimphiu removed orarrp and reports server queue usage (Bug #2578405).
+ 10. January   2008 Remove run_product as the built-in has been obseleted.
+ 
+ GENERAL DOCUMENTATION		
+ ---------------------
+
+ Introducing Reports Services and orarrp variables used in this library.
+
+
+   Name										Default                          Used by                 Comment
+   ---------------------------------------------------------------------------------------------------------------------------------------------------
+   
+   rp2rroDesformat         HTML|HTMLCSS|[PDF]|XML|CSV      rp2rro_run_product      Determines the Report output format
+   
+   rp2rroDestype	         [CACHE]|FILE|PRINTER            rp2rro_run_product      set via rp2rro_destype parameter. Determines the Reports 
+   																										                             output device
+   
+   rp2rroDesname           PRINTERNAME|FILENAME|[NULL]     rp2rro_run_product      If not DESTYPE=CACHE then this parameter provides the filename
+   																										                             the report gets printed to. This is used with orarrp only.
+   
+   rp2rroReportOther       ['']|<parameter>=<value>		     rp2rro_run_product 		 set additional Reports runtime parameters. Allows to pass additional 
+   																										                             user parameters in the form of e.g. 'deptno=10' or 'deptno='||:dept
+   																										     												 You cannot use rp2rroReportOther with parameter lists
+   
+   rp2rroReportServer      [NULL]								           rp2rro_run_product      This parameter determines the name of the Reports Server to be used
+   																										                             with rp2rro. Use the Reports server name as defined when starting the 
+   																										                             Reports Server and found in reports/conf directory <name>.conf
+
+   rp2rroVirtualDir		     [/reports/]|/<value>/			     rp2rro_run_product      Report Web Interface virtual directory e.g. /reports/ if servlet is 
+   																																								 used. If the Reports Server is not on the same machine with the Forms
+   																																								 Services then the rp2rroVirtualDir needs to contain the absolute path
+   																																								 http://<host>:<port>/reports/
+                                                           
+                                                           
+   rp2rroReportsInterface  rwservlet              				 rp2rro_run_product      Reports Web interface
+   
+-----------------------------------------------------------------------------------------------------------------------*/  
+
+PACKAGE BODY rp2rro IS
+
+
+	/* Package variables */
+		 
+
+   rp2rroDesformat         varchar2(30);
+	 rp2rroDesname           varchar2(200);
+	 rp2rroDestype           varchar2(30);
+	 rp2rroReportOther       varchar2(2000):='';   
+   rp2rroComm_mode         number  			 := Synchronous;
+	 
+	 rp2rroReportServer      varchar2(100);
+	 rp2rroVirtualDir				 varchar2(100);
+   rp2rroReportsInterface  varchar2(30);
+	 
+	 /* Fixed general settings */
+   
+	 rp2rroNodeId 			Report_Object	:=find_report_object('rp2rro');
+	 
+	  
+
+  /*INIT*****************************************************************************************************************/
+   
+  procedure INIT is
+  BEGIN
+  	-- this proc actually does nothing all - init is done by the body block
+  	null;
+  END;
+    
+  /*RP2RRO_RUN_PRODUCT***************************************************************************************************/
+  /* 
+  	Run_Reports allows to overload calls omitting the display variable. To catch this Exception for
+  	Reports we use rp2rro_run_product to filter the display variable out if the call is for REPORTS
+  */
+    PROCEDURE rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER,mparamlist_id ParamList,display   VARCHAR2)  IS
+		
+		BEGIN
+    	/* Handle only calls to Reports */
+ 			IF product = REPORTS THEN	 
+ 				   Handle_rp2rro_run_product(product, reportFile,commMode,engine,fileLocation,mparamlist_id);
+ 			END IF;
+		END;
+		
+	/*RP2RRO_RUN_PRODUCT ***********Taking parameter lists in varchar2 **********************************************************/
+	-- If a parameter list is passed by a varchar2 string then this is used to obtain the parameter list id
+	
+	PROCEDURE rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER,mparamlist_id Varchar2,display   VARCHAR2)  IS
+		rp2rrpParamList ParamList;
+		BEGIN
+ 			IF product = REPORTS THEN	 				
+         -- get parameter list id from parameter name 
+         rp2rrpParamList:= get_parameter_list(mparamlist_id); 
+         
+        IF id_null(rp2rrpParamList) THEN 
+         Handle_rp2rro_run_product(product,reportFile,commMode,engine,fileLocation,null);
+ 				ELSE
+ 				 Handle_rp2rro_run_product(product,reportFile,commMode,engine,fileLocation,rp2rrpParamList);
+ 				END IF;
+ 			END IF;
+		END;
+		
+	
+		/*RP2RRO_RUN_PRODUCT ***********Taking parameter lists and no display variable  **********************************************************/
+		-- If using Run Product with Reports then a display variable is not necessary
+		
+	  PROCEDURE rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER,mparamlist_id ParamList) IS
+	  
+	  BEGIN
+    	/* Handle only calls to Reports */
+
+ 			IF product = REPORTS THEN 
+ 				 Handle_rp2rro_run_product(product, reportFile,commMode,engine,fileLocation,mparamlist_id);
+ 			END IF;
+		END;
+  	
+  	/*RP2RRO_RUN_PRODUCT *********** Taking Varchar parameter lists and no display variable **********************************************************/
+  	-- If a parameter list is passed by a varchar2 string then this is used to obtain the parameter list id
+    
+    PROCEDURE rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER,mparamlist_id Varchar2) IS
+      
+    		rp2rrpParamList ParamList;
+  	BEGIN
+ 			IF product = REPORTS THEN	  				
+         -- get parameter list id from parameter name 
+         rp2rrpParamList:= get_parameter_list(mparamlist_id); 
+         
+        IF id_null(rp2rrpParamList) THEN 
+           Handle_rp2rro_run_product(product,reportFile,commMode,engine,fileLocation,null);
+        ELSE
+ 				   Handle_rp2rro_run_product(product,reportFile,commMode,engine,fileLocation,rp2rrpParamList);
+ 				END IF;
+ 			END IF;
+		END;
+  
+  -- Use this procedure if no parameter list is passed. Note that this procedure is not used by default because Reports
+  -- started with Run_Product always had a parameter list
+   PROCEDURE rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER) IS
+   BEGIN
+  			IF product != REPORTS THEN	 
+  			-- this wasn't a valid option using run_product
+ 	 			 null;
+  			ELSE
+  				Handle_rp2rro_run_product(product,reportFile,commMode,engine,fileLocation,null);
+  			END IF;
+   END; 
+
+  /*Handle_RP2RRO_RUN_PRODUCT********************************************************************************************/
+
+    PROCEDURE Handle_rp2rro_run_product(product NUMBER,reportFile VARCHAR2,commMode NUMBER,engine NUMBER,fileLocation NUMBER,mparamlist_id ParamList) IS
+
+	  rp2rroExecution_mode         number			   := Runtime;
+   	rp2rro_jobidFull	           varchar2(100);
+	  rp2rro_status                varchar2(100);
+	  rp2rro_jobidPartial 				 varchar2(100);
+    	
+   BEGIN
+    	--	SET_REPORT_OBJECT node properties
+ 	 	  SET_REPORT_OBJECT_PROPERTY(rp2rroNodeId,REPORT_FILENAME,reportFile);
+ 	 	  SET_REPORT_OBJECT_PROPERTY(rp2rroNodeId,REPORT_DESNAME,rp2rroDesname);
+ 	 	  SET_REPORT_OBJECT_PROPERTY(rp2rroNodeId,REPORT_EXECUTION_MODE,rp2rroExecution_mode);
+  	  SET_REPORT_OBJECT_PROPERTY(rp2rroNodeId,REPORT_COMM_MODE,rp2rroComm_mode);
+			
+			-- setting the Reports services output format. If you want to have the user to decide about the Reports output
+			-- format then you need set "rp2rroDestype" variable to a value determined by a user selectable item
+  	  IF (upper(rp2rroDestype)='CACHE') THEN
+  	  	SET_REPORT_OBJECT_PROPERTY(rp2rroNodeId,REPORT_DESTYPE,CACHE);
+  	  ELSIF (upper(rp2rroDestype)='PRINTER') THEN
+  	  	SET_REPORT_OBJECT_PROPERTY(rp2rroNodeId,REPORT_DESTYPE,PRINTER);
+  	  ELSIF (upper(rp2rroDestype)='FILE') THEN
+  	  	SET_REPORT_OBJECT_PROPERTY(rp2rroNodeId,REPORT_DESTYPE,FILE);
+  	  ELSIF (upper(rp2rroDestype)='MAIL') THEN
+  	    SET_REPORT_OBJECT_PROPERTY(rp2rroNodeId,REPORT_DESTYPE,MAIL);
+  	  ELSE
+  	  	-- default
+  	  	message('Not a valid destype');
+  	  	null;
+  	  END IF;
+   	  	
+  	  	
+  	  SET_REPORT_OBJECT_PROPERTY(rp2rroNodeId,REPORT_DESFORMAT,rp2rroDesformat);
+  	  SET_REPORT_OBJECT_PROPERTY(rp2rroNodeId,REPORT_SERVER,rp2rroReportServer);
+  	  
+  	  IF id_null (mparamlist_id)  THEN
+  	  	SET_REPORT_OBJECT_PROPERTY(rp2rroNodeId,REPORT_OTHER,rp2rroReportOther);
+		   	rp2rro_jobidFull:=run_report_object(rp2rroNodeId);
+  	  ELSE
+  	    rp2rro_jobidFull:=run_report_object(rp2rroNodeId,mparamlist_id);
+  	  END IF;
+  	  
+  	  -- If communication mode Synchronous then provide Reports success or error status
+  	  
+  	  IF (rp2rroComm_mode = SYNCHRONOUS) THEN  	  
+  	  	-- Check the Reports Status.
+  	
+  		
+  			-- the partial job id is used to retrieve the Reports output. It contain sthe Reportsjob_id only
+  			
+   	  	rp2rro_jobidPartial := substr(rp2rro_jobidFull,length(rp2rroReportServer)+2,length(rp2rro_jobidFull));
+      	
+      	rp2rro_status:= report_object_status(rp2rro_jobidFull);
+  			
+  		
+  	
+  	  		IF (rp2rro_status='FINISHED') then
+		 
+		  			/* Report run was successful 
+		     		Get the Report output to the Browser */
+		    
+		    			IF (upper(rp2rroDestype) ='CACHE') THEN
+		     			web.show_document(rp2rroVirtualDir||rp2rroReportsInterface||'/getjobid'||rp2rro_jobidPartial||'?server='||rp2rroReportServer,'_blank');         
+
+		    			ELSE
+		      		-- Reports output is send to printer or file, there is nothing to download to the client
+		      		null; 
+		    			END IF;
+		
+		  		ELSE -- Report generation errors
+		    	
+	     	   				message('Report failed with message: '||rp2rro_status);
+	     	
+		  		END IF;
+		  END IF;
+   END;
+    
+   
+	/* ====================================================================== 
+  /* SETTING REPORT_OBJECT_PROPERTIES PARAMETER, OVERWRITING THE DEFAULT */
+  /* ===================================================================== 
+ 		SetDesname, SetDestype, setCommunicationMode, SetOthers */
+	  
+	PROCEDURE setDestype (vDestype varchar2)IS
+	BEGIN
+	 if (upper(vDestype) in ('MAIL','FILE','PRINTER','CACHE')) then
+	 		rp2rroDestype := vDestype;
+	 else 
+	 		-- default
+	 	 message(vDestype||' is not a valid destination');
+	 end if;
+  END;
+  
+  -- desname is normally is left empty because a Report printed to teh cache doe not need to specify a desname. To send the Report Output to the 
+  -- printer, desname holds the name of the network printer. This procedure does not check if the specified printer is accessible
+  
+  PROCEDURE setDesname (vDesname varchar2) IS
+  BEGIN
+ 	 rp2rroDesname := vDesname;
+  END;
+  
+  -- Communication mode can be set to Synchronous (default) or Asynchronous. The latter case doesn't provide the Reports success status to the 
+  -- Forms application so that errors with e.g. printing a Report output are not displayed in the Forms message bar
+  
+  PROCEDURE setCommunicationMode (vCommMode Number) IS
+  BEGIN
+   if (vCommMode in (SYNCHRONOUS, ASYNCHRONOUS)) then 
+   		rp2rroComm_mode  := vCommMOde;
+   else
+   	-- default
+   	message('not a valid communication mode');
+    null;
+   end if;
+  END;
+  
+  -- Change Reports Server
+  
+  PROCEDURE setReportsServer (vReportServer varchar2) IS
+  BEGIN
+  	 rp2rroReportServer := vReportServer;
+  END;
+	
+	  -- change the Reports output format HTMLCSS, HTML, PDF, RTF, DELIMITED, XML
+  PROCEDURE setDesformat (vDesformat varchar2)IS
+  BEGIN
+  	if (upper(vDesformat) in ('HTML','HTMLCSS','PDF','XML','DELIMITED','RTF','ASCII','PS','PCL')) then
+  		rp2rroDesformat := vDesformat;
+  	else
+  		-- stay with the default
+  		message(vDesformat ||'is not a valid desformat');
+  	end if;
+  END;
+	
+	-- Others is used to set additional Reports Parameters like "deptno=10" or "pagestream=yes". This can be used with all custom Reports Parameters. This procedure 
+  -- does not check the passed parameters for validness
+  
+  PROCEDURE setOthers (vOthers varchar2) IS
+  BEGIN
+  	 rp2rroReportOther :=vOthers;
+  END;
+   
+  /*PARAMETER SETTTINGS*************************************************************************************************/
+  -- <better comments here >
+  -- Anonymous block that does the initialization This will only fire the very first time the package is called
+  -- so if PLLs are shared we have nothing to do. If PLLs are not shared then this code will run and we can get 
+  -- the setup info from globals.
+
+BEGIN 
+	
+/* Global settings 
+   -------------------
+  This section sets the default values for the parameters used with Run_Report_Object. If a Form is opened by call_form,
+  new_form or open_form then we try to read the settings from global parameters first. This is to save the state of
+  user defined parameter settings across module navigation 
+ */
+
+	 DEFAULT_VALUE('_','GLOBAL.rp2rroDesformat');
+	  IF name_in('GLOBAL.rp2rroDesformat') = '_' THEN
+	 	  rp2rroDesformat := lower(name_in('PARAMETER.rp2rroDesformat'));
+	 	  COPY(lower(name_in('PARAMETER.rp2rroDesformat')),'GLOBAL.rp2rroDesformat');
+	  ELSE
+	 	  rp2rroDesformat:= lower(name_in('GLOBAL.rp2rroDesformat'));
+	  END IF;
+	  
+	 DEFAULT_VALUE('_','GLOBAL.rp2rroDesname');
+	  IF name_in('GLOBAL.rp2rroDesname') = '_' THEN
+	 	  rp2rroDesname := lower(name_in('PARAMETER.rp2rroDesname'));
+	 	  COPY(lower(name_in('PARAMETER.rp2rroDesname')),'GLOBAL.rp2rroDesname');
+	  ELSE
+	 	  rp2rroDesname:= lower(name_in('GLOBAL.rp2rroDesname'));
+	  END IF;
+	  
+	 DEFAULT_VALUE('_','GLOBAL.rp2rroDestype');
+	  IF name_in('GLOBAL.rp2rroDestype') = '_' THEN
+	 	  rp2rroDestype := lower(name_in('PARAMETER.rp2rroDestype'));
+	 	  COPY(lower(name_in('PARAMETER.rp2rroDestype')),'GLOBAL.rp2rroDestype');
+	  ELSE
+	 	  rp2rroDestype:= lower(name_in('GLOBAL.rp2rroDestype'));
+	  END IF;
+	 
+	 DEFAULT_VALUE('_','GLOBAL.rp2rroReportServer');
+	  IF name_in('GLOBAL.rp2rroReportServer') = '_' THEN
+	 	  rp2rroReportServer := name_in('PARAMETER.rp2rroReportServer');
+	 	  COPY(name_in('PARAMETER.rp2rroReportServer'),'GLOBAL.rp2rroReportServer');
+	  ELSE
+	 	  rp2rroReportServer:= name_in('GLOBAL.rp2rroReportServer');
+	  END IF;
+	 
+	 DEFAULT_VALUE('_','GLOBAL.rp2rroVirtualDir');
+	  IF name_in('GLOBAL.rp2rroVirtualDir') = '_' THEN
+	 	  rp2rroVirtualDir := name_in('PARAMETER.rp2rroVirtualDir');
+	 	  COPY(name_in('PARAMETER.rp2rroVirtualDir'),'GLOBAL.rp2rroVirtualDir');
+	  ELSE
+	 	  rp2rroVirtualDir:= name_in('GLOBAL.rp2rroVirtualDir');
+	  END IF;
+	 
+	 DEFAULT_VALUE('_','GLOBAL.rp2rroReportsInterface');
+	  IF name_in('GLOBAL.rp2rroReportsInterface') = '_' THEN
+	 	  rp2rroReportsInterface := name_in('PARAMETER.rp2rroReportsInterface');
+	 	  COPY(name_in('PARAMETER.rp2rroReportsInterface'),'GLOBAL.rp2rroReportsInterface');
+	  ELSE
+	 	  rp2rroReportsInterface:= name_in('GLOBAL.rp2rroReportsInterface');
+	  END IF;
+	  
+END rp2rro;

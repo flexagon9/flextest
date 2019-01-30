@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseSchema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../DatabaseMetadata.xsd">
+  <schemaName>${{MP1_SCHEMA}}</schemaName>
+  <table>
+    <tableName>fxc</tableName>
+    <matchRowsOn>fid,cid</matchRowsOn>
+    <ignoredColumns>
+      <ignoredColumn>id</ignoredColumn>
+    </ignoredColumns>
+  </table>
+  <table>
+    <tableName>food</tableName>
+    <matchRowsOn>foodname</matchRowsOn>
+    <ignoredColumns>
+      <ignoredColumn>fid</ignoredColumn>
+    </ignoredColumns>
+  </table>
+  <table>
+    <tableName>condiment</tableName>
+    <matchRowsOn>condimentname</matchRowsOn>
+    <ignoredColumns>
+      <ignoredColumn>cid</ignoredColumn>
+    </ignoredColumns>
+  </table>
+</databaseSchema>

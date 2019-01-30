@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding='windows-1252'?>
+<!DOCTYPE JboPackage SYSTEM "jbo_03_01.dtd">
+
+<JboPackage
+   Name="server"
+   SeparateXMLFiles="true"
+   PackageName="xxt.oracle.apps.ak.xxperson.server" >
+   <DesignTime>
+      <Attr Name="_version" Value="9.0.3.13.93" />
+      <Attr Name="_ejbPackage" Value="false" />
+   </DesignTime>
+   <Containee
+      Name="xxPersonDetailsVO"
+      FullName="xxt.oracle.apps.ak.xxperson.server.xxPersonDetailsVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="xxPersonAM"
+      FullName="xxt.oracle.apps.ak.xxperson.server.xxPersonAM"
+      ObjectType="AppModule" >
+   </Containee>
+</JboPackage>

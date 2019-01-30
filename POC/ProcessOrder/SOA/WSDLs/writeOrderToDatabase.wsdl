@@ -1,0 +1,28 @@
+<wsdl:definitions
+     name="writeOrderToDatabase"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/ProcessOrderTemplate/writeOrderToDatabase"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/ProcessOrderTemplate/writeOrderToDatabase"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/writeOrderToDatabase"
+    >
+  <plt:partnerLinkType name="writeOrderToDatabase_plt" >
+    <plt:role name="writeOrderToDatabase_role" >
+      <plt:portType name="tns:writeOrderToDatabase_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/writeOrderToDatabase" schemaLocation="../Schemas/writeOrderToDatabase_table.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="E2E1201_OrdersCollection_msg">
+        <wsdl:part name="E2E1201_OrdersCollection" element="top:E2E1201_OrdersCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="writeOrderToDatabase_ptt">
+        <wsdl:operation name="insert">
+            <wsdl:input message="tns:E2E1201_OrdersCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

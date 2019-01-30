@@ -1,0 +1,14 @@
+<adapter-config name="writeOrderToDatabase" adapter="db" wsdlLocation="../WSDLs/writeOrderToDatabase.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SOA" location="eis/DB/SOA"/>
+  <endpoint-interaction portType="writeOrderToDatabase_ptt" operation="insert">
+    <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+      <property name="DescriptorName" value="writeOrderToDatabase.E2E1201_Orders"/>
+      <property name="DmlType" value="insert"/>
+      <property name="MappingsMetaDataURL" value="writeOrderToDatabase-or-mappings.xml"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+      <property name="DetectOmissions" value="true"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

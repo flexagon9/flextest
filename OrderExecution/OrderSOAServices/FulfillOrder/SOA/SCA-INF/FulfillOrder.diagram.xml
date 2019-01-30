@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
+    <dgm:gService name="ReceiveOrdersReadyForShipment">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="156" width="137" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="149" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="ReceiveOrdersReadyForShipment" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites-templates/FulfillOrder/ReceiveOrdersReadyForShipment#wsdl.interface(ReceiveOrdersReadyForShipment_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/db_adapter_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:sensorIcon URI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/sensor.png" X="111" Y="8" width="12" height="12"/>
+        <dgm:operations>
+            <dgm:item>receive</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gReference name="getShippingProvider">
+        <dgm:body borderWidth="2" arcRad="20" X="836" Y="26" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="826" Y="19" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="getShippingProvider" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/FulfillOrder/getShippingProvider#wsdl.interface(getShippingProvider_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/db_adapter_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>getShippingProviderSelect</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gReference name="packAndShipOrder">
+        <dgm:body borderWidth="2" arcRad="20" X="836" Y="144" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="826" Y="137" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="packAndShipOrder" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/e2e-1201-composites/FulfillOrder/RestReference#wsdl.interface(RestReference_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/RestAdapterService20x20px.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>packAndShip</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gReference name="queryCoherence">
+        <dgm:body borderWidth="2" arcRad="20" X="836" Y="262" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="826" Y="255" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="queryCoherence" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/coherence/e2e-1201-composites/FulfillOrder/queryCoherence#wsdl.interface(Get_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/coherence_adapter_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>Get</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gReference name="putIntoCoherence">
+        <dgm:body borderWidth="2" arcRad="20" X="836" Y="380" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="826" Y="373" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="putIntoCoherence" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/coherence/e2e-1201-composites/FulfillOrder/putIntoCoherence#wsdl.interface(Put_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/coherence_adapter_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>Put</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gComponent name="receiveOrderToShip">
+        <dgm:body borderWidth="2" arcRad="20" X="226" Y="141" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="216" Y="134" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="ReceiveOrdersReadyForShipment" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites-templates/FulfillOrder/ReceiveOrdersReadyForShipment#wsdl.interface(ReceiveOrdersReadyForShipment_ptt)"/>
+        <dgm:outputPort name="fulfillOrder.fulfillorder_client" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/e2e_1201_composites_templates/FulfillOrder/fulfillOrder#wsdl.interface(fulfillOrder)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="fulfillOrder">
+        <dgm:body borderWidth="2" arcRad="20" X="424" Y="141" width="130" height="161">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="414" Y="134" width="150" height="177">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="fulfillorder_client" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/e2e_1201_composites_templates/FulfillOrder/fulfillOrder#wsdl.interface(fulfillOrder)"/>
+        <dgm:outputPort name="getShippingProvider" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/FulfillOrder/getShippingProvider#wsdl.interface(getShippingProvider_ptt)"/>
+        <dgm:outputPort name="DetermineShippingRules.DetermineShippingRules_DecisionService_1" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/DetermineShippingRules/DetermineShippingRules_DecisionService_1#wsdl.interface(IDecisionService)"/>
+        <dgm:outputPort name="packAndShipOrder" X="120" Y="65" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/e2e-1201-composites/FulfillOrder/RestReference#wsdl.interface(RestReference_ptt)"/>
+        <dgm:outputPort name="queryCoherence" X="120" Y="90" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/coherence/e2e-1201-composites/FulfillOrder/queryCoherence#wsdl.interface(Get_ptt)"/>
+        <dgm:outputPort name="putIntoCoherence" X="120" Y="115" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/coherence/e2e-1201-composites/FulfillOrder/putIntoCoherence#wsdl.interface(Put_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="DetermineShippingRules">
+        <dgm:body borderWidth="2" arcRad="20" X="638" Y="97" width="130" height="61">
+            <dgm:borderColor r="178" g="138" b="53"/>
+            <dgm:lightBgColor r="255" g="226" b="142"/>
+            <dgm:darkBgColor r="255" g="198" b="77"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="628" Y="90" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="DetermineShippingRules_DecisionService_1" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/DetermineShippingRules/DetermineShippingRules_DecisionService_1#wsdl.interface(IDecisionService)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/rules/plugins/resources/images/soa/decision_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gWireLink source="ReceiveOrdersReadyForShipment" target="receiveOrderToShip/ReceiveOrdersReadyForShipment" width="2">
+        <dgm:gSegment X1="168" Y1="166" X2="216" Y2="166"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="receiveOrderToShip/fulfillOrder.fulfillorder_client" target="fulfillOrder/fulfillorder_client" width="2">
+        <dgm:gSegment X1="366" Y1="166" X2="414" Y2="166"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="fulfillOrder/getShippingProvider" target="getShippingProvider" width="2">
+        <dgm:gSegment X1="564" Y1="166" X2="589" Y2="166"/>
+        <dgm:gSegment X1="589" Y1="166" X2="589" Y2="36"/>
+        <dgm:gSegment X1="589" Y1="36" X2="826" Y2="36"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="fulfillOrder/DetermineShippingRules.DetermineShippingRules_DecisionService_1" target="DetermineShippingRules/DetermineShippingRules_DecisionService_1" width="2">
+        <dgm:gSegment X1="564" Y1="191" X2="604" Y2="191"/>
+        <dgm:gSegment X1="604" Y1="191" X2="604" Y2="122"/>
+        <dgm:gSegment X1="604" Y1="122" X2="628" Y2="122"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="fulfillOrder/packAndShipOrder" target="packAndShipOrder" width="2">
+        <dgm:gSegment X1="564" Y1="216" X2="802" Y2="216"/>
+        <dgm:gSegment X1="802" Y1="216" X2="802" Y2="154"/>
+        <dgm:gSegment X1="802" Y1="154" X2="826" Y2="154"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="fulfillOrder/queryCoherence" target="queryCoherence" width="2">
+        <dgm:gSegment X1="564" Y1="241" X2="604" Y2="241"/>
+        <dgm:gSegment X1="604" Y1="241" X2="604" Y2="272"/>
+        <dgm:gSegment X1="604" Y1="272" X2="826" Y2="272"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="fulfillOrder/putIntoCoherence" target="putIntoCoherence" width="2">
+        <dgm:gSegment X1="564" Y1="266" X2="589" Y2="266"/>
+        <dgm:gSegment X1="589" Y1="266" X2="589" Y2="390"/>
+        <dgm:gSegment X1="589" Y1="390" X2="826" Y2="390"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+</dgm:gDiagram>

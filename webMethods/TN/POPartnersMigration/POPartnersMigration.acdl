@@ -1,0 +1,302 @@
+<asset_composite xmlns="http://namespaces.softwareag.com/acdl/1.0" name="POPartnersMigration" displayName="POPartnersMigration" targetNamespace="http://namespaces.softwareag.com/webMethods/TN" runtimeVersion="10.2.0.0">
+  <buildInfo name="BuildTimestamp" value="2018-06-21T12:41:16" />
+  <buildInfo name="MinimumTargetRuntimeVersion" value="10.2.0.0" />
+  <asset name="partner.53000q00cgf6e8c20000000m.UGFydG5lciBC_U2hpcHBpbmc=" displayName="Partner B (Shipping)">
+    <implementation.generic type="partner" />
+    <property name="Partner Profile Status" displayName="Partner Profile Status">
+      <value>active</value>
+    </property>
+  </asset>
+  <asset name="partner.53000q00cgevg91a0000000g.UGFydG5lciBB_T3JkZXI=" displayName="Partner A (Order)">
+    <implementation.generic type="partner" />
+    <property name="Partner Profile Status" displayName="Partner Profile Status">
+      <value>active</value>
+    </property>
+    <property name="smtp:Host" displayName="smtp:Host">
+      <value />
+    </property>
+    <property name="smtp:Port" displayName="smtp:Port">
+      <value />
+    </property>
+    <property name="smtp:User Name" displayName="smtp:User Name">
+      <value />
+    </property>
+    <property name="smtp:Password" displayName="smtp:Password" isSecure="true">
+      <value>{AES}aYrXC43dTWsDUHRWG5mhTA==</value>
+    </property>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000022.SG9zdA==_RGVsaXZlcnk=" displayName="Host_Delivery">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.3.RGVsaXZlcnk=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000024.TG9jYXRpb24=_RGVsaXZlcnk=" displayName="Location_Delivery">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.3.RGVsaXZlcnk=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000001f.UGFydG5lcklE_RGVsaXZlcnk=" displayName="PartnerID_Delivery">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.3.RGVsaXZlcnk=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000026.UGFzc3dvcmQ=_RGVsaXZlcnk=" displayName="Password_Delivery">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.3.RGVsaXZlcnk=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000023.UG9ydA==_RGVsaXZlcnk=" displayName="Port_Delivery">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.3.RGVsaXZlcnk=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000021.UHJpbWFyeUFkZHI=_RGVsaXZlcnk=" displayName="PrimaryAddr_Delivery">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.3.RGVsaXZlcnk=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000020.UHJvdG9jb2w=_RGVsaXZlcnk=" displayName="Protocol_Delivery">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.3.RGVsaXZlcnk=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000025.VXNlciBOYW1l_RGVsaXZlcnk=" displayName="User Name_Delivery">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.3.RGVsaXZlcnk=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.181cc374f70defc000000009.RGVzdGluYXRpb25JRA==_RGVsaXZlcnk=" displayName="DestinationID_Delivery">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.3.RGVsaXZlcnk=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.181cc374f70defc000000008.Q3VzdG9tRGF0YQ==_RGVsaXZlcnk=" displayName="CustomData_Delivery">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.3.RGVsaXZlcnk=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000001.Q29ycG9yYXRpb24gTmFtZQ==_Q29ycG9yYXRpb24=" displayName="Corporation Name_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.5065v900uh553jub01vvvvvr.UHJlZmVycmVkIExhbmd1YWdl_Q29ycG9yYXRpb24=" displayName="Preferred Language_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000009.RGVsZXRlZA==_Q29ycG9yYXRpb24=" displayName="Deleted_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000002.VW5pdCBOYW1l_Q29ycG9yYXRpb24=" displayName="Unit Name_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000000.UGFydG5lcklE_Q29ycG9yYXRpb24=" displayName="PartnerID_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000008.U2VsZg==_Q29ycG9yYXRpb24=" displayName="Self_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000003.U3RhdHVz_Q29ycG9yYXRpb24=" displayName="Status_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000bb02.VE5WZXJzaW9u_Q29ycG9yYXRpb24=" displayName="TNVersion_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000004.UGFydG5lciBUeXBl_Q29ycG9yYXRpb24=" displayName="Partner Type_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000007.Q0EgQ2VydGlmaWNhdGU=_Q29ycG9yYXRpb24=" displayName="CA Certificate_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000006.Q2VydGlmaWNhdGU=_Q29ycG9yYXRpb24=" displayName="Certificate_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000a19.RGVsaXZlcnkgTWF4aW11bSBSZXRyaWVz_Q29ycG9yYXRpb24=" displayName="Delivery Maximum Retries_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000a20.V2FpdCBCZXR3ZWVuIFJldHJpZXM=_Q29ycG9yYXRpb24=" displayName="Wait Between Retries_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd000000W7.UGFydG5lcklE_Q29ycG9yYXRpb24=" displayName="PartnerID_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000a18.UG9sbGluZyBGcmVxdWVuY3k=_Q29ycG9yYXRpb24=" displayName="Polling Frequency_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000ba0.UG9sbGluZyBNZXRob2Q=_Q29ycG9yYXRpb24=" displayName="Polling Method_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000a17.UHJlZmVycmVkIERlbGl2ZXJ5IE1ldGhvZA==_Q29ycG9yYXRpb24=" displayName="Preferred Delivery Method_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000bb01.UHJpdmF0ZSBLZXk=_Q29ycG9yYXRpb24=" displayName="Private Key_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd000000X7.UmVtb3RlU3RhdHVz_Q29ycG9yYXRpb24=" displayName="RemoteStatus_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70db3a600000001.QjJCY29tTWVtYmVy_Q29ycG9yYXRpb24=" displayName="B2BcomMember_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a0144c4f70dc02e00000000.UmV0cnkgRmFjdG9y_Q29ycG9yYXRpb24=" displayName="Retry Factor_Corporation">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.1.Q29ycG9yYXRpb24=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000027.RXh0ZXJuYWxJRA==_RXh0ZXJuYWwgSUQ=" displayName="ExternalID_External ID">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.5.RXh0ZXJuYWwgSUQ=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000028.SURUeXBl_RXh0ZXJuYWwgSUQ=" displayName="IDType_External ID">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.5.RXh0ZXJuYWwgSUQ=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000029.SW50ZXJuYWxJRA==_RXh0ZXJuYWwgSUQ=" displayName="InternalID_External ID">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.5.RXh0ZXJuYWwgSUQ=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000a15.UGFydG5lcklESUQ=_RXh0ZXJuYWwgSUQ=" displayName="PartnerIDID_External ID">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.5.RXh0ZXJuYWwgSUQ=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000a16.U2VxdWVuY2VOdW1iZXI=_RXh0ZXJuYWwgSUQ=" displayName="SequenceNumber_External ID">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.5.RXh0ZXJuYWwgSUQ=</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000014.Q29udGFjdElE_Q29udGFjdA==" displayName="ContactID_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000001a.RS1tYWls_Q29udGFjdA==" displayName="E-mail_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000001d.RmF4_Q29udGFjdA==" displayName="Fax_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000017.Rmlyc3QgTmFtZQ==_Q29udGFjdA==" displayName="First Name_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000001e.UGFnZXI=_Q29udGFjdA==" displayName="Pager_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000009a.UGFydG5lcklE_Q29udGFjdA==" displayName="PartnerID_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000018.Um9sZQ==_Q29udGFjdA==" displayName="Role_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000015.U2VxdWVuY2VOdW1iZXI=_Q29udGFjdA==" displayName="SequenceNumber_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000016.TGFzdCBOYW1l_Q29udGFjdA==" displayName="Last Name_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000001c.RXh0ZW5zaW9u_Q29udGFjdA==" displayName="Extension_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000001b.VGVsZXBob25l_Q29udGFjdA==" displayName="Telephone_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000019.Q29udGFjdCBUeXBl_Q29udGFjdA==" displayName="Contact Type_Contact">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.2.Q29udGFjdA==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000000a.QWRkcmVzc0lE_QWRkcmVzcw==" displayName="AddressID_Address">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.6.QWRkcmVzcw==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000000d.QWRkcmVzcw==_QWRkcmVzcw==" displayName="Address_Address">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.6.QWRkcmVzcw==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000000e.QWRkcmVzc0xpbmUy_QWRkcmVzcw==" displayName="AddressLine2_Address">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.6.QWRkcmVzcw==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000000f.QWRkcmVzc0xpbmUz_QWRkcmVzcw==" displayName="AddressLine3_Address">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.6.QWRkcmVzcw==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000010.Q2l0eQ==_QWRkcmVzcw==" displayName="City_Address">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.6.QWRkcmVzcw==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000000c.Q29udGFjdElE_QWRkcmVzcw==" displayName="ContactID_Address">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.6.QWRkcmVzcw==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000013.Q291bnRyeQ==_QWRkcmVzcw==" displayName="Country_Address">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.6.QWRkcmVzcw==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd0000000b.UGFydG5lcklE_QWRkcmVzcw==" displayName="PartnerID_Address">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.6.QWRkcmVzcw==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000011.U3RhdGUvUHJvdmluY2U=_QWRkcmVzcw==" displayName="State/Province_Address">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.6.QWRkcmVzcw==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70d65fd00000012.UG9zdGFsIENvZGU=_QWRkcmVzcw==" displayName="Postal Code_Address">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.6.QWRkcmVzcw==</dependsOn>
+  </asset>
+  <asset name="fielddefinition.0a013357f70db3a600000000.U2VxdWVuY2VOdW1iZXI=_QWRkcmVzcw==" displayName="SequenceNumber_Address">
+    <implementation.generic type="fielddefinition" />
+    <dependsOn>TN:fieldgroup.6.QWRkcmVzcw==</dependsOn>
+  </asset>
+  <asset name="externalidtype.1.RFVOUw==" displayName="DUNS">
+    <implementation.generic type="externalidtype" />
+  </asset>
+  <asset name="contacttype.1.VGVjaG5pY2Fs" displayName="Technical">
+    <implementation.generic type="contacttype" />
+  </asset>
+  <asset name="contacttype.2.QWRtaW5pc3RyYXRpdmU=" displayName="Administrative">
+    <implementation.generic type="contacttype" />
+  </asset>
+  <asset name="documenttype.53000q00cgf90gf20000000t.UE9yZXF1ZXN0" displayName="POrequest">
+    <implementation.generic type="documenttype" />
+    <property name="Document Type Status" displayName="Document Type Status">
+      <value>enabled</value>
+    </property>
+  </asset>
+  <asset name="processingrule.53000q00cgf9camt0000001c.UE9fcGFydG5lckEtUGFydG5lckJfcnVsZQ==" displayName="PO_partnerA-PartnerB_rule">
+    <implementation.generic type="processingrule" />
+    <property name="Processing Rule Status" displayName="Processing Rule Status">
+      <value>enabled</value>
+    </property>
+    <dependsOn>TN:partner.53000q00cgf6e8c20000000m.UGFydG5lciBC_U2hpcHBpbmc=</dependsOn>
+    <dependsOn>TN:partner.53000q00cgevg91a0000000g.UGFydG5lciBB_T3JkZXI=</dependsOn>
+    <dependsOn>TN:documenttype.53000q00cgf90gf20000000t.UE9yZXF1ZXN0</dependsOn>
+  </asset>
+  <asset name="tpa.53000q00cgf9o4u20000002s.VFBBY3VzdG9t_VW5rbm93bg==_IA==_VW5rbm93bg==_IA==" displayName="TPAcustom_Unknown_Unknown">
+    <implementation.generic type="tpa" />
+    <property name="TPA Status" displayName="TPA Status">
+      <value>proposed</value>
+    </property>
+    <dependsOn>TN:partner.000000000000000000000000.VW5rbm93bg==_IA==</dependsOn>
+  </asset>
+  <asset name="functionalpermission.53000q00cgfe1tic0000005r.ZnBfZGVsaXZlcnk=_TXkgd2ViTWV0aG9kcyBVc2Vycw==" displayName="Manage Delivery Services_My webMethods Users">
+    <implementation.generic type="functionalpermission" />
+  </asset>
+  <asset name="functionalpermission.53000q00cgfe3mok0000005s.ZnBfc3VibWl0X2RvYw==_TXkgd2ViTWV0aG9kcyBVc2Vycw==" displayName="Submit Document to Trading Networks Server_My webMethods Users">
+    <implementation.generic type="functionalpermission" />
+  </asset>
+</asset_composite>
+

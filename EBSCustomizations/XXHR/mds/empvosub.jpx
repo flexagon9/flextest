@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+
+<JboProject
+   Name="empvosub"
+   SeparateXMLFiles="true"
+   PackageName="" >
+   <DesignTime>
+      <Attr Name="_ejbPackage" Value="false" />
+      <Attr Name="_NamedConnection" Value="VISR12" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+      <Attr Name="_appModuleNames2" Value="flx.oracle.apps.xxhr.emp.lov.server.SocietyNameLovAM" />
+      <Attr Name="_jprName" Value="empvosub.jpr" />
+      <Attr Name="_appModuleNames1" Value="flx.oracle.apps.xxhr.emp.server.EmpSocietiesAM" />
+      <Attr Name="_appModuleNames0" Value="flx.oracle.apps.xxhr.emp.server.EmpSearchAM" />
+   </DesignTime>
+   <Containee
+      Name="server"
+      FullName="flx.oracle.apps.xxhr.emp.lov.server.server"
+      ObjectType="JboPackage" >
+   </Containee>
+   <Containee
+      Name="server"
+      FullName="flx.oracle.apps.xxhr.emp.schema.server.server"
+      ObjectType="JboPackage" >
+   </Containee>
+   <Containee
+      Name="server"
+      FullName="flx.oracle.apps.xxhr.emp.server.server"
+      ObjectType="JboPackage" >
+   </Containee>
+</JboProject>

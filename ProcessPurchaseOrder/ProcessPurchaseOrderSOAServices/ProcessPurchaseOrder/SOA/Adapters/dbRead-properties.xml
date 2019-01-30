@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <entry key="PURCHASEORDER.ORDERNUMBER:db_column_scale">0</entry>
+   <entry key="PURCHASEORDER.ORDERNUMBER:db_column_not_null">false</entry>
+   <entry key="PURCHASEORDER.ORDERNUMBER:db_column_precision">38</entry>
+   <entry key="PURCHASEORDER.OLDORDERNUMBER:db_column_not_null">false</entry>
+   <entry key="PURCHASEORDER:db_column_1">OLDORDERNUMBER</entry>
+   <entry key="PURCHASEORDER:db_column_0">ORDERNUMBER</entry>
+   <entry key="return_single_result_set">false</entry>
+   <entry key="PURCHASEORDER:db_table_type">TABLE</entry>
+   <entry key="root_descriptor_alias">PURCHASEORDER</entry>
+   <entry key="PURCHASEORDER.OLDORDERNUMBER:db_column_precision">38</entry>
+   <entry key="PURCHASEORDER.ORDERNUMBER:db_column_type">NUMBER</entry>
+   <entry key="PURCHASEORDER.OLDORDERNUMBER:db_column_type">NUMBER</entry>
+   <entry key="PURCHASEORDER.OLDORDERNUMBER:db_column_scale">0</entry>
+</properties>

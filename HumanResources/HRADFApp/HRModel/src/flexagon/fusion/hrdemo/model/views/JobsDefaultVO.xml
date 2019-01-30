@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="JobsDefaultVO"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="JobsEO.JOB_ID, 
+       JobsEO.JOB_TITLE, 
+       JobsEO.MIN_SALARY, 
+       JobsEO.MAX_SALARY"
+  FromList="HR.JOBS JobsEO"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  RowClass="flexagon.fusion.hrdemo.model.views.JobsDefaultVORowImpl"
+  ComponentClass="flexagon.fusion.hrdemo.model.views.JobsDefaultVOImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <EntityUsage
+    Name="JobsEO"
+    Entity="flexagon.fusion.hrdemo.model.entities.JobsEO"/>
+  <ViewAttribute
+    Name="JobId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="JobId"
+    EntityUsage="JobsEO"
+    AliasName="JOB_ID"/>
+  <ViewAttribute
+    Name="JobTitle"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="JobTitle"
+    EntityUsage="JobsEO"
+    AliasName="JOB_TITLE"/>
+  <ViewAttribute
+    Name="MinSalary"
+    PrecisionRule="true"
+    EntityAttrName="MinSalary"
+    EntityUsage="JobsEO"
+    AliasName="MIN_SALARY"/>
+  <ViewAttribute
+    Name="MaxSalary"
+    PrecisionRule="true"
+    EntityAttrName="MaxSalary"
+    EntityUsage="JobsEO"
+    AliasName="MAX_SALARY"/>
+  <ViewLinkAccessor
+    Name="Employees"
+    ViewLink="flexagon.fusion.hrdemo.model.views.links.EmpJobFkVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="JobHistory"
+    ViewLink="flexagon.fusion.hrdemo.model.views.links.JhistJobFkVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

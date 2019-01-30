@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<IDataXMLCoder version="1.0">
+  <record javaclass="com.wm.data.ISMemDataImpl">
+    <record name="version" javaclass="com.wm.data.ISMemDataImpl">
+      <value name="major">9</value>
+      <value name="minor">0</value>
+    </record>
+    <list name="tpas">
+      <record javaclass="com.wm.app.tn.tpa.TPA">
+        <value name="tpaID">53000q00cgf9o4u20000002s</value>
+        <value name="senderID">000000000000000000000000</value>
+        <value name="receiverID">000000000000000000000000</value>
+        <value name="agreementID">TPAcustom</value>
+        <value name="created">2018-06-20 14:11:42.53</value>
+        <value name="lastModified">2018-06-20 14:11:42.53</value>
+        <value name="controlNumber">0</value>
+        <value name="status">proposed</value>
+        <null name="exportService"/>
+        <null name="initService"/>
+        <null name="dataSchema"/>
+        <value name="dataStatus">immutable</value>
+        <null name="tpaData"/>
+        <value name="version">10.2.0.0</value>
+        <null name="description"/>
+        <value name="senderDisplayName">Unknown</value>
+        <value name="receiverDisplayName">Unknown</value>
+        <value name="senderCorpName">Unknown</value>
+        <value name="receiverCorpName">Unknown</value>
+        <null name="senderOrgUnitName"/>
+        <null name="receiverOrgUnitName"/>
+        <null name="validationService"/>
+      </record>
+    </list>
+  </record>
+</IDataXMLCoder>

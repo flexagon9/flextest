@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ProcessOrderSB/WSDLs/ProcessOrder-concrete"/>
+            <con:binding>
+                <con:name>processOrderBinding</con:name>
+                <con:namespace>http://www.oracle.com/ProcessOrder</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:template-overrides>
+            <con:placeholder-override id="PlaceholderID_205755226734284210--7ad1d10a.13e19ccd971.-7f9c"/>
+            <con:action-override id="_ActionId-205755226734284210--7ad1d10a.13e19ccd971.-7fb4">
+                <con1:validate xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con1:schema ref="ProcessOrderSB/Schemas/CanonicalOrder"/>
+                    <con1:schemaElement xmlns:soas="http://www.oracle.com/soasample">soas:Order</con1:schemaElement>
+                </con1:validate>
+            </con:action-override>
+            <con:placeholder-override id="PlaceholderID_6827730880031325556--129d2809.13fdeee0e2a.-7fd6"/>
+            <con:action-override id="_ActionId-205755226734284210--7ad1d10a.13e19ccd971.-7fb0">
+                <con1:report xmlns:con1="http://www.bea.com/wli/sb/stages/logging/config">
+                    <con1:labels>
+                        <con1:key>OrderNo</con1:key>
+                        <con1:varName>body</con1:varName>
+                        <con1:value>
+                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./soas:OrderAck/soas:OrderNumber</con2:xpathText>
+                        </con1:value>
+                    </con1:labels>
+                </con1:report>
+            </con:action-override>
+            <con:stage-override id="StageID_205755226734284210--7ad1d10a.13e19ccd971.-7fb7">
+                <con:context>
+                    <con1:userNsDecl prefix="soas" namespace="http://www.oracle.com/soasample" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                </con:context>
+            </con:stage-override>
+            <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                    <con1:service ref="ProcessOrderSB/ProcessBS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                    <con1:operation>process</con1:operation>
+                </con1:route>
+            </con:action-override>
+        </con:template-overrides>
+    </con:router>
+    <con:template ref="SharedSB/Templates/WSDL-VR"/>
+</con:pipelineEntry>

@@ -1,0 +1,5 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<listType xmlns="http://xmlns.oracle.com/webcenter/list" name="Objective Type">
+  <column id="title" name="OBJECTIVES.COL_TITLE_KEY" mapToColumn="value1" datatype="string"/>
+  <column id="description" name="OBJECTIVES.COL_DESCRIPTION_KEY" mapToColumn="value2" datatype="string"/>
+</listType>

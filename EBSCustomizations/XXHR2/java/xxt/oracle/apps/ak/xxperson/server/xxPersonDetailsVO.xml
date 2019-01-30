@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding='windows-1252'?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+
+<ViewObject
+   Name="xxPersonDetailsVO"
+   SelectList="xxPersonDetailsEO.PERSON_ID, 
+       xxPersonDetailsEO.FIRST_NAME, 
+
+       xxPersonDetailsEO.LAST_NAME, 
+       xxPersonDetailsEO.EMAIL, 
+
+       xxPersonDetailsEO.STUDENT_FLAG, 
+       xxPersonDetailsEO.NAME_OF_UNIVERSITY, 
+
+       xxPersonDetailsEO.LAST_UPDATE_DATE, 
+       xxPersonDetailsEO.LAST_UPDATE_LOGIN, 
+
+       xxPersonDetailsEO.LAST_UPDATED_BY, 
+       xxPersonDetailsEO.CREATION_DATE, 
+
+       xxPersonDetailsEO.CREATED_BY, 
+       xxPersonDetailsEO.ROWID"
+   FromList="xx_person_details xxPersonDetailsEO"
+   BindingStyle="Oracle"
+   CustomQuery="false"
+   RowClass="xxt.oracle.apps.ak.xxperson.server.xxPersonDetailsVORowImpl"
+   ComponentClass="xxt.oracle.apps.ak.xxperson.server.xxPersonDetailsVOImpl"
+   MsgBundleClass="oracle.jbo.common.JboResourceBundle"
+   UseGlueCode="false" >
+   <DesignTime>
+      <Attr Name="_isCodegen" Value="true" />
+      <Attr Name="_version" Value="9.0.3.13.93" />
+      <Attr Name="_CodeGenFlagNew" Value="36" />
+   </DesignTime>
+   <EntityUsage
+      Name="xxPersonDetailsEO"
+      Entity="xxt.oracle.apps.ak.xxperson.schema.server.xxPersonDetailsEO" >
+      <DesignTime>
+         <Attr Name="_queryClause" Value="false" />
+      </DesignTime>
+   </EntityUsage>
+   <ViewAttribute
+      Name="PersonId"
+      IsNotNull="true"
+      EntityAttrName="PersonId"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="PERSON_ID" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="FirstName"
+      Precision="50"
+      EntityAttrName="FirstName"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="FIRST_NAME" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="LastName"
+      Precision="50"
+      EntityAttrName="LastName"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="LAST_NAME" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Email"
+      Precision="100"
+      EntityAttrName="Email"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="EMAIL" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="StudentFlag"
+      Precision="1"
+      EntityAttrName="StudentFlag"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="STUDENT_FLAG" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="NameOfUniversity"
+      Precision="100"
+      EntityAttrName="NameOfUniversity"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="NAME_OF_UNIVERSITY" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="LastUpdateDate"
+      EntityAttrName="LastUpdateDate"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="LAST_UPDATE_DATE" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="LastUpdateLogin"
+      Precision="38"
+      Scale="0"
+      EntityAttrName="LastUpdateLogin"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="LAST_UPDATE_LOGIN" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="LastUpdatedBy"
+      Precision="38"
+      Scale="0"
+      EntityAttrName="LastUpdatedBy"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="LAST_UPDATED_BY" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="CreationDate"
+      EntityAttrName="CreationDate"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="CREATION_DATE" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="CreatedBy"
+      Precision="38"
+      Scale="0"
+      EntityAttrName="CreatedBy"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="CREATED_BY" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="RowID"
+      IsUpdateable="false"
+      EntityAttrName="RowID"
+      EntityUsage="xxPersonDetailsEO"
+      AliasName="ROWID" >
+   </ViewAttribute>
+</ViewObject>

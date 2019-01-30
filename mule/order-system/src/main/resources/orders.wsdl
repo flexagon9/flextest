@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.training.mulesoft.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="OrderServiceService" targetNamespace="http://soap.training.mulesoft.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://soap.training.mulesoft.com/" elementFormDefault="unqualified" targetNamespace="http://soap.training.mulesoft.com/" version="1.0">
+<xs:element name="provisionOrder" type="tns:provisionOrder"/>
+<xs:element name="provisionOrderResponse" type="tns:provisionOrderResponse"/>
+<xs:complexType name="provisionOrder">
+<xs:sequence>
+<xs:element minOccurs="0" name="dateRange" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="provisionOrderResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:item"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="item">
+<xs:sequence>
+<xs:element minOccurs="0" name="location" type="xs:string"/>
+<xs:element name="price" type="xs:double"/>
+<xs:element minOccurs="0" name="orderID" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="arrayList">
+<xs:complexContent>
+<xs:extension base="tns:abstractList">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType abstract="true" name="abstractList">
+<xs:complexContent>
+<xs:extension base="tns:abstractCollection">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType abstract="true" name="abstractCollection">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="provisionOrderResponse">
+    <wsdl:part element="tns:provisionOrderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="provisionOrder">
+    <wsdl:part element="tns:provisionOrder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="OrderService">
+    <wsdl:operation name="provisionOrder">
+      <wsdl:input message="tns:provisionOrder" name="provisionOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:provisionOrderResponse" name="provisionOrderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OrderServiceServiceSoapBinding" type="tns:OrderService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="provisionOrder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="provisionOrder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="provisionOrderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrderServiceService">
+    <wsdl:port binding="tns:OrderServiceServiceSoapBinding" name="OrderServicePort">
+      <soap:address location="http://training-u.cloudhub.io/advanced/orders"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

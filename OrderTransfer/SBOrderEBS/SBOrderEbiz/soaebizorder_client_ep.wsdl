@@ -1,0 +1,44 @@
+<wsdl:definitions name="SOAEbizOrder" targetNamespace="http://xmlns.oracle.com/SOAEBizApplication/SOAEbizOrder/SOAEbizOrder" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:client="http://xmlns.oracle.com/SOAEBizApplication/SOAEbizOrder/SOAEbizOrder" xmlns:ns1="http://www.flexagon.com/order"
+                  xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+        <abstractWSDL>http://devlnx08:8001/soa-infra/services/default/SOAEbizOrderABCS/WSDLs/EbizOrder.wsdl</abstractWSDL>
+    </wsdl:documentation>
+  <plnk:partnerLinkType name="SOAEbizOrder">
+    <plnk:role name="SOAEbizOrderProvider" portType="client:SOAEbizOrder"/>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://www.flexagon.com/order" schemaLocation="XMLSchema_-4901770.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="SOAEbizOrderRequestMessage">
+    <wsdl:part name="payload" element="ns1:Order"/>
+  </wsdl:message>
+  <wsdl:message name="SOAEbizOrderResponseMessage">
+    <wsdl:part name="payload" element="ns1:OrderResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="SOAEbizOrder">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:SOAEbizOrderRequestMessage"/>
+      <wsdl:output message="client:SOAEbizOrderResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SOAEbizOrderBinding" type="client:SOAEbizOrder">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="process">
+      <soap:operation style="document" soapAction="process"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="soaebizorder_client_ep">
+    <wsdl:port name="SOAEbizOrder_pt" binding="client:SOAEbizOrderBinding">
+      <soap:address location="http://devlnx08.flexagon:8001/soa-infra/services/default/SOAEbizOrderABCS/ebizorder_client_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

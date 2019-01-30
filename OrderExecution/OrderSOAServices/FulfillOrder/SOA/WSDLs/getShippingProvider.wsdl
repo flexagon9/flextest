@@ -1,0 +1,32 @@
+<wsdl:definitions
+     name="getShippingProvider"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/FulfillOrder/getShippingProvider"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/FulfillOrder/getShippingProvider"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/getShippingProvider"
+    >
+  <plt:partnerLinkType name="getShippingProvider_plt" >
+    <plt:role name="getShippingProvider_role" >
+      <plt:portType name="tns:getShippingProvider_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/getShippingProvider" schemaLocation="../Schemas/getShippingProvider_table.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="getShippingProviderSelect_inputParameters">
+        <wsdl:part name="getShippingProviderSelect_inputParameters" element="top:getShippingProviderSelect_smiInputParameters"/>
+    </wsdl:message>
+    <wsdl:message name="E2E1201_ShippingMethodsCollection_msg">
+        <wsdl:part name="E2E1201_ShippingMethodsCollection" element="top:E2E1201_ShippingMethodsCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="getShippingProvider_ptt">
+        <wsdl:operation name="getShippingProviderSelect">
+            <wsdl:input message="tns:getShippingProviderSelect_inputParameters"/>
+            <wsdl:output message="tns:E2E1201_ShippingMethodsCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

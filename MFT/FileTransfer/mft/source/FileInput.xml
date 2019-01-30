@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Source createdBy="weblogic" id="so_200389a3-febf-4599-b531-45d3c699cc74" lastModifiedBy="weblogic" listening="true" name="FileInput" xmlns="http://xmlns.oracle.com/mft/source">
+   <SourceType>
+      <SourceTargetCategory xmlns="http://xmlns.oracle.com/mft/category">
+         <Technology>
+            <TechnologyBinding secure="false" type="File" xmlns="http://xmlns.oracle.com/mft/binding">
+               <File append="false" eventBased="false" eventSecurityEnabled="false" folder="C:\00Input" minimumAge="0" overwrite="true" pollingBased="true" pollingFrequency="3" recursive="false" renameOnCompletion="false">
+                  <ActionCommon type="delete"/>
+                  <PerformanceAttributes/>
+               </File>
+            </TechnologyBinding>
+         </Technology>
+      </SourceTargetCategory>
+   </SourceType>
+</Source>

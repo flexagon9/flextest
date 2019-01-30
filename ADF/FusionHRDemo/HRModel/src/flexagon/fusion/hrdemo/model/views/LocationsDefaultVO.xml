@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="LocationsDefaultVO"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="LocationsEO.LOCATION_ID, 
+       LocationsEO.STREET_ADDRESS, 
+       LocationsEO.POSTAL_CODE, 
+       LocationsEO.CITY, 
+       LocationsEO.STATE_PROVINCE, 
+       LocationsEO.COUNTRY_ID"
+  FromList="HR.LOCATIONS LocationsEO"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  RowClass="flexagon.fusion.hrdemo.model.views.LocationsDefaultVORowImpl"
+  ComponentClass="flexagon.fusion.hrdemo.model.views.LocationsDefaultVOImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <EntityUsage
+    Name="LocationsEO"
+    Entity="flexagon.fusion.hrdemo.model.entities.LocationsEO"/>
+  <ViewAttribute
+    Name="LocationId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LocationId"
+    EntityUsage="LocationsEO"
+    AliasName="LOCATION_ID"/>
+  <ViewAttribute
+    Name="StreetAddress"
+    PrecisionRule="true"
+    EntityAttrName="StreetAddress"
+    EntityUsage="LocationsEO"
+    AliasName="STREET_ADDRESS"/>
+  <ViewAttribute
+    Name="PostalCode"
+    PrecisionRule="true"
+    EntityAttrName="PostalCode"
+    EntityUsage="LocationsEO"
+    AliasName="POSTAL_CODE"/>
+  <ViewAttribute
+    Name="City"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="City"
+    EntityUsage="LocationsEO"
+    AliasName="CITY"/>
+  <ViewAttribute
+    Name="StateProvince"
+    PrecisionRule="true"
+    EntityAttrName="StateProvince"
+    EntityUsage="LocationsEO"
+    AliasName="STATE_PROVINCE"/>
+  <ViewAttribute
+    Name="CountryId"
+    PrecisionRule="true"
+    EntityAttrName="CountryId"
+    EntityUsage="LocationsEO"
+    AliasName="COUNTRY_ID"/>
+  <ViewLinkAccessor
+    Name="Departments"
+    ViewLink="flexagon.fusion.hrdemo.model.views.links.DeptLocFkVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.flexagon.com/samples/ProcessPurchaseOrder" targetNamespace="http://www.flexagon.com/samples/ProcessPurchaseOrder"
+            elementFormDefault="qualified">
+  <xsd:element name="Input">
+    <xsd:annotation>
+      <xsd:documentation>A sample element</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="inputPart" type="xsd:long"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Output">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="outputPart" type="xsd:long"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

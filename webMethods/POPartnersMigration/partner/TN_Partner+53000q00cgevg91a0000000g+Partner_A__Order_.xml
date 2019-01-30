@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<IDataXMLCoder version="1.0">
+  <record javaclass="com.wm.data.ISMemDataImpl">
+    <record name="version" javaclass="com.wm.data.ISMemDataImpl">
+      <value name="major">9</value>
+      <value name="minor">0</value>
+    </record>
+    <list name="profiles">
+      <record javaclass="com.wm.app.tn.profile.Profile">
+        <record name="Corporate" javaclass="com.wm.app.tn.profile.Corporation">
+          <value name="PartnerID">53000q00cgevg91a0000000g</value>
+          <value name="CorporationName">Partner A</value>
+          <value name="OrgUnitName">Order</value>
+          <value name="Status">Active</value>
+          <value name="Type">TNServer    </value>
+          <idatacodable name="Self" javaclass="com.wm.data.MBoolean">            <value name="MBoolean">false</value>
+          </idatacodable>
+          <idatacodable name="Deleted" javaclass="com.wm.data.MBoolean">            <value name="MBoolean">false</value>
+          </idatacodable>
+          <value name="TNVersion">10.2.0.0</value>
+          <null name="Certificate"/>
+          <null name="CACertificate"/>
+          <null name="PrivateKey"/>
+          <null name="RemoteStatus"/>
+          <value name="PreferredProtocol">Primary E-mail</value>
+          <float name="PollingFrequency" type="java.lang.Float">0.0</float>
+          <number name="DeliveryMaxRetries" type="java.lang.Short">0</number>
+          <number name="DeliveryRetryWait" type="java.lang.Integer">0</number>
+          <null name="PollingProtocol"/>
+          <idatacodable name="B2BcomMember" javaclass="com.wm.data.MBoolean">            <value name="MBoolean">false</value>
+          </idatacodable>
+          <number name="RetryFactor" type="java.lang.Integer">1</number>
+          <null name="DeliveryQueue"/>
+          <null name="Company Logo"/>
+          <null name="Address"/>
+          <null name="PreferredLocale"/>
+          <idatacodable name="RoutingOff" javaclass="com.wm.data.MBoolean">            <value name="MBoolean">false</value>
+          </idatacodable>
+          <null name="Substatus"/>
+        </record>
+        <null name="Contact"/>
+        <array name="Delivery" type="record" depth="1">
+          <record javaclass="com.wm.app.tn.profile.Destination">
+            <value name="PartnerID">53000q00cgevg91a0000000g</value>
+            <value name="Protocol">smtp</value>
+            <idatacodable name="PrimaryAddr" javaclass="com.wm.data.MBoolean">              <value name="MBoolean">true</value>
+            </idatacodable>
+            <null name="Host"/>
+            <null name="Port"/>
+            <value name="Location">viji.winzet@GMAIL.COM</value>
+            <null name="UserName"/>
+            <value name="Password"></value>
+            <null name="CustomData"/>
+            <value name="DestinationID">53000q00cgf03d430000000k</value>
+            <null name="NativeProtocol"/>
+            <null name="CustomDataString"/>
+            <null name="B2BInterface"/>
+            <null name="B2BService"/>
+          </record>
+        </array>
+        <array name="ID" type="record" depth="1">
+          <record javaclass="com.wm.app.tn.profile.ID">
+            <value name="ExternalID">22</value>
+            <number name="IDType" type="java.lang.Integer">1</number>
+            <value name="InternalID">53000q00cgevg91a0000000g</value>
+            <number name="SequenceNumber" type="java.lang.Short">0</number>
+            <value name="PartnerIDID">53000q00cgevg91c0000000h</value>
+            <value name="IDTypeName">DUNS</value>
+          </record>
+        </array>
+        <null name="ProfileGroups"/>
+        <null name="ProfileGroupNames"/>
+        <null name="Users"/>
+      </record>
+    </list>
+  </record>
+</IDataXMLCoder>

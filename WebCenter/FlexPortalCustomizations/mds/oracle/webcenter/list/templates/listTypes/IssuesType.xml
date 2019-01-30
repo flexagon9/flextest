@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<listType xmlns="http://xmlns.oracle.com/webcenter/list" name="Issues Type">
+  <column id="issueNo" name="ISSUES.COL_NUMBER_KEY" mapToColumn="value1" datatype="number"/>
+  <column id="description" name="MILESTONES.COL_DESCRIPTION_KEY" mapToColumn="value2" datatype="string"/>
+  <column id="targetDate" name="ISSUES.COL_TARGET_DATE_KEY" mapToColumn="value3" datatype="datetime"/>
+  <column id="assigned" name="ISSUES.COL_ASSIGNED_TO_KEY" mapToColumn="value4" datatype="person"/>
+  <column id="status" name="MILESTONES.COL_STATUS_KEY" mapToColumn="value5" datatype="string" defaultValue="ISSUES.COL_STATUS_DEFAULT"/>
+  <column id="comments" name="ISSUES.COL_COMMENTS_KEY" mapToColumn="value6" datatype="string"/>
+</listType>

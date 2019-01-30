@@ -1,0 +1,122 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Mar 27 18:22:19 PDT 2013
+  Author:  sgeib
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="receiveOrder"
+               targetNamespace="http://xmlns.oracle.com/e2e_1201_composites/ProcessOrderTemplate/receiveOrder"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/e2e_1201_composites/ProcessOrderTemplate/receiveOrder"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:ns1="http://www.oracle.com/ProcessOrder"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns2="http://www.oracle.com/soasample"
+         xmlns:ns3="http://xmlns.oracle.com/e2e_1201_composites/ProcessOrderTemplate/validateAndProcessOrder">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="http://www.oracle.com/ProcessOrder" location="../WSDLs/ProcessOrderWrapper.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/" ui:processWSDL="true"/>
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="receiveorder_client" partnerLinkType="ns1:receiveOrder" myRole="processOrderPortType"/>
+    <partnerLink name="validateAndProcessOrder.validateandprocessorder_client"
+                 partnerLinkType="ns3:validateAndProcessOrder" partnerRole="validateAndProcessOrderProvider"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="ns1:orderInput"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="ns1:orderOutput"/>
+    <variable name="InvokeValidateAndProcessOrder_process_InputVariable"
+              messageType="ns3:validateAndProcessOrderRequestMessage"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in receiveOrder.wsdl) -->
+    <receive name="receiveInput" partnerLink="receiveorder_client" portType="ns1:processOrderPortType" operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="updateOrderAndAck">
+      <copy bpelx:insertMissingToData="yes">
+        <from>ora:getComponentInstanceId()</from>
+        <to>$inputVariable.order/ns2:OrderNumber</to>
+      </copy>
+      <copy bpelx:insertMissingToData="yes">
+        <from>ora:getComponentInstanceId()</from>
+        <to>$inputVariable.order/ns2:Shipping/ns2:OrderNumber</to>
+      </copy>
+      <copy bpelx:insertMissingToData="yes">
+        <from>'New'</from>
+        <to>$inputVariable.order/ns2:Shipping/ns2:Status</to>
+      </copy>
+      <copy bpelx:insertMissingToData="yes">
+        <from>xp20:current-date()</from>
+        <to>$inputVariable.order/ns2:OrderDate</to>
+      </copy>
+      <copy bpelx:insertMissingToData="yes">
+        <from>'New'</from>
+        <to>$inputVariable.order/ns2:Status</to>
+      </copy>
+      <copy>
+        <from>ora:getComponentInstanceId()</from>
+        <to>$outputVariable.ack/ns2:OrderNumber</to>
+      </copy>
+    </assign>
+    <scope name="validateAndProcessOrderScope">
+      <sequence>
+        <assign name="assignValidateAndProcessOrderMsg">
+          <copy>
+            <from>$inputVariable.order</from>
+            <to>$InvokeValidateAndProcessOrder_process_InputVariable.payload</to>
+          </copy>
+        </assign>
+        <invoke name="InvokeValidateAndProcessOrder"
+                partnerLink="validateAndProcessOrder.validateandprocessorder_client"
+                portType="ns3:validateAndProcessOrder" operation="process"
+                inputVariable="InvokeValidateAndProcessOrder_process_InputVariable" bpelx:invokeAsDetail="no"/>
+      </sequence>
+    </scope>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="receiveorder_client" portType="ns1:processOrderPortType" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>

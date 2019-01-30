@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<listType xmlns="http://xmlns.oracle.com/webcenter/list" name="Milestone Type">
+  <column id="date" name="MILESTONES.COL_DATE_KEY" mapToColumn="value1" datatype="datetime"/>
+  <column id="description" name="MILESTONES.COL_DESCRIPTION_KEY" mapToColumn="value2" datatype="string"/>
+  <column id="status" name="MILESTONES.COL_STATUS_KEY" mapToColumn="value3" datatype="string" defaultValue="MILESTONES.DEFAULT_COL_STATUS_KEY"/>
+</listType>

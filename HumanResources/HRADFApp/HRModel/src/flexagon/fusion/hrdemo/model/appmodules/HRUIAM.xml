@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="HRUIAM"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  ComponentClass="flexagon.fusion.hrdemo.model.appmodules.HRUIAMImpl"
+  DefClass="flexagon.fusion.hrdemo.model.appmodules.HRUIAMDefImpl"
+  ClearCacheOnRollback="true">
+  <DesignTime>
+    <Attr Name="_isDefCodegen" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="flexagon.fusion.hrdemo.model.appmodules.HRUIAM_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewUsage
+    Name="Employees"
+    ViewObjectName="flexagon.fusion.hrdemo.model.views.EmployeesDefaultVO"/>
+  <ViewUsage
+    Name="Departments"
+    ViewObjectName="flexagon.fusion.hrdemo.model.views.DepartmentsDefaultVO"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="flexagon.fusion.hrdemo.model.HRModelBundle"/>
+  </ResourceBundle>
+</AppModule>

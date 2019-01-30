@@ -1,0 +1,5 @@
+In the workflow paste something like this in an executeWLST opertaion of the Weblogic Plugin. 
+
+fdConnectToCurrentInstance()
+execfile(FD_ARTIFACTS_DIR + "/jmsFile.py")
+

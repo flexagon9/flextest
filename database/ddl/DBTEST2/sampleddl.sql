@@ -1,0 +1,11 @@
+  CREATE TABLE "DBTEST2"."JOEL_TABLE3" 
+   (	"COLUMN1" VARCHAR2(20 BYTE)
+   );
+   /
+CREATE TABLE "DBTEST2"."KARL23" 
+   (	"PK" NUMBER(30,0), 
+	"DATA1" VARCHAR2(20 BYTE)
+   );
+   /
+   /
+   /

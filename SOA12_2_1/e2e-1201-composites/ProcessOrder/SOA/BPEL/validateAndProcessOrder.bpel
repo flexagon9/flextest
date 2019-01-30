@@ -1,0 +1,222 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Mar 27 18:27:50 PDT 2013
+  Author:  sgeib
+  Type: BPEL 2.0 Process
+  Purpose: One Way BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="validateAndProcessOrder"
+               targetNamespace="http://xmlns.oracle.com/e2e_1201_composites/ProcessOrderTemplate/validateAndProcessOrder"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/e2e_1201_composites/ProcessOrderTemplate/validateAndProcessOrder"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:ui="http://xmlns.oracle.com/soa/designer"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns2="http://www.oracle.com/soasample"
+         xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/top/writeOrderToDatabase"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/file/e2e-1201-composites/ProcessOrderTemplate/writeOrderToFile"
+         xmlns:ns5="http://www.oracle.com/ValidatePayment" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/ProcessOrderTemplate/writeOrderToDatabase"
+         xmlns:ns6="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/ProcessOrder/updateOrderStatus"
+         xmlns:ns7="http://xmlns.oracle.com/pcbpel/adapter/db/top/updateOrderStatus"
+         xmlns:ns8="http://xmlns.oracle.com/pcbpel/adapter/file/e2e-1201-composites/ProcessOrder/writeToFile"
+         xmlns:ns9="http://model/">
+  <bpelx:inlineSubProcess name="updateOrderStatusSP">
+    <sequence name="Sequence1">
+   <assign name="Assign1">
+      <copy>
+        <from>123</from>
+        <to>$InvokeUpdateOrderWsdl_updateOrder_InputVariable.parameters/arg0</to>
+      </copy>
+    </assign>
+    <invoke name="InvokeUpdateOrderWsdl" partnerLink="UpdateOrderWsdl" portType="ns9:Order"
+            operation="updateOrder"
+            inputVariable="InvokeUpdateOrderWsdl_updateOrder_InputVariable" 
+            outputVariable="InvokeUpdateOrderWsdl_updateOrder_OutputVariable"
+            bpelx:invokeAsDetail="no"/>
+      <!--assign name="assignOrderStatus">
+        <copy>
+          <from>$order/ns2:OrderNumber</from>
+          <to>$updateOrderStatus_update_InputVariable.E2E1201_OrdersCollection/ns7:E2E1201_Orders/ns7:orderNumber</to>
+        </copy>
+        <copy>
+          <from>$order/ns2:Status</from>
+          <to>$updateOrderStatus_update_InputVariable.E2E1201_OrdersCollection/ns7:E2E1201_Orders/ns7:status</to>
+        </copy>
+      </assign>
+      <invoke name="updateOrderStatus" bpelx:invokeAsDetail="no" partnerLink="updateOrderStatus"
+              portType="ns6:updateOrderStatus_ptt" operation="update"
+              inputVariable="updateOrderStatus_update_InputVariable"/-->
+    </sequence>
+  </bpelx:inlineSubProcess>
+  <import namespace="http://www.oracle.com/soasample" location="oramds:/apps/CustomSchema/CanonicalOrder.xsd"
+          importType="http://www.w3.org/2001/XMLSchema"/>
+  <import namespace="http://xmlns.oracle.com/e2e_1201_composites/ProcessOrderTemplate/validateAndProcessOrder"
+          location="../WSDLs/validateAndProcessOrder.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"
+          ui:processWSDL="true"/>
+  <import namespace="http://www.oracle.com/soasample" location="../Schemas/CanonicalOrder.xsd"
+          importType="http://www.w3.org/2001/XMLSchema"/>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="validateandprocessorder_client" partnerLinkType="client:validateAndProcessOrder" myRole="validateAndProcessOrderProvider"/>
+    <!--partnerLink name="writeOrderToDatabase" partnerLinkType="ns1:writeOrderToDatabase_plt"
+                 partnerRole="writeOrderToDatabase_role"/>
+    <partnerLink name="updateOrderStatus" partnerLinkType="ns6:updateOrderStatus_plt"
+                 partnerRole="updateOrderStatus_role"/-->
+    <partnerLink name="validatePayment" partnerLinkType="ns5:validatePayment" partnerRole="validatePaymentPortType"/>
+    <partnerLink name="writeToFile" partnerLinkType="ns8:Write_plt" partnerRole="Write_role"/>
+    <partnerLink name="UpdateOrderWsdl" partnerLinkType="ns9:UpdateOrderWsdl" partnerRole="Order"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:validateAndProcessOrderRequestMessage"/>
+    <variable name="TotalAmount" element="ns2:TotalOrderAmount"/>
+    <variable name="order" element="ns2:Order"/>
+        <variable name="test1" type="xsd:integer"/>
+        <variable name="test2" type="xsd:integer"/>
+    <!--variable name="writeOrderToDB_insert_InputVariable" messageType="ns1:E2E1201_OrdersCollection_msg"/-->
+    <!--variable name="updateOrderStatus_update_InputVariable" messageType="ns6:E2E1201_OrdersCollection_msg"/-->
+    <variable name="validatePayment_validate_InputVariable" messageType="ns5:validateInput"/>
+    <variable name="validatePayment_validate_OutputVariable" messageType="ns5:validateOutput"/>
+    <variable name="Invoke1_Write_InputVariable" messageType="ns8:Write_msg"/>
+    <variable name="InvokeUpdateWsdl_updateOrder_InputVariable" messageType="ns9:updateOrder"/>
+    <variable name="InvokeUpdateWsdl_updateOrder_OutputVariable" messageType="ns9:updateOrderResponse"/>
+    <variable name="InvokeUpdateOrderWsdl_updateOrder_InputVariable" messageType="ns9:updateOrder"/>
+    <variable name="InvokeUpdateOrderWsdl_updateOrder_OutputVariable" messageType="ns9:updateOrderResponse"/>
+    <variable name="Invoke2_updateOrder_InputVariable" messageType="ns9:updateOrder"/>
+    <variable name="Invoke2_updateOrder_OutputVariable" messageType="ns9:updateOrderResponse"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in validateAndProcessOrder.wsdl) -->
+    <receive name="receiveInput" partnerLink="validateandprocessorder_client" portType="client:validateAndProcessOrder" operation="process" variable="inputVariable" createInstance="yes"/>
+    
+    <assign name="assignOrder">
+      <copy>
+        <from>$inputVariable.payload</from>
+        <to>$order</to>
+      </copy>
+    </assign>
+    <assign name="calculateTotalOrderAmount">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"/>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("../Transformations/calculateTotalOrderAmount.xsl", $order)</from>
+        <to variable="TotalAmount"/>
+      </copy>
+    </assign>
+    <assign name="assignTotalOrder">
+      <copy bpelx:insertMissingToData="yes">
+        <from>$TotalAmount</from>
+        <to>$order/ns2:Billing/ns2:AuthorizationAmount</to>
+      </copy>
+    </assign>
+    <scope name="writeOrderScope">
+      <sequence>
+        <!--assign name="MapOrderToDBData">
+          <bpelx:annotation>
+            <bpelx:pattern patternName="bpelx:transformation"/>
+          </bpelx:annotation>
+          <copy>
+            <from>ora:doXSLTransformForDoc("../Transformations/MapOrderDBData.xsl", $order)</from>
+            <to variable="writeOrderToDB_insert_InputVariable" part="E2E1201_OrdersCollection"/>
+          </copy>
+        </assign-->
+        <assign name="Transformation1">
+          <bpelx:annotation>
+            <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+          </bpelx:annotation>
+          <copy>
+            <from>ora:doXSLTransformForDoc("../Transformations/Transformation_1.xsl", $inputVariable.payload)</from>
+            <to variable="Invoke1_Write_InputVariable" part="body"/>
+          </copy>
+        </assign>
+        <!--invoke name="WriteOrderToDB" bpelx:invokeAsDetail="no" partnerLink="writeOrderToDatabase"
+                portType="ns1:writeOrderToDatabase_ptt" operation="insert"
+                inputVariable="writeOrderToDB_insert_InputVariable"/-->
+        <invoke name="Invoke1" partnerLink="writeToFile" portType="ns8:Write_ptt"
+                operation="Write" inputVariable="Invoke1_Write_InputVariable" bpelx:invokeAsDetail="no"/>
+      </sequence>
+    </scope>
+    <extensionActivity>
+      <bpelx:dehydrate name="DehydrateInstance"/>
+    </extensionActivity>
+    <assign name="assignPaymentInformation">
+      <copy>
+        <from>$order/ns2:Billing</from>
+        <to>$validatePayment_validate_InputVariable.paymentInfo</to>
+      </copy>
+    </assign>
+    <invoke name="validatePayment" partnerLink="validatePayment"
+            portType="ns5:validatePaymentPortType" operation="validate"
+            inputVariable="validatePayment_validate_InputVariable"
+            outputVariable="validatePayment_validate_OutputVariable" bpelx:invokeAsDetail="no"/>
+    <assign name="setPaymentStatus">
+      <copy>
+        <from>$validatePayment_validate_OutputVariable.status/ns2:Status</from>
+        <to>$order/ns2:Status</to>
+      </copy>
+    </assign>
+    <extensionActivity>
+      <bpelx:call name="updateOrderStatus" target="updateOrderStatusSP"/>
+    </extensionActivity>
+    <if name="IfPaymentValid">
+      <documentation>
+        <![CDATA[Authorized]]>
+      </documentation>
+      <condition>$order/ns2:Status = 'Authorized'</condition>
+      <sequence name="Sequence2">
+        <assign name="assignReadyForShipStatus">
+          <copy>
+            <from>"ReadyForShip"</from>
+            <to>$order/ns2:Status</to>
+          </copy>
+        </assign>
+        <extensionActivity>
+          <bpelx:call name="updateOrderStatusToReadyForShip" target="updateOrderStatusSP"/>
+        </extensionActivity>
+      </sequence>
+    </if>
+  </sequence>
+</process>

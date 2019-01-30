@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="60cdb186-5472-4382-988f-63afa9b6ffcd" activeEnvironment="Default" name="HRSOAService" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="7f8f6e8f-346a-468f-8fb2-6632a008111e" wsaVersion="NONE" name="validatePaymentBinding" type="wsdl" bindingName="{http://www.oracle.com/ValidatePayment}validatePaymentBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8001/soa-infra/services/default/HRSOAService/validatepaymentprocess_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8001/soa-infra/services/default/HRSOAService/validatepaymentprocess_client_ep?WSDL"><con:part><con:url>${{SOAHR:SOASERVER_URL_PREFIX}}/soa-infra/services/default/HRSOAService/validatepaymentprocess_client_ep?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.oracle.com/ValidatePayment" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.oracle.com/ValidatePayment" xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>${{SOAHR:SOASERVER_URL_PREFIX}}/soa-infra/services/default/HRSOAService!1.0/WSDLs/ValidatePaymentWrapper.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="validatePaymentProcess">
+    <plnk:role name="validatePaymentPortType" portType="tns:validatePaymentPortType"/>
+  </plnk:partnerLinkType>
+  <wsdl:import namespace="http://www.oracle.com/ValidatePayment" location="${{SOAHR:SOASERVER_URL_PREFIX}}/soa-infra/services/default/HRSOAService/validatepaymentprocess_client_ep?WSDL=ValidatePayment.wsdl"/>
+  <wsdl:binding name="validatePaymentBinding" type="tns:validatePaymentPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="validate">
+      <soap:operation style="document" soapAction="validate"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="validatepaymentprocess_client_ep">
+    <wsdl:port name="validatePaymentPort" binding="tns:validatePaymentBinding">
+      <soap:address location="${{SOAHR:SOASERVER_URL_PREFIX}}/soa-infra/services/default/HRSOAService/validatepaymentprocess_client_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>${{SOAHR:SOASERVER_URL_PREFIX}}/soa-infra/services/default/HRSOAService/validatepaymentprocess_client_ep?WSDL=ValidatePayment.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.oracle.com/ValidatePayment" xmlns:tns="http://www.oracle.com/ValidatePayment" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:types="http://www.oracle.com/soasample">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import schemaLocation="${{SOAHR:SOASERVER_URL_PREFIX}}/soa-infra/services/default/HRSOAService/validatepaymentprocess_client_ep?XSD=../Schemas/CanonicalOrder.xsd" namespace="http://www.oracle.com/soasample"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="validateInput">
+    <wsdl:part name="paymentInfo" element="types:PaymentInfo"/>
+  </wsdl:message>
+  <wsdl:message name="validateOutput">
+    <wsdl:part name="status" element="types:PaymentStatus"/>
+  </wsdl:message>
+  <wsdl:portType name="validatePaymentPortType">
+    <wsdl:operation name="validate">
+      <wsdl:input message="tns:validateInput"/>
+      <wsdl:output message="tns:validateOutput"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>${{SOAHR:SOASERVER_URL_PREFIX}}/soa-infra/services/default/HRSOAService/validatepaymentprocess_client_ep?XSD=../Schemas/CanonicalOrder.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://www.oracle.com/soasample" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.oracle.com/soasample">
+  <xs:element name="Order" type="OrderType">
+    <xs:annotation>
+      <xs:documentation>The canonical order element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="OrderAck" type="OrderAckType">
+    <xs:annotation>
+      <xs:documentation>The canonical order ack element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="PaymentInfo" type="PaymentType">
+    <xs:annotation>
+      <xs:documentation>The canonical order element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="PaymentStatus" type="PaymentStatusType">
+    <xs:annotation>
+      <xs:documentation>The canonical order element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="Shipping" type="ShippingType">
+    <xs:annotation>
+      <xs:documentation>The canonical order element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="InventoryQuery" type="InventoryQueryType">
+    <xs:annotation>
+      <xs:documentation>The inventory element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="InventoryResponse" type="InventoryType">
+    <xs:annotation>
+      <xs:documentation>The inventory element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="TotalOrderAmount" type="MoneyType">
+    <xs:annotation>
+      <xs:documentation>The total order amount element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:simpleType name="MoneyType">
+    <xs:restriction base="xs:double"/>
+  </xs:simpleType>
+  <xs:simpleType name="OrderNumberType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="25"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NameType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AddressType">
+    <xs:sequence>
+      <xs:element name="FirstName" type="NameType"/>
+      <xs:element name="LastName" type="NameType" minOccurs="1"/>
+      <xs:sequence minOccurs="1" maxOccurs="3">
+        <xs:element name="AddressLine">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="180"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+      <xs:element name="City">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="25"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="State">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ZipCode">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+            <xs:minLength value="5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="PhoneNumber" minOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="11"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemType">
+    <xs:annotation>
+      <xs:documentation>This information will be populated from INVDTA/ITMMSTP from bronze where product_id = isku</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SKU">
+        <xs:annotation>
+          <xs:documentation>Column ISKU</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Quantity" type="xs:int"/>
+      <xs:element name="UnitPrice" type="MoneyType"/>
+      <xs:element name="Brand" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Column BRAND</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Model" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Column MODEL</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Category" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Column CATEG</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:totalDigits value="4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Description" nillable="true">
+        <xs:annotation>
+          <xs:documentation/>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ShippingSpeedType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Standard"/>
+      <xs:enumeration value="Twoday"/>
+      <xs:enumeration value="Oneday"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ShippingProviderType">
+    <xs:annotation>
+      <xs:documentation>ShippingProviderType for now only contains the name of the Provider - we may expand later</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Name of the shipping provider for packing service - FedEx ups, us postal</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderType">
+    <xs:sequence>
+      <xs:element name="OrderNumber" type="OrderNumberType" minOccurs="0"/>
+      <xs:element name="SessionID" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="OrderDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="Billing" type="PaymentType" minOccurs="1"/>
+      <xs:element name="Shipping" type="ShippingType" minOccurs="1"/>
+      <xs:element name="Email" minOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Items">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Item" type="ItemType" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Status" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentType">
+    <xs:sequence>
+      <xs:element name="CardPaymentType">
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:pattern value="[0-5]"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CardNum">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="16"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ExpireDate">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CardName">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="BillingAddress" type="AddressType"/>
+      <xs:element name="AuthorizationDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="AuthorizationAmount" type="MoneyType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ShippingMethodType">
+    <xs:restriction base="xs:int">
+      <xs:pattern value="[1-3]{1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ShippingType">
+    <xs:sequence>
+      <xs:element name="OrderNumber" type="OrderNumberType" minOccurs="0"/>
+      <xs:element name="Address" type="AddressType"/>
+      <xs:element name="ShippingSpeed" type="ShippingSpeedType" minOccurs="0"/>
+      <xs:element name="ShippingProvider" type="ShippingProviderType" minOccurs="0"/>
+      <xs:element name="ShipMethod" type="ShippingMethodType" minOccurs="0"/>
+      <xs:element name="Status" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderAckType">
+    <xs:sequence>
+      <xs:element name="OrderNumber" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentStatusType">
+    <xs:sequence>
+      <xs:element name="Status" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InventoryQueryType">
+    <xs:sequence>
+      <xs:element name="Category" nillable="true">
+        <xs:annotation>
+          <xs:documentation/>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:totalDigits value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InventoryType">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="SKU">
+        <xs:annotation>
+          <xs:documentation/>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="TotalQuantity" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>${{SOAHR:SOASERVER_URL_PREFIX}}/soa-infra/services/default/HRSOAService/validatepaymentprocess_client_ep</con:endpoint></con:endpoints><con:operation id="604a9376-6c1c-4c60-b769-5813c707f628" isOneWay="false" action="validate" name="validate" bindingOperationName="validate" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="cf876677-4753-429e-84fd-5baefca4fc91" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>${{SOAHR:SOASERVER_URL_PREFIX}}/soa-infra/services/default/HRSOAService/validatepaymentprocess_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soas="http://www.oracle.com/soasample">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soas:PaymentInfo>\r
+         <soas:CardPaymentType>?</soas:CardPaymentType>\r
+         <soas:CardNum>?</soas:CardNum>\r
+         <soas:ExpireDate>?</soas:ExpireDate>\r
+         <soas:CardName>?</soas:CardName>\r
+         <soas:BillingAddress>\r
+            <soas:FirstName>?</soas:FirstName>\r
+            <soas:LastName>?</soas:LastName>\r
+            <soas:AddressLine>?</soas:AddressLine>\r
+            <soas:City>?</soas:City>\r
+            <soas:State>?</soas:State>\r
+            <soas:ZipCode>?</soas:ZipCode>\r
+            <soas:PhoneNumber>?</soas:PhoneNumber>\r
+         </soas:BillingAddress>\r
+         <!--Optional:-->\r
+         <soas:AuthorizationDate>?</soas:AuthorizationDate>\r
+         <!--Optional:-->\r
+         <soas:AuthorizationAmount>?</soas:AuthorizationAmount>\r
+      </soas:PaymentInfo>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="validate"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="8e3d7693-02ea-4f44-a63f-ca4b2c338d99" name="Service TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="b240df72-5034-4a0c-ae0e-64b201320d25" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" id="75c551e8-7717-4ba9-9d8b-549e3a05f8e1" name="validate"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>validatePaymentBinding</con:interface><con:operation>validate</con:operation><con:request name="validate" id="a2523bba-439d-4fbc-b68e-b945d840fcbb"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>${{SOAHR:SOASERVER_URL_PREFIX}}/soa-infra/services/default/HRSOAService/validatepaymentprocess_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soas="http://www.oracle.com/soasample">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soas:PaymentInfo>\r
+         <soas:CardPaymentType>0</soas:CardPaymentType>\r
+         <soas:CardNum>012346789</soas:CardNum>\r
+         <soas:ExpireDate>2015-01-01 23:03:20</soas:ExpireDate>\r
+         <soas:CardName>AMEX</soas:CardName>\r
+         <soas:BillingAddress>\r
+            <soas:FirstName>Daniel</soas:FirstName>\r
+            <soas:LastName>Day-Lewis</soas:LastName>\r
+            <soas:AddressLine>555 Beverly Lane</soas:AddressLine>\r
+            <soas:City>Hollywood</soas:City>\r
+            <soas:State>CA</soas:State>\r
+            <soas:ZipCode>12345</soas:ZipCode>\r
+            <soas:PhoneNumber>5127691108</soas:PhoneNumber>\r
+         </soas:BillingAddress>\r
+         <!--Optional:-->\r
+         <!--soas:AuthorizationDate>?</soas:AuthorizationDate-->\r
+         <!--Optional:-->\r
+         <soas:AuthorizationAmount>100</soas:AuthorizationAmount>\r
+      </soas:PaymentInfo>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="validate" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

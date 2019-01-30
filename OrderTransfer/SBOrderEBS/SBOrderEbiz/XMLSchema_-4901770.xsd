@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema targetNamespace="http://www.flexagon.com/order" elementFormDefault="qualified" attributeFormDefault="unqualified"
+     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.flexagon.com/order">
+    <xs:element name="Order" type="OrderType"/>
+    <xs:complexType name="OrderType">
+        <xs:sequence>
+            <xs:element name="OrderNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="AddressLine" type="xs:string"/>
+            <xs:element name="ShippingSpeed" type="xs:string" minOccurs="0"/>
+            <xs:element name="Quantity" type="xs:integer" minOccurs="0"/>
+            <xs:element name="ItemNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="Status" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderResponse" type="OrderResponseType"/>
+    <xs:complexType name="OrderResponseType">
+        <xs:sequence>
+            <xs:element name="OrderNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="QuantitySent" type="xs:integer" minOccurs="0"/>
+            <xs:element name="Discount" type="xs:string" minOccurs="0"/>
+            <xs:element name="Status" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

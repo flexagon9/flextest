@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/e2e-1201-composites/FulfillOrder/RestReference" xmlns="http://wadl.dev.java.net/2009/02">
+   <grammars>
+      <include href="../Schemas/CanonicalOrder.xsd"/>
+   </grammars>
+   <resources soa:wsdlLocation="../WSDLs/RestReference.wsdl" soa:porttype="wns:RestReference_ptt" xmlns:wns="http://xmlns.oracle.com/e2e-1201-composites/FulfillOrder/RestReference" soa:outboundEncoding="UTF-8">
+      <doc title="RestReference">RestService</doc>
+      <resource path="/shipping/">
+         <method name="POST" soa:wsdlOperation="packAndShip">
+            <request>
+               <representation mediaType="application/xml" element="cns:Shipping" xmlns:cns="http://www.oracle.com/soasample"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:Shipping" xmlns:cns="http://www.oracle.com/soasample"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

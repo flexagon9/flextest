@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DepartmentsEO"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="HR.DEPARTMENTS"
+  AliasName="DepartmentsEO"
+  BindingStyle="OracleName"
+  RowClass="flexagon.fusion.hrdemo.model.entities.DepartmentsEOImpl"
+  DefClass="flexagon.fusion.hrdemo.model.entities.DepartmentsEODefImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Def"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="DepartmentId"
+    IsNotNull="true"
+    Precision="4"
+    Scale="0"
+    ColumnName="DEPARTMENT_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="HR.DEPARTMENTS"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="DepartmentName"
+    IsNotNull="true"
+    Precision="30"
+    ColumnName="DEPARTMENT_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="HR.DEPARTMENTS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ManagerId"
+    Precision="6"
+    Scale="0"
+    ColumnName="MANAGER_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="HR.DEPARTMENTS"/>
+  <Attribute
+    Name="LocationId"
+    Precision="4"
+    Scale="0"
+    ColumnName="LOCATION_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="HR.DEPARTMENTS"/>
+  <AccessorAttribute
+    Name="Employees"
+    Association="flexagon.fusion.hrdemo.model.entities.links.DeptMgrFkEL"
+    AssociationEnd="flexagon.fusion.hrdemo.model.entities.links.DeptMgrFkEL.Employees"
+    AssociationOtherEnd="flexagon.fusion.hrdemo.model.entities.links.DeptMgrFkEL.Departments"
+    Type="flexagon.fusion.hrdemo.model.entities.EmployeesEOImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Employees1"
+    Association="flexagon.fusion.hrdemo.model.entities.links.EmpDeptFkEL"
+    AssociationEnd="flexagon.fusion.hrdemo.model.entities.links.EmpDeptFkEL.Employees1"
+    AssociationOtherEnd="flexagon.fusion.hrdemo.model.entities.links.EmpDeptFkEL.Departments1"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="JobHistory"
+    Association="flexagon.fusion.hrdemo.model.entities.links.JhistDeptFkEL"
+    AssociationEnd="flexagon.fusion.hrdemo.model.entities.links.JhistDeptFkEL.JobHistory"
+    AssociationOtherEnd="flexagon.fusion.hrdemo.model.entities.links.JhistDeptFkEL.Departments"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="Locations"
+    Association="flexagon.fusion.hrdemo.model.entities.links.DeptLocFkEL"
+    AssociationEnd="flexagon.fusion.hrdemo.model.entities.links.DeptLocFkEL.Locations"
+    AssociationOtherEnd="flexagon.fusion.hrdemo.model.entities.links.DeptLocFkEL.Departments"
+    Type="flexagon.fusion.hrdemo.model.entities.LocationsEOImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="DeptIdPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="DEPT_ID_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="flexagon.fusion.hrdemo.model.entities.DepartmentsEO.DepartmentId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="DeptNameNn">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="DEPT_NAME_NN"/>
+      <Attr Name="_checkCondition" Value='"DEPARTMENT_NAME" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+  <Key
+    Name="DeptLocFk">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="LOC_ID_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="DEPT_LOC_FK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="flexagon.fusion.hrdemo.model.entities.DepartmentsEO.LocationId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="DeptMgrFk">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="EMP_EMP_ID_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="DEPT_MGR_FK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="flexagon.fusion.hrdemo.model.entities.DepartmentsEO.ManagerId"/>
+    </AttrArray>
+  </Key>
+</Entity>

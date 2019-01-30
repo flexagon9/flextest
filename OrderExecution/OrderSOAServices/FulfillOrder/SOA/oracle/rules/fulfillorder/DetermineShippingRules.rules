@@ -1,0 +1,2046 @@
+<?xml version="1.0"?>
+<RuleDictionary id="G}64fd2b78:1408322a637:-7fe6" xmlns="http://xmlns.oracle.com/rules/dictionary">
+  <Name>DetermineShippingRules</Name>
+  <Alias>DetermineShippingRules</Alias>
+  <Package>fulfillorder</Package>
+  <Version>11.1.1.0.0</Version>
+  <DataModel id="L}1">
+    <CreationUpdateNumber>2</CreationUpdateNumber>
+    <QualifierPattern>{member} of {fact}</QualifierPattern>
+    <JaxbFactType id="J}com.oracle.soasample.ShippingType">
+      <Name>com.oracle.soasample.ShippingType</Name>
+      <Alias>ShippingType</Alias>
+      <Visible>true</Visible>
+      <CreationUpdateNumber>4</CreationUpdateNumber>
+      <Property id="J}com.oracle.soasample.ShippingType.{address}">
+        <Name>address</Name>
+        <Alias>address</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}com.oracle.soasample.AddressType</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>AddressType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}39">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Property id="J}com.oracle.soasample.ShippingType.{orderNumber}">
+        <Name>orderNumber</Name>
+        <Alias>orderNumber</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.lang.String</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}40">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Property id="J}com.oracle.soasample.ShippingType.{shipMethod}">
+        <Name>shipMethod</Name>
+        <Alias>shipMethod</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.lang.Integer</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>Integer</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}41">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Property id="J}com.oracle.soasample.ShippingType.{shippingProvider}">
+        <Name>shippingProvider</Name>
+        <Alias>shippingProvider</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}com.oracle.soasample.ShippingProviderType</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>ShippingProviderType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}42">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Property id="J}com.oracle.soasample.ShippingType.{shippingSpeed}">
+        <Name>shippingSpeed</Name>
+        <Alias>shippingSpeed</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}com.oracle.soasample.ShippingSpeedType</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>ShippingSpeedType</Type>
+        <IDofBucketSet>G}64fd2b78:1408322a637:-7c03</IDofBucketSet>
+        <BucketSet>ShippingSpeedType</BucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}43">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Property id="J}com.oracle.soasample.ShippingType.{status}">
+        <Name>status</Name>
+        <Alias>status</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.lang.String</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}44">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Method id="J}public com.oracle.soasample.AddressType com.oracle.soasample.ShippingType.getAddress()">
+        <Name>getAddress</Name>
+        <Alias>getAddress</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}16">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.AddressType</IDofType>
+        <Type>AddressType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public java.lang.String com.oracle.soasample.ShippingType.getStatus()">
+        <Name>getStatus</Name>
+        <Alias>getStatus</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}18">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.ShippingType.setStatus(java.lang.String)">
+        <Name>setStatus</Name>
+        <Alias>setStatus</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c10">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}20">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.ShippingType.setAddress(com.oracle.soasample.AddressType)">
+        <Name>setAddress</Name>
+        <Alias>setAddress</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c0f">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}com.oracle.soasample.AddressType</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}22">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public java.lang.String com.oracle.soasample.ShippingType.getOrderNumber()">
+        <Name>getOrderNumber</Name>
+        <Alias>getOrderNumber</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}24">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.ShippingType.setOrderNumber(java.lang.String)">
+        <Name>setOrderNumber</Name>
+        <Alias>setOrderNumber</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c0e">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}26">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.ShippingSpeedType com.oracle.soasample.ShippingType.getShippingSpeed()">
+        <Name>getShippingSpeed</Name>
+        <Alias>getShippingSpeed</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}28">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.ShippingSpeedType</IDofType>
+        <Type>ShippingSpeedType</Type>
+        <IDofBucketSet>G}64fd2b78:1408322a637:-7c03</IDofBucketSet>
+        <BucketSet>ShippingSpeedType</BucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.ShippingType.setShippingSpeed(com.oracle.soasample.ShippingSpeedType)">
+        <Name>setShippingSpeed</Name>
+        <Alias>setShippingSpeed</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c0d">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}com.oracle.soasample.ShippingSpeedType</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}30">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.ShippingProviderType com.oracle.soasample.ShippingType.getShippingProvider()">
+        <Name>getShippingProvider</Name>
+        <Alias>getShippingProvider</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}32">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.ShippingProviderType</IDofType>
+        <Type>ShippingProviderType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.ShippingType.setShippingProvider(com.oracle.soasample.ShippingProviderType)">
+        <Name>setShippingProvider</Name>
+        <Alias>setShippingProvider</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c0c">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}com.oracle.soasample.ShippingProviderType</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}34">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public java.lang.Integer com.oracle.soasample.ShippingType.getShipMethod()">
+        <Name>getShipMethod</Name>
+        <Alias>getShipMethod</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}36">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.Integer</IDofType>
+        <Type>Integer</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.ShippingType.setShipMethod(java.lang.Integer)">
+        <Name>setShipMethod</Name>
+        <Alias>setShipMethod</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c0b">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.Integer</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}38">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Constructor id="J}public com.oracle.soasample.ShippingType()">
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Visible>true</Visible>
+        <Modifiers id="L}14">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+      </Constructor>
+      <IDofSuperClass>J}java.lang.Object</IDofSuperClass>
+      <ValidationUpdateNumber>4</ValidationUpdateNumber>
+      <Source>Schemas/CanonicalOrder.xsd</Source>
+      <IsArray>false</IsArray>
+      <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+      <SupportXPath>false</SupportXPath>
+      <IsInterface>false</IsInterface>
+      <Modifiers id="L}12">
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Access>1</Access>
+        <isStatic>false</isStatic>
+        <isFinal>false</isFinal>
+        <isAbstract>false</isAbstract>
+      </Modifiers>
+      <EnumBucketSetID>B}nil</EnumBucketSetID>
+      <Timestamp>0</Timestamp>
+      <ENUM>false</ENUM>
+      <XmlName>//xs:complexType[@name=&apos;ShippingType&apos;]</XmlName>
+      <JAXB2.0>true</JAXB2.0>
+      <NodeName>ShippingType</NodeName>
+      <Namespace>http://www.oracle.com/soasample</Namespace>
+    </JaxbFactType>
+    <JaxbFactType id="J}com.oracle.soasample.ShippingSpeedType">
+      <Name>com.oracle.soasample.ShippingSpeedType</Name>
+      <Alias>ShippingSpeedType</Alias>
+      <Visible>false</Visible>
+      <CreationUpdateNumber>4</CreationUpdateNumber>
+      <Field id="J}public static final com.oracle.soasample.ShippingSpeedType com.oracle.soasample.ShippingSpeedType.STANDARD">
+        <Name>STANDARD</Name>
+        <Alias>STANDARD</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}com.oracle.soasample.ShippingSpeedType</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>ShippingSpeedType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Final>true</Final>
+        <Static>true</Static>
+        <Modifiers id="L}75">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>true</isStatic>
+          <isFinal>true</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Enum>true</Enum>
+      </Field>
+      <Field id="J}public static final com.oracle.soasample.ShippingSpeedType com.oracle.soasample.ShippingSpeedType.TWODAY">
+        <Name>TWODAY</Name>
+        <Alias>TWODAY</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}com.oracle.soasample.ShippingSpeedType</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>ShippingSpeedType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Final>true</Final>
+        <Static>true</Static>
+        <Modifiers id="L}77">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>true</isStatic>
+          <isFinal>true</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Enum>true</Enum>
+      </Field>
+      <Field id="J}public static final com.oracle.soasample.ShippingSpeedType com.oracle.soasample.ShippingSpeedType.ONEDAY">
+        <Name>ONEDAY</Name>
+        <Alias>ONEDAY</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}com.oracle.soasample.ShippingSpeedType</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>ShippingSpeedType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Final>true</Final>
+        <Static>true</Static>
+        <Modifiers id="L}79">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>true</isStatic>
+          <isFinal>true</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Enum>true</Enum>
+      </Field>
+      <Property id="J}com.oracle.soasample.ShippingSpeedType.{declaringClass}">
+        <Name>declaringClass</Name>
+        <Alias>declaringClass</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.lang.Class</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>java.lang.Class</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>false</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}73">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Method id="J}public java.lang.String com.oracle.soasample.ShippingSpeedType.value()">
+        <Name>value</Name>
+        <Alias>value</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}48">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public static com.oracle.soasample.ShippingSpeedType[] com.oracle.soasample.ShippingSpeedType.values()">
+        <Name>values</Name>
+        <Alias>values</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}50">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>true</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>true</Static>
+        <IDofType>J}[Lcom.oracle.soasample.ShippingSpeedType;</IDofType>
+        <Type>ShippingSpeedType[]</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public static com.oracle.soasample.ShippingSpeedType com.oracle.soasample.ShippingSpeedType.valueOf(java.lang.String)">
+        <Name>valueOf</Name>
+        <Alias>valueOf</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c0a">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}52">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>true</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>true</Static>
+        <IDofType>J}com.oracle.soasample.ShippingSpeedType</IDofType>
+        <Type>ShippingSpeedType</Type>
+        <IDofBucketSet>G}64fd2b78:1408322a637:-7c03</IDofBucketSet>
+        <BucketSet>ShippingSpeedType</BucketSet>
+      </Method>
+      <Method id="J}public static com.oracle.soasample.ShippingSpeedType com.oracle.soasample.ShippingSpeedType.fromValue(java.lang.String)">
+        <Name>fromValue</Name>
+        <Alias>fromValue</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c09">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}54">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>true</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>true</Static>
+        <IDofType>J}com.oracle.soasample.ShippingSpeedType</IDofType>
+        <Type>ShippingSpeedType</Type>
+        <IDofBucketSet>G}64fd2b78:1408322a637:-7c03</IDofBucketSet>
+        <BucketSet>ShippingSpeedType</BucketSet>
+      </Method>
+      <Method id="J}public final java.lang.String java.lang.Enum.name() declared in com.oracle.soasample.ShippingSpeedType">
+        <Name>name</Name>
+        <Alias>name</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}56">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>true</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public final boolean java.lang.Enum.equals(java.lang.Object) declared in com.oracle.soasample.ShippingSpeedType">
+        <Name>equals</Name>
+        <Alias>equals</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c08">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.Object</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}58">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>true</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}boolean</IDofType>
+        <Type>boolean</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public java.lang.String java.lang.Enum.toString() declared in com.oracle.soasample.ShippingSpeedType">
+        <Name>toString</Name>
+        <Alias>toString</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}60">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public final int java.lang.Enum.hashCode() declared in com.oracle.soasample.ShippingSpeedType">
+        <Name>hashCode</Name>
+        <Alias>hashCode</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}62">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>true</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}int</IDofType>
+        <Type>int</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public int java.lang.Enum.compareTo(java.lang.Object) declared in com.oracle.soasample.ShippingSpeedType">
+        <Name>compareTo</Name>
+        <Alias>compareTo</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c07">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.Object</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}64">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}int</IDofType>
+        <Type>int</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public final int java.lang.Enum.compareTo(java.lang.Enum) declared in com.oracle.soasample.ShippingSpeedType">
+        <Name>compareTo</Name>
+        <Alias>compareTo</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c06">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.Enum</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}66">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>true</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}int</IDofType>
+        <Type>int</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public static java.lang.Enum java.lang.Enum.valueOf(java.lang.Class,java.lang.String) declared in com.oracle.soasample.ShippingSpeedType">
+        <Name>valueOf</Name>
+        <Alias>valueOf</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c05">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.Class</IDsOfType>
+        </OverloadedParameter>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7c04">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}68">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>true</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>true</Static>
+        <IDofType>J}java.lang.Enum</IDofType>
+        <Type>java.lang.Enum</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public final java.lang.Class java.lang.Enum.getDeclaringClass() declared in com.oracle.soasample.ShippingSpeedType">
+        <Name>getDeclaringClass</Name>
+        <Alias>getDeclaringClass</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}70">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>true</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.Class</IDofType>
+        <Type>java.lang.Class</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public final int java.lang.Enum.ordinal() declared in com.oracle.soasample.ShippingSpeedType">
+        <Name>ordinal</Name>
+        <Alias>ordinal</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}72">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>true</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}int</IDofType>
+        <Type>int</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <IDofSuperClass>J}java.lang.Enum</IDofSuperClass>
+      <ValidationUpdateNumber>4</ValidationUpdateNumber>
+      <Source>Schemas/CanonicalOrder.xsd</Source>
+      <IsArray>false</IsArray>
+      <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+      <SupportXPath>false</SupportXPath>
+      <IsInterface>false</IsInterface>
+      <Modifiers id="L}46">
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Access>1</Access>
+        <isStatic>false</isStatic>
+        <isFinal>true</isFinal>
+        <isAbstract>false</isAbstract>
+      </Modifiers>
+      <EnumBucketSetID>G}64fd2b78:1408322a637:-7c03</EnumBucketSetID>
+      <EnumBucketSet>ShippingSpeedType</EnumBucketSet>
+      <Timestamp>0</Timestamp>
+      <ENUM>true</ENUM>
+      <XmlName>//xs:simpleType[@name=&apos;ShippingSpeedType&apos;]</XmlName>
+      <JAXB2.0>true</JAXB2.0>
+      <NodeName>ShippingSpeedType</NodeName>
+      <Namespace>http://www.oracle.com/soasample</Namespace>
+    </JaxbFactType>
+    <JaxbFactType id="J}com.oracle.soasample.ShippingProviderType">
+      <Name>com.oracle.soasample.ShippingProviderType</Name>
+      <Alias>ShippingProviderType</Alias>
+      <Visible>true</Visible>
+      <CreationUpdateNumber>4</CreationUpdateNumber>
+      <Property id="J}com.oracle.soasample.ShippingProviderType.{name}">
+        <Name>name</Name>
+        <Alias>name</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.lang.String</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}94">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Method id="J}public java.lang.String com.oracle.soasample.ShippingProviderType.getName()">
+        <Name>getName</Name>
+        <Alias>getName</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}91">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.ShippingProviderType.setName(java.lang.String)">
+        <Name>setName</Name>
+        <Alias>setName</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bfd">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}93">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Constructor id="J}public com.oracle.soasample.ShippingProviderType()">
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Visible>true</Visible>
+        <Modifiers id="L}89">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+      </Constructor>
+      <IDofSuperClass>J}java.lang.Object</IDofSuperClass>
+      <ValidationUpdateNumber>4</ValidationUpdateNumber>
+      <Source>Schemas/CanonicalOrder.xsd</Source>
+      <IsArray>false</IsArray>
+      <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+      <SupportXPath>false</SupportXPath>
+      <IsInterface>false</IsInterface>
+      <Modifiers id="L}87">
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Access>1</Access>
+        <isStatic>false</isStatic>
+        <isFinal>false</isFinal>
+        <isAbstract>false</isAbstract>
+      </Modifiers>
+      <EnumBucketSetID>B}nil</EnumBucketSetID>
+      <Timestamp>0</Timestamp>
+      <ENUM>false</ENUM>
+      <XmlName>//xs:complexType[@name=&apos;ShippingProviderType&apos;]</XmlName>
+      <JAXB2.0>true</JAXB2.0>
+      <NodeName>ShippingProviderType</NodeName>
+      <Namespace>http://www.oracle.com/soasample</Namespace>
+    </JaxbFactType>
+    <JaxbFactType id="J}com.oracle.soasample.AddressType">
+      <Name>com.oracle.soasample.AddressType</Name>
+      <Alias>AddressType</Alias>
+      <Visible>true</Visible>
+      <CreationUpdateNumber>4</CreationUpdateNumber>
+      <Property id="J}com.oracle.soasample.AddressType.{addressLine}">
+        <Name>addressLine</Name>
+        <Alias>addressLine</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.util.List</IDofType>
+        <ListContentID>J}java.lang.String</ListContentID>
+        <Type>List</Type>
+        <ListContentType>String</ListContentType>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>false</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}125">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Property id="J}com.oracle.soasample.AddressType.{city}">
+        <Name>city</Name>
+        <Alias>city</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.lang.String</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}126">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Property id="J}com.oracle.soasample.AddressType.{firstName}">
+        <Name>firstName</Name>
+        <Alias>firstName</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.lang.String</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}127">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Property id="J}com.oracle.soasample.AddressType.{lastName}">
+        <Name>lastName</Name>
+        <Alias>lastName</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.lang.String</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}128">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Property id="J}com.oracle.soasample.AddressType.{phoneNumber}">
+        <Name>phoneNumber</Name>
+        <Alias>phoneNumber</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.lang.String</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}129">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Property id="J}com.oracle.soasample.AddressType.{state}">
+        <Name>state</Name>
+        <Alias>state</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.lang.String</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}130">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Property id="J}com.oracle.soasample.AddressType.{zipCode}">
+        <Name>zipCode</Name>
+        <Alias>zipCode</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <IDofType>J}java.lang.String</IDofType>
+        <ListContentID>B}nil</ListContentID>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+        <Writable>true</Writable>
+        <Readable>true</Readable>
+        <Local>true</Local>
+        <Expression id="L}131">
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+        <PrimaryKey>false</PrimaryKey>
+      </Property>
+      <Method id="J}public java.lang.String com.oracle.soasample.AddressType.getState()">
+        <Name>getState</Name>
+        <Alias>getState</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}100">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.AddressType.setState(java.lang.String)">
+        <Name>setState</Name>
+        <Alias>setState</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bfc">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}102">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.AddressType.setLastName(java.lang.String)">
+        <Name>setLastName</Name>
+        <Alias>setLastName</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bfb">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}104">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public java.util.List com.oracle.soasample.AddressType.getAddressLine()">
+        <Name>getAddressLine</Name>
+        <Alias>getAddressLine</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}106">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.util.List</IDofType>
+        <Type>List</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public java.lang.String com.oracle.soasample.AddressType.getCity()">
+        <Name>getCity</Name>
+        <Alias>getCity</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}108">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.AddressType.setCity(java.lang.String)">
+        <Name>setCity</Name>
+        <Alias>setCity</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bfa">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}110">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public java.lang.String com.oracle.soasample.AddressType.getZipCode()">
+        <Name>getZipCode</Name>
+        <Alias>getZipCode</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}112">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.AddressType.setZipCode(java.lang.String)">
+        <Name>setZipCode</Name>
+        <Alias>setZipCode</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bf9">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}114">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public java.lang.String com.oracle.soasample.AddressType.getPhoneNumber()">
+        <Name>getPhoneNumber</Name>
+        <Alias>getPhoneNumber</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}116">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.AddressType.setPhoneNumber(java.lang.String)">
+        <Name>setPhoneNumber</Name>
+        <Alias>setPhoneNumber</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bf8">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}118">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public java.lang.String com.oracle.soasample.AddressType.getFirstName()">
+        <Name>getFirstName</Name>
+        <Alias>getFirstName</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}120">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public void com.oracle.soasample.AddressType.setFirstName(java.lang.String)">
+        <Name>setFirstName</Name>
+        <Alias>setFirstName</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bf7">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.String</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}122">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}void</IDofType>
+        <Type>void</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public java.lang.String com.oracle.soasample.AddressType.getLastName()">
+        <Name>getLastName</Name>
+        <Alias>getLastName</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}124">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}java.lang.String</IDofType>
+        <Type>String</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Constructor id="J}public com.oracle.soasample.AddressType()">
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Visible>true</Visible>
+        <Modifiers id="L}98">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+      </Constructor>
+      <IDofSuperClass>J}java.lang.Object</IDofSuperClass>
+      <ValidationUpdateNumber>4</ValidationUpdateNumber>
+      <Source>Schemas/CanonicalOrder.xsd</Source>
+      <IsArray>false</IsArray>
+      <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+      <SupportXPath>false</SupportXPath>
+      <IsInterface>false</IsInterface>
+      <Modifiers id="L}96">
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Access>1</Access>
+        <isStatic>false</isStatic>
+        <isFinal>false</isFinal>
+        <isAbstract>false</isAbstract>
+      </Modifiers>
+      <EnumBucketSetID>B}nil</EnumBucketSetID>
+      <Timestamp>0</Timestamp>
+      <ENUM>false</ENUM>
+      <XmlName>//xs:complexType[@name=&apos;AddressType&apos;]</XmlName>
+      <JAXB2.0>true</JAXB2.0>
+      <NodeName>AddressType</NodeName>
+      <Namespace>http://www.oracle.com/soasample</Namespace>
+    </JaxbFactType>
+    <JaxbFactType id="J}com.oracle.soasample.ObjectFactory">
+      <Name>com.oracle.soasample.ObjectFactory</Name>
+      <Alias>com_oracle_soasample_ObjectFactory</Alias>
+      <Visible>false</Visible>
+      <CreationUpdateNumber>4</CreationUpdateNumber>
+      <Method id="J}public com.oracle.soasample.ItemType com.oracle.soasample.ObjectFactory.createItemType()">
+        <Name>createItemType</Name>
+        <Alias>createItemType</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}137">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.ItemType</IDofType>
+        <Type>com.oracle.soasample.ItemType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public javax.xml.bind.JAXBElement com.oracle.soasample.ObjectFactory.createOrder(com.oracle.soasample.OrderType)">
+        <Name>createOrder</Name>
+        <Alias>createOrder</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bf6">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}com.oracle.soasample.OrderType</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}139">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}javax.xml.bind.JAXBElement</IDofType>
+        <Type>JAXBElement</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public javax.xml.bind.JAXBElement com.oracle.soasample.ObjectFactory.createOrderAck(com.oracle.soasample.OrderAckType)">
+        <Name>createOrderAck</Name>
+        <Alias>createOrderAck</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bf5">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}com.oracle.soasample.OrderAckType</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}141">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}javax.xml.bind.JAXBElement</IDofType>
+        <Type>JAXBElement</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public javax.xml.bind.JAXBElement com.oracle.soasample.ObjectFactory.createTotalOrderAmount(java.lang.Double)">
+        <Name>createTotalOrderAmount</Name>
+        <Alias>createTotalOrderAmount</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bf4">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}java.lang.Double</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}143">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}javax.xml.bind.JAXBElement</IDofType>
+        <Type>JAXBElement</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public javax.xml.bind.JAXBElement com.oracle.soasample.ObjectFactory.createInventoryQuery(com.oracle.soasample.InventoryQueryType)">
+        <Name>createInventoryQuery</Name>
+        <Alias>createInventoryQuery</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bf3">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}com.oracle.soasample.InventoryQueryType</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}145">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}javax.xml.bind.JAXBElement</IDofType>
+        <Type>JAXBElement</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.InventoryQueryType com.oracle.soasample.ObjectFactory.createInventoryQueryType()">
+        <Name>createInventoryQueryType</Name>
+        <Alias>createInventoryQueryType</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}147">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.InventoryQueryType</IDofType>
+        <Type>com.oracle.soasample.InventoryQueryType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.ShippingType com.oracle.soasample.ObjectFactory.createShippingType()">
+        <Name>createShippingType</Name>
+        <Alias>createShippingType</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}149">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.ShippingType</IDofType>
+        <Type>ShippingType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.PaymentType com.oracle.soasample.ObjectFactory.createPaymentType()">
+        <Name>createPaymentType</Name>
+        <Alias>createPaymentType</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}151">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.PaymentType</IDofType>
+        <Type>com.oracle.soasample.PaymentType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.PaymentStatusType com.oracle.soasample.ObjectFactory.createPaymentStatusType()">
+        <Name>createPaymentStatusType</Name>
+        <Alias>createPaymentStatusType</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}153">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.PaymentStatusType</IDofType>
+        <Type>com.oracle.soasample.PaymentStatusType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.InventoryType com.oracle.soasample.ObjectFactory.createInventoryType()">
+        <Name>createInventoryType</Name>
+        <Alias>createInventoryType</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}155">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.InventoryType</IDofType>
+        <Type>com.oracle.soasample.InventoryType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.ShippingProviderType com.oracle.soasample.ObjectFactory.createShippingProviderType()">
+        <Name>createShippingProviderType</Name>
+        <Alias>createShippingProviderType</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}157">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.ShippingProviderType</IDofType>
+        <Type>ShippingProviderType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.AddressType com.oracle.soasample.ObjectFactory.createAddressType()">
+        <Name>createAddressType</Name>
+        <Alias>createAddressType</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}159">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.AddressType</IDofType>
+        <Type>AddressType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.OrderType$Items com.oracle.soasample.ObjectFactory.createOrderTypeItems()">
+        <Name>createOrderTypeItems</Name>
+        <Alias>createOrderTypeItems</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}161">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.OrderType$Items</IDofType>
+        <Type>com.oracle.soasample.OrderType$Items</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public javax.xml.bind.JAXBElement com.oracle.soasample.ObjectFactory.createInventoryResponse(com.oracle.soasample.InventoryType)">
+        <Name>createInventoryResponse</Name>
+        <Alias>createInventoryResponse</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bf2">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}com.oracle.soasample.InventoryType</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}163">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}javax.xml.bind.JAXBElement</IDofType>
+        <Type>JAXBElement</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public javax.xml.bind.JAXBElement com.oracle.soasample.ObjectFactory.createShipping(com.oracle.soasample.ShippingType)">
+        <Name>createShipping</Name>
+        <Alias>createShipping</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bf1">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}com.oracle.soasample.ShippingType</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}165">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}javax.xml.bind.JAXBElement</IDofType>
+        <Type>JAXBElement</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public javax.xml.bind.JAXBElement com.oracle.soasample.ObjectFactory.createPaymentInfo(com.oracle.soasample.PaymentType)">
+        <Name>createPaymentInfo</Name>
+        <Alias>createPaymentInfo</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bf0">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}com.oracle.soasample.PaymentType</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}167">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}javax.xml.bind.JAXBElement</IDofType>
+        <Type>JAXBElement</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public javax.xml.bind.JAXBElement com.oracle.soasample.ObjectFactory.createPaymentStatus(com.oracle.soasample.PaymentStatusType)">
+        <Name>createPaymentStatus</Name>
+        <Alias>createPaymentStatus</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <OverloadedParameter id="G}64fd2b78:1408322a637:-7bef">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <IDsOfType>J}com.oracle.soasample.PaymentStatusType</IDsOfType>
+        </OverloadedParameter>
+        <Modifiers id="L}169">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}javax.xml.bind.JAXBElement</IDofType>
+        <Type>JAXBElement</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.OrderType com.oracle.soasample.ObjectFactory.createOrderType()">
+        <Name>createOrderType</Name>
+        <Alias>createOrderType</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}171">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.OrderType</IDofType>
+        <Type>com.oracle.soasample.OrderType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Method id="J}public com.oracle.soasample.OrderAckType com.oracle.soasample.ObjectFactory.createOrderAckType()">
+        <Name>createOrderAckType</Name>
+        <Alias>createOrderAckType</Alias>
+        <Visible>false</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Modifiers id="L}173">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+        <Static>false</Static>
+        <IDofType>J}com.oracle.soasample.OrderAckType</IDofType>
+        <Type>com.oracle.soasample.OrderAckType</Type>
+        <IDofBucketSet>B}nil</IDofBucketSet>
+      </Method>
+      <Constructor id="J}public com.oracle.soasample.ObjectFactory()">
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Visible>false</Visible>
+        <Modifiers id="L}135">
+          <CreationUpdateNumber>4</CreationUpdateNumber>
+          <Access>1</Access>
+          <isStatic>false</isStatic>
+          <isFinal>false</isFinal>
+          <isAbstract>false</isAbstract>
+        </Modifiers>
+      </Constructor>
+      <IDofSuperClass>J}java.lang.Object</IDofSuperClass>
+      <ValidationUpdateNumber>4</ValidationUpdateNumber>
+      <Source>Schemas/CanonicalOrder.xsd</Source>
+      <IsArray>false</IsArray>
+      <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+      <SupportXPath>false</SupportXPath>
+      <IsInterface>false</IsInterface>
+      <Modifiers id="L}133">
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Access>1</Access>
+        <isStatic>false</isStatic>
+        <isFinal>false</isFinal>
+        <isAbstract>false</isAbstract>
+      </Modifiers>
+      <EnumBucketSetID>B}nil</EnumBucketSetID>
+      <Timestamp>0</Timestamp>
+      <ENUM>false</ENUM>
+      <JAXB2.0>true</JAXB2.0>
+    </JaxbFactType>
+    <BucketSet id="G}64fd2b78:1408322a637:-7c03">
+      <Name>ShippingSpeedType</Name>
+      <Alias>ShippingSpeedType</Alias>
+      <Visible>true</Visible>
+      <CreationUpdateNumber>4</CreationUpdateNumber>
+      <IDofType>J}com.oracle.soasample.ShippingSpeedType</IDofType>
+      <ListContentID>B}nil</ListContentID>
+      <Type>ShippingSpeedType</Type>
+      <Form>Enum</Form>
+      <Bucket id="G}64fd2b78:1408322a637:-7c01">
+        <Name>ShippingSpeedType.STANDARD</Name>
+        <Alias>STANDARD</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Inclusive>false</Inclusive>
+        <Otherwise>false</Otherwise>
+        <Excluded>false</Excluded>
+        <Expression id="L}82">
+          <Value>ShippingSpeedType.STANDARD</Value>
+          <ResolvedValue>`G}64fd2b78:1408322a637:-7c03`.`J}public static final com.oracle.soasample.ShippingSpeedType com.oracle.soasample.ShippingSpeedType.STANDARD`</ResolvedValue>
+          <IsConstant>true</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+      </Bucket>
+      <Bucket id="G}64fd2b78:1408322a637:-7c00">
+        <Name>ShippingSpeedType.TWODAY</Name>
+        <Alias>TWODAY</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Inclusive>false</Inclusive>
+        <Otherwise>false</Otherwise>
+        <Excluded>false</Excluded>
+        <Expression id="L}83">
+          <Value>ShippingSpeedType.TWODAY</Value>
+          <ResolvedValue>`G}64fd2b78:1408322a637:-7c03`.`J}public static final com.oracle.soasample.ShippingSpeedType com.oracle.soasample.ShippingSpeedType.TWODAY`</ResolvedValue>
+          <IsConstant>true</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+      </Bucket>
+      <Bucket id="G}64fd2b78:1408322a637:-7bff">
+        <Name>ShippingSpeedType.ONEDAY</Name>
+        <Alias>ONEDAY</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Inclusive>false</Inclusive>
+        <Otherwise>false</Otherwise>
+        <Excluded>false</Excluded>
+        <Expression id="L}84">
+          <Value>ShippingSpeedType.ONEDAY</Value>
+          <ResolvedValue>`G}64fd2b78:1408322a637:-7c03`.`J}public static final com.oracle.soasample.ShippingSpeedType com.oracle.soasample.ShippingSpeedType.ONEDAY`</ResolvedValue>
+          <IsConstant>true</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+      </Bucket>
+      <Bucket id="G}64fd2b78:1408322a637:-7bfe">
+        <Name>null</Name>
+        <Alias>null</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>4</CreationUpdateNumber>
+        <Inclusive>false</Inclusive>
+        <Otherwise>false</Otherwise>
+        <Excluded>false</Excluded>
+        <Expression id="L}85">
+          <Value>null</Value>
+          <ResolvedValue>null</ResolvedValue>
+          <IsConstant>true</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+      </Bucket>
+      <CalendarForm>Date</CalendarForm>
+      <Excluded>false</Excluded>
+      <ValidationUpdateNumber>4</ValidationUpdateNumber>
+    </BucketSet>
+    <SupportsXPathEnabled>false</SupportsXPathEnabled>
+    <DecisionFunction id="G}64fd2b78:1408322a637:-7bed">
+      <Name>DetermineShippingRules_DecisionService_1</Name>
+      <Alias>DetermineShippingRules_DecisionService_1</Alias>
+      <Visible>true</Visible>
+      <CreationUpdateNumber>4</CreationUpdateNumber>
+      <WebService>true</WebService>
+      <CheckRuleFlow>true</CheckRuleFlow>
+      <Stateless>true</Stateless>
+      <DecisionFunctionInput id="G}64fd2b78:1408322a637:-7bec">
+        <Name>Shipping</Name>
+        <Alias>Shipping</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>6</CreationUpdateNumber>
+        <IDofType>J}com.oracle.soasample.ShippingType</IDofType>
+        <List>false</List>
+        <Tree>true</Tree>
+      </DecisionFunctionInput>
+      <DecisionFunctionRuleSet id="L}176">
+        <CreationUpdateNumber>5</CreationUpdateNumber>
+        <Form>rule set</Form>
+        <Ruleset>Ruleset1</Ruleset>
+        <refID>G}64fd2b78:1408322a637:-7bee</refID>
+      </DecisionFunctionRuleSet>
+      <DecisionFunctionOutput id="G}64fd2b78:1408322a637:-7beb">
+        <Name>Shipping</Name>
+        <Alias>Shipping</Alias>
+        <Visible>true</Visible>
+        <CreationUpdateNumber>7</CreationUpdateNumber>
+        <IDofType>J}com.oracle.soasample.ShippingType</IDofType>
+        <List>false</List>
+        <Tree>false</Tree>
+      </DecisionFunctionOutput>
+      <ValidationUpdateNumber>8</ValidationUpdateNumber>
+      <RuleFiringLimit>10000</RuleFiringLimit>
+      <RuleFiringLimitError>true</RuleFiringLimitError>
+      <UniqueRulesets>false</UniqueRulesets>
+    </DecisionFunction>
+    <UpdateNumber>11</UpdateNumber>
+    <ValidationUpdateNumber>11</ValidationUpdateNumber>
+    <UpdateTime>-9223372036854775808</UpdateTime>
+  </DataModel>
+  <RuleSet id="G}64fd2b78:1408322a637:-7bee">
+    <Name>Ruleset1</Name>
+    <Alias>Ruleset1</Alias>
+    <ValidationUpdateNumber>39</ValidationUpdateNumber>
+    <Active>true</Active>
+    <CalendarForm>DateTime</CalendarForm>
+    <RuleSheet id="G}64fd2b78:1408322a637:-7be9">
+      <Name>DetermineShippingMethod</Name>
+      <Alias>DetermineShippingMethod</Alias>
+      <ValidationUpdateNumber>39</ValidationUpdateNumber>
+      <Priority>medium</Priority>
+      <Active>true</Active>
+      <CalendarForm>DateTime</CalendarForm>
+      <TreeMode>false</TreeMode>
+      <Visible>true</Visible>
+      <SimpleTest id="L}184">
+        <FactType>ShippingType</FactType>
+        <IDofFactType>J}com.oracle.soasample.ShippingType</IDofFactType>
+        <FactPath>ShippingType</FactPath>
+        <FactPathIDs>L}184</FactPathIDs>
+        <Form>FormIsA</Form>
+        <IDofOperator>B}==</IDofOperator>
+        <Connective>&amp;&amp;</Connective>
+        <Visible>false</Visible>
+        <DSLId>B}nil</DSLId>
+      </SimpleTest>
+      <ShowPatterns>false</ShowPatterns>
+      <Logical>false</Logical>
+      <Dimension id="L}180">
+        <IDofSharedBucketSet>G}64fd2b78:1408322a637:-7c03</IDofSharedBucketSet>
+        <DimensionNode id="L}182">
+          <BucketIDTable>G}64fd2b78:1408322a637:-7bff</BucketIDTable>
+          <Values>ONEDAY</Values>
+          <ParentDimensionNode>B}nil</ParentDimensionNode>
+          <ChildDimensionNodes>L}195</ChildDimensionNodes>
+        </DimensionNode>
+        <DimensionNode id="L}203">
+          <BucketIDTable>G}64fd2b78:1408322a637:-7c00</BucketIDTable>
+          <Values>TWODAY</Values>
+          <ParentDimensionNode>B}nil</ParentDimensionNode>
+          <ChildDimensionNodes>L}204</ChildDimensionNodes>
+        </DimensionNode>
+        <DimensionNode id="L}211">
+          <BucketIDTable>G}64fd2b78:1408322a637:-7c01</BucketIDTable>
+          <Values>STANDARD</Values>
+          <ParentDimensionNode>B}nil</ParentDimensionNode>
+          <ChildDimensionNodes>L}212</ChildDimensionNodes>
+        </DimensionNode>
+        <DimensionNode id="L}220">
+          <BucketIDTable></BucketIDTable>
+          <Values>-</Values>
+          <ParentDimensionNode>B}nil</ParentDimensionNode>
+          <ChildDimensionNodes>L}221</ChildDimensionNodes>
+        </DimensionNode>
+        <PrivateBucketSet id="G}64fd2b78:1408322a637:-7be8">
+          <Visible>true</Visible>
+          <CreationUpdateNumber>10</CreationUpdateNumber>
+          <IDofType>J}com.oracle.soasample.ShippingType</IDofType>
+          <ListContentID>B}nil</ListContentID>
+          <Type>ShippingType</Type>
+          <Form>Default</Form>
+          <Bucket id="G}64fd2b78:1408322a637:-7be7">
+            <Name>otherwise</Name>
+            <Alias>otherwise</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>10</CreationUpdateNumber>
+            <Inclusive>true</Inclusive>
+            <Otherwise>true</Otherwise>
+            <Excluded>false</Excluded>
+            <Expression id="L}185">
+              <IsConstant>true</IsConstant>
+              <ParameterID>B}nil</ParameterID>
+            </Expression>
+          </Bucket>
+          <CalendarForm>Date</CalendarForm>
+          <Excluded>false</Excluded>
+          <ValidationUpdateNumber>-1</ValidationUpdateNumber>
+        </PrivateBucketSet>
+        <SharedBucketSet>ShippingSpeedType</SharedBucketSet>
+        <Expression id="L}181">
+          <Value>ShippingType.shippingSpeed</Value>
+          <ResolvedValue>`L}184`.`J}com.oracle.soasample.ShippingType.{shippingSpeed}`</ResolvedValue>
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+      </Dimension>
+      <Dimension id="L}193">
+        <IDofSharedBucketSet>B}nil</IDofSharedBucketSet>
+        <DimensionNode id="L}195">
+          <BucketIDTable></BucketIDTable>
+          <Values>-</Values>
+          <ParentDimensionNode>L}182</ParentDimensionNode>
+          <ChildDimensionNodes></ChildDimensionNodes>
+        </DimensionNode>
+        <DimensionNode id="L}204">
+          <BucketIDTable></BucketIDTable>
+          <Values>-</Values>
+          <ParentDimensionNode>L}203</ParentDimensionNode>
+          <ChildDimensionNodes></ChildDimensionNodes>
+        </DimensionNode>
+        <DimensionNode id="L}212">
+          <BucketIDTable></BucketIDTable>
+          <Values>-</Values>
+          <ParentDimensionNode>L}211</ParentDimensionNode>
+          <ChildDimensionNodes></ChildDimensionNodes>
+        </DimensionNode>
+        <DimensionNode id="L}221">
+          <BucketIDTable>G}64fd2b78:1408322a637:-7be4</BucketIDTable>
+          <Values>&quot;TX&quot;</Values>
+          <ParentDimensionNode>L}220</ParentDimensionNode>
+          <ChildDimensionNodes></ChildDimensionNodes>
+        </DimensionNode>
+        <PrivateBucketSet id="G}64fd2b78:1408322a637:-7be6">
+          <Visible>true</Visible>
+          <CreationUpdateNumber>12</CreationUpdateNumber>
+          <IDofType>J}java.lang.String</IDofType>
+          <ListContentID>B}nil</ListContentID>
+          <Type>String</Type>
+          <Form>Default</Form>
+          <Bucket id="G}64fd2b78:1408322a637:-7be5">
+            <Name>otherwise</Name>
+            <Alias>otherwise</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>12</CreationUpdateNumber>
+            <Inclusive>true</Inclusive>
+            <Otherwise>true</Otherwise>
+            <Excluded>false</Excluded>
+            <Expression id="L}196">
+              <IsConstant>true</IsConstant>
+              <ParameterID>B}nil</ParameterID>
+            </Expression>
+          </Bucket>
+          <Bucket id="G}64fd2b78:1408322a637:-7be4">
+            <Name>&quot;TX&quot;</Name>
+            <Alias>&quot;TX&quot;</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>21</CreationUpdateNumber>
+            <Inclusive>false</Inclusive>
+            <Otherwise>false</Otherwise>
+            <Excluded>false</Excluded>
+            <Expression id="L}233">
+              <Value>&quot;TX&quot;</Value>
+              <ResolvedValue>&quot;TX&quot;</ResolvedValue>
+              <IsConstant>true</IsConstant>
+              <ParameterID>B}nil</ParameterID>
+            </Expression>
+          </Bucket>
+          <CalendarForm>Date</CalendarForm>
+          <Excluded>false</Excluded>
+          <ValidationUpdateNumber>21</ValidationUpdateNumber>
+        </PrivateBucketSet>
+        <Expression id="L}194">
+          <Value>ShippingType.address.state</Value>
+          <ResolvedValue>`L}184`.`J}com.oracle.soasample.ShippingType.{address}`.`J}com.oracle.soasample.AddressType.{state}`</ResolvedValue>
+          <IsConstant>false</IsConstant>
+          <ParameterID>B}nil</ParameterID>
+        </Expression>
+      </Dimension>
+      <DTAction id="L}247">
+        <Form>Modify</Form>
+        <Target>ShippingType</Target>
+        <ResolvedTarget>`L}184`</ResolvedTarget>
+        <Expression id="L}254">
+          <IsConstant>false</IsConstant>
+          <ParameterAlias>address</ParameterAlias>
+          <ParameterID>J}com.oracle.soasample.ShippingType.{address}</ParameterID>
+        </Expression>
+        <Expression id="L}255">
+          <IsConstant>false</IsConstant>
+          <ParameterAlias>orderNumber</ParameterAlias>
+          <ParameterID>J}com.oracle.soasample.ShippingType.{orderNumber}</ParameterID>
+        </Expression>
+        <Expression id="L}256">
+          <IsConstant>false</IsConstant>
+          <ParameterAlias>shipMethod</ParameterAlias>
+          <ParameterID>J}com.oracle.soasample.ShippingType.{shipMethod}</ParameterID>
+          <DTActionParameterName>shipMethod</DTActionParameterName>
+        </Expression>
+        <Expression id="L}257">
+          <IsConstant>false</IsConstant>
+          <ParameterAlias>shippingProvider</ParameterAlias>
+          <ParameterID>J}com.oracle.soasample.ShippingType.{shippingProvider}</ParameterID>
+        </Expression>
+        <Expression id="L}258">
+          <IsConstant>false</IsConstant>
+          <ParameterAlias>shippingSpeed</ParameterAlias>
+          <ParameterID>J}com.oracle.soasample.ShippingType.{shippingSpeed}</ParameterID>
+        </Expression>
+        <Expression id="L}259">
+          <IsConstant>false</IsConstant>
+          <ParameterAlias>status</ParameterAlias>
+          <ParameterID>J}com.oracle.soasample.ShippingType.{status}</ParameterID>
+        </Expression>
+        <DSLId>B}nil</DSLId>
+        <AlwaysSelected>false</AlwaysSelected>
+        <DTActionNode id="L}248">
+          <Selected>true</Selected>
+          <Expression id="L}264">
+            <Value>1</Value>
+            <ResolvedValue>1</ResolvedValue>
+            <IsConstant>false</IsConstant>
+            <ParameterAlias>shipMethod</ParameterAlias>
+            <ParameterID>J}com.oracle.soasample.ShippingType.{shipMethod}</ParameterID>
+            <DTActionParameterName>shipMethod</DTActionParameterName>
+          </Expression>
+        </DTActionNode>
+        <DTActionNode id="L}249">
+          <Selected>true</Selected>
+          <Expression id="L}265">
+            <Value>2</Value>
+            <ResolvedValue>2</ResolvedValue>
+            <IsConstant>false</IsConstant>
+            <ParameterAlias>shipMethod</ParameterAlias>
+            <ParameterID>J}com.oracle.soasample.ShippingType.{shipMethod}</ParameterID>
+            <DTActionParameterName>shipMethod</DTActionParameterName>
+          </Expression>
+        </DTActionNode>
+        <DTActionNode id="L}250">
+          <Selected>true</Selected>
+          <Expression id="L}266">
+            <Value>3</Value>
+            <ResolvedValue>3</ResolvedValue>
+            <IsConstant>false</IsConstant>
+            <ParameterAlias>shipMethod</ParameterAlias>
+            <ParameterID>J}com.oracle.soasample.ShippingType.{shipMethod}</ParameterID>
+            <DTActionParameterName>shipMethod</DTActionParameterName>
+          </Expression>
+        </DTActionNode>
+        <DTActionNode id="L}251">
+          <Selected>true</Selected>
+          <Expression id="L}267">
+            <Value>7</Value>
+            <ResolvedValue>7</ResolvedValue>
+            <IsConstant>false</IsConstant>
+            <ParameterAlias>shipMethod</ParameterAlias>
+            <ParameterID>J}com.oracle.soasample.ShippingType.{shipMethod}</ParameterID>
+            <DTActionParameterName>shipMethod</DTActionParameterName>
+          </Expression>
+        </DTActionNode>
+      </DTAction>
+      <DTRule id="L}183">
+        <Override></Override>
+        <RunBefore></RunBefore>
+        <NoConflict></NoConflict>
+        <OverriddenBy>L}222</OverriddenBy>
+        <RunAfter></RunAfter>
+        <CreationUpdateNumber>10</CreationUpdateNumber>
+      </DTRule>
+      <DTRule id="L}205">
+        <Override></Override>
+        <RunBefore></RunBefore>
+        <NoConflict></NoConflict>
+        <OverriddenBy>L}222</OverriddenBy>
+        <RunAfter></RunAfter>
+        <CreationUpdateNumber>14</CreationUpdateNumber>
+      </DTRule>
+      <DTRule id="L}213">
+        <Override></Override>
+        <RunBefore></RunBefore>
+        <NoConflict></NoConflict>
+        <OverriddenBy>L}222</OverriddenBy>
+        <RunAfter></RunAfter>
+        <CreationUpdateNumber>15</CreationUpdateNumber>
+      </DTRule>
+      <DTRule id="L}222">
+        <Override>L}183 L}205 L}213</Override>
+        <RunBefore></RunBefore>
+        <NoConflict></NoConflict>
+        <OverriddenBy></OverriddenBy>
+        <RunAfter></RunAfter>
+        <CreationUpdateNumber>16</CreationUpdateNumber>
+      </DTRule>
+      <AllowGaps>true</AllowGaps>
+      <ConflictPolicy>manual</ConflictPolicy>
+      <OrderRulesByBucket>false</OrderRulesByBucket>
+      <VerticalOrientation>true</VerticalOrientation>
+    </RuleSheet>
+    <VisibilityFilterEnabled>false</VisibilityFilterEnabled>
+    <CreationUpdateNumber>4</CreationUpdateNumber>
+  </RuleSet>
+  <ValidationUpdateNumber>39</ValidationUpdateNumber>
+  <UpdateNumber>39</UpdateNumber>
+  <ResourceBundle>DetermineShippingRulesTranslations</ResourceBundle>
+  <TestModel id="L}3">
+    <ValidationUpdateNumber>1</ValidationUpdateNumber>
+    <UpdateNumber>1</UpdateNumber>
+    <Validation>true</Validation>
+    <AutoSync>true</AutoSync>
+  </TestModel>
+  <Preferences id="G}64fd2b78:1408322a637:-7fe5">
+    <RulesExecutionAlgorithm>RETE</RulesExecutionAlgorithm>
+    <VerbalChoiceForm>All</VerbalChoiceForm>
+    <IncludeChainedExpressions>true</IncludeChainedExpressions>
+  </Preferences>
+</RuleDictionary>

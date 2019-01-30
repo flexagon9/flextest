@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DepartmentsDefaultVO"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="DepartmentsEO.DEPARTMENT_ID, 
+       DepartmentsEO.DEPARTMENT_NAME, 
+       DepartmentsEO.MANAGER_ID, 
+       DepartmentsEO.LOCATION_ID"
+  FromList="HR.DEPARTMENTS DepartmentsEO"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  RowClass="flexagon.fusion.hrdemo.model.views.DepartmentsDefaultVORowImpl"
+  ComponentClass="flexagon.fusion.hrdemo.model.views.DepartmentsDefaultVOImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <EntityUsage
+    Name="DepartmentsEO"
+    Entity="flexagon.fusion.hrdemo.model.entities.DepartmentsEO"/>
+  <ViewAttribute
+    Name="DepartmentId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DepartmentId"
+    EntityUsage="DepartmentsEO"
+    AliasName="DEPARTMENT_ID"/>
+  <ViewAttribute
+    Name="DepartmentName"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DepartmentName"
+    EntityUsage="DepartmentsEO"
+    AliasName="DEPARTMENT_NAME"/>
+  <ViewAttribute
+    Name="ManagerId"
+    PrecisionRule="true"
+    EntityAttrName="ManagerId"
+    EntityUsage="DepartmentsEO"
+    AliasName="MANAGER_ID"/>
+  <ViewAttribute
+    Name="LocationId"
+    PrecisionRule="true"
+    EntityAttrName="LocationId"
+    EntityUsage="DepartmentsEO"
+    AliasName="LOCATION_ID"/>
+  <ViewLinkAccessor
+    Name="Employees"
+    ViewLink="flexagon.fusion.hrdemo.model.views.links.EmpDeptFkVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="JobHistory"
+    ViewLink="flexagon.fusion.hrdemo.model.views.links.JhistDeptFkVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

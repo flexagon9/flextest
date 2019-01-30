@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<decisionServices xmlns="http://xmlns.oracle.com/bpel/rules" name="DetermineShippingRules">
+    <ruleEngineProvider provider="Oracle_11.0.0.0.0" name="OracleRulesSDK">
+        <repository type="SCA-Archive">
+            <path>FulfillOrder/oracle/rules/fulfillorder/DetermineShippingRules.rules</path>
+        </repository>
+    </ruleEngineProvider>
+    <decisionService name="DetermineShippingRules_DecisionService_1" ruleEngineProviderReference="OracleRulesSDK" targetNamespace="http://xmlns.oracle.com/DetermineShippingRules/DetermineShippingRules_DecisionService_1">
+        <catalog>DetermineShippingRules</catalog>
+        <pattern name="CallFunctionStateless">
+            <arguments>
+                <call>fulfillorder.DetermineShippingRules.DetermineShippingRules_DecisionService_1</call>
+            </arguments>
+        </pattern>
+        <pattern name="CallFunctionStateful">
+            <arguments>
+                <call>fulfillorder.DetermineShippingRules.DetermineShippingRules_DecisionService_1</call>
+            </arguments>
+        </pattern>
+    </decisionService>
+    <schemaInformation>
+        <dictionary fqnPackage="fulfillorder" fqnName="DetermineShippingRules" updateNumber="39">
+            <schemaBrowser>
+                <package>com.oracle.soasample</package>
+                <namespace>http://www.oracle.com/soasample</namespace>
+            </schemaBrowser>
+            <schemaImport namespace="http://www.oracle.com/soasample" localPart="CanonicalOrder.xsd" schemaLocation="Schemas/CanonicalOrder.xsd">
+                <import namespace="http://www.oracle.com/soasample" localPart="CanonicalOrder.xsd"/>
+            </schemaImport>
+        </dictionary>
+    </schemaInformation>
+</decisionServices>

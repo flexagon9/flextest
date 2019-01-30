@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/getShippingProvider" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/getShippingProvider" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="E2E1201_ShippingMethodsCollection" type="E2E1201_ShippingMethodsCollection"/>
+   <xs:complexType name="E2E1201_ShippingMethodsCollection">
+      <xs:sequence>
+         <xs:element name="E2E1201_ShippingMethods" type="E2E1201_ShippingMethods" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="E2E1201_ShippingMethods">
+      <xs:sequence>
+         <xs:element name="methodsId" type="xs:integer"/>
+         <xs:element name="name" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="providerId" type="E2E1201_ShippingProviders" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="E2E1201_ShippingProviders">
+      <xs:sequence>
+         <xs:element name="providerId" type="xs:integer"/>
+         <xs:element name="name" type="xs:string" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="getShippingProviderSelect_smiInputParameters" type="getShippingProviderSelect_smi"/>
+   <xs:complexType name="getShippingProviderSelect_smi">
+      <xs:sequence>
+         <xs:element name="smi" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

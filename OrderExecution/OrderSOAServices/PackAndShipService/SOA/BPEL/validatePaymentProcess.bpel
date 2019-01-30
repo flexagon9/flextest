@@ -1,0 +1,102 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Aug 07 16:38:04 PDT 2013
+  Author:  sgeib
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="validatePaymentProcess"
+               targetNamespace="http://xmlns.oracle.com/e2e_1201_composites/ValidatePayment/validatePaymentProcess"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/e2e_1201_composites/ValidatePayment/validatePaymentProcess"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:ns1="http://www.oracle.com/ValidatePayment"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/ValidatePayment/getPaymentInformation"
+         xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/db/top/getPaymentInformation"
+         xmlns:ns3="http://www.oracle.com/soasample">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/ValidatePayment/getPaymentInformation"
+          location="../WSDLs/getPaymentInformation.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+  <import namespace="http://www.oracle.com/ValidatePayment" location="../WSDLs/ValidatePayment.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/"/>
+  <import namespace="http://www.oracle.com/ValidatePayment" location="../WSDLs/ValidatePaymentWrapper.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/" ui:processWSDL="true"/>
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="validatepaymentprocess_client" partnerLinkType="ns1:validatePaymentProcess" myRole="validatePaymentPortType"/>
+    <partnerLink name="getPaymentInformation" partnerLinkType="ns2:getPaymentInformation_plt"
+                 partnerRole="getPaymentInformation_role"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="ns1:validateInput"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="ns1:validateOutput"/>
+    <variable name="getPaymentInformation_getPaymentInformationSelect_InputVariable"
+              messageType="ns2:getPaymentInformationSelect_inputParameters"/>
+    <variable name="getPaymentInformation_getPaymentInformationSelect_OutputVariable"
+              messageType="ns2:E2E1201_PaymentinfoCollection_msg"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in validatePaymentProcess.wsdl) -->
+    <receive name="receiveInput" partnerLink="validatepaymentprocess_client" portType="ns1:validatePaymentPortType" operation="validate" variable="inputVariable" createInstance="yes"/>
+    <assign name="setCreditCardNumber">
+      <copy>
+        <from>$inputVariable.paymentInfo/ns3:CardNum</from>
+        <to>$getPaymentInformation_getPaymentInformationSelect_InputVariable.getPaymentInformationSelect_inputParameters/ns4:ccnb</to>
+      </copy>
+    </assign>
+    <invoke name="getPaymentInformation" portType="ns2:getPaymentInformation_ptt" partnerLink="getPaymentInformation"
+            operation="getPaymentInformationSelect"
+            inputVariable="getPaymentInformation_getPaymentInformationSelect_InputVariable"
+            outputVariable="getPaymentInformation_getPaymentInformationSelect_OutputVariable"/>
+    <scope name="CalculatePaymentStatusScope" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+           xmlns:ns1="http://www.oracle.com/ValidatePayment"
+           xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/ValidatePayment/getPaymentInformation">
+      <assign name="calculatePaymentStatus">
+        <bpelx:annotation xmlns:bpelx="http://schemas.oracle.com/bpel/extension">
+          <bpelx:pattern patternName="bpelx:transformation"/>
+        </bpelx:annotation>
+        <copy>
+          <from>ora:doXSLTransformForDoc("../Transformations/calculatePaymentStatus.xsl", $getPaymentInformation_getPaymentInformationSelect_OutputVariable.E2E1201_PaymentinfoCollection, "inputVariable.paymentInfo", $inputVariable.paymentInfo)</from>
+          <to variable="outputVariable" part="status"/>
+        </copy>
+      </assign>
+    </scope>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="validatepaymentprocess_client" portType="ns1:validatePaymentPortType" operation="validate" variable="outputVariable"/>
+  </sequence>
+</process>

@@ -1,0 +1,14 @@
+<adapter-config name="updateOrderStatus" adapter="db" wsdlLocation="../WSDLs/updateOrderStatus.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SOA" location="eis/DB/SOA"/>
+  <endpoint-interaction portType="updateOrderStatus_ptt" operation="update">
+    <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+      <property name="DescriptorName" value="updateOrderStatus.E2E1201_Orders"/>
+      <property name="DmlType" value="update"/>
+      <property name="MappingsMetaDataURL" value="updateOrderStatus-or-mappings.xml"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+      <property name="DetectOmissions" value="true"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

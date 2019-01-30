@@ -1,0 +1,15 @@
+-------------------------------------------------------------------------------
+Test set: org.mulesoft.training.JUnitTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.309 sec <<< FAILURE! - in org.mulesoft.training.JUnitTest
+runtest1(org.mulesoft.training.JUnitTest)  Time elapsed: 1.595 sec  <<< ERROR!
+org.mule.api.config.ConfigurationException: 
+Configuration problem: Unable to locate NamespaceHandler for namespace [http://www.mulesoft.org/schema/mule/db]
+Offending resource: URL [file:/C:/prod/demo/mule/api-policy/target/test-classes/api-policy.xml] (org.mule.api.lifecycle.InitialisationException)
+Caused by: org.mule.api.lifecycle.InitialisationException: 
+Configuration problem: Unable to locate NamespaceHandler for namespace [http://www.mulesoft.org/schema/mule/db]
+Offending resource: URL [file:/C:/prod/demo/mule/api-policy/target/test-classes/api-policy.xml]
+Caused by: org.springframework.beans.factory.parsing.BeanDefinitionParsingException: 
+Configuration problem: Unable to locate NamespaceHandler for namespace [http://www.mulesoft.org/schema/mule/db]
+Offending resource: URL [file:/C:/prod/demo/mule/api-policy/target/test-classes/api-policy.xml]
+

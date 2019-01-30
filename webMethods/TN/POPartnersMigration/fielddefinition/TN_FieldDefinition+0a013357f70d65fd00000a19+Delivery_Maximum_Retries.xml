@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<IDataXMLCoder version="1.0">
+  <record javaclass="com.wm.data.ISMemDataImpl">
+    <record name="version" javaclass="com.wm.data.ISMemDataImpl">
+      <value name="major">9</value>
+      <value name="minor">0</value>
+    </record>
+    <list name="flddefs">
+      <record javaclass="com.wm.app.tn.profile.ProfileFieldMetaData">
+        <number name="GroupID" type="java.lang.Short">1</number>
+        <number name="MaxLength" type="java.lang.Integer">-1</number>
+        <idatacodable name="Extended?" javaclass="com.wm.data.MBoolean">          <value name="MBoolean">false</value>
+        </idatacodable>
+        <idatacodable name="Required?" javaclass="com.wm.data.MBoolean">          <value name="MBoolean">false</value>
+        </idatacodable>
+        <idatacodable name="Registration?" javaclass="com.wm.data.MBoolean">          <value name="MBoolean">false</value>
+        </idatacodable>
+        <idatacodable name="Deleted?" javaclass="com.wm.data.MBoolean">          <value name="MBoolean">false</value>
+        </idatacodable>
+        <null name="ValidValues"/>
+        <null name="DefaultValue"/>
+        <value name="Datatype">SmallInt</value>
+        <value name="Name">Delivery Maximum Retries</value>
+        <value name="Table">Remote</value>
+        <value name="Column">DeliveryMaxRetries</value>
+        <null name="Description"/>
+        <value name="ProfileFieldID">0a013357f70d65fd00000a19</value>
+        <idatacodable name="Displayable?" javaclass="com.wm.data.MBoolean">          <value name="MBoolean">false</value>
+        </idatacodable>
+        <value name="GroupName">Corporation</value>
+        <null name="Action"/>
+        <null name="TimeStamp"/>
+      </record>
+    </list>
+  </record>
+</IDataXMLCoder>

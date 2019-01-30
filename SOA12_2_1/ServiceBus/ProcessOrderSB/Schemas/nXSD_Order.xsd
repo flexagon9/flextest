@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd"
+            xmlns:tns="http://www.oracle.com/soasample"
+            targetNamespace="http://www.oracle.com/soasample"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+
+            nxsd:version="NXSD"
+            nxsd:stream="chars"
+            nxsd:encoding="US-ASCII"
+>
+
+
+  <xsd:element name="Order">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Billing" type="tns:BillingType" />
+        <xsd:element name="Shipping" type="tns:ShippingType" />
+        <xsd:element name="Email" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+        <xsd:element name="Items" type="tns:ItemsType" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+
+  <xsd:complexType name="ItemType">
+    <xsd:sequence>
+      <xsd:element name="SKU" type="xsd:int" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="Quantity" type="xsd:int" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="UnitPrice" type="xsd:decimal" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="Brand" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="Model" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="Category" type="xsd:int" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="Description" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="ShippingType">
+    <xsd:sequence>
+      <xsd:element name="Address" type="tns:AddressType" />
+      <xsd:element name="ShippingSpeed" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="," />
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="AddressType">
+    <xsd:sequence>
+      <xsd:element name="FirstName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="LastName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="AddressLine" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="City" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="State" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="ZipCode" type="xsd:int" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="PhoneNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="BillingType">
+    <xsd:sequence>
+      <xsd:element name="CardPaymentType" type="xsd:int" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="CardNum" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="ExpireDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="," />
+      <xsd:element name="CardName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+      <xsd:element name="BillingAddress" type="tns:AddressType" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="ItemsType">
+    <xsd:sequence>
+      <xsd:element name="Item" type="tns:ItemType" maxOccurs="unbounded" nxsd:style="array" nxsd:cellSeparatedBy="" nxsd:arrayTerminatedBy="${eof}" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <entry key="E2E_1201_PAYMENTINFO.EXPIRE_DATE:db_column_size">4</entry>
+   <entry key="E2E_1201_PAYMENTINFO:db_table_type">TABLE</entry>
+   <entry key="E2E_1201_PAYMENTINFO.EXPIRE_DATE:db_column_not_null">false</entry>
+   <entry key="E2E_1201_PAYMENTINFO.FIRST_NAME:db_column_not_null">false</entry>
+   <entry key="E2E_1201_PAYMENTINFO.PAYMENT_TYPE:db_column_type">INTEGER</entry>
+   <entry key="E2E_1201_PAYMENTINFO:db_column_7">CURRENT_LIMT</entry>
+   <entry key="E2E_1201_PAYMENTINFO:db_column_6">DAILY_LIMIT</entry>
+   <entry key="E2E_1201_PAYMENTINFO:db_column_5">CARD_NAME</entry>
+   <entry key="E2E_1201_PAYMENTINFO.LAST_NAME:db_column_not_null">false</entry>
+   <entry key="E2E_1201_PAYMENTINFO.PAYMENT_TYPE:db_column_not_null">false</entry>
+   <entry key="E2E_1201_PAYMENTINFO:db_column_4">EXPIRE_DATE</entry>
+   <entry key="E2E_1201_PAYMENTINFO.CURRENT_LIMT:db_column_type">DOUBLE</entry>
+   <entry key="E2E_1201_PAYMENTINFO:db_column_3">CARD_NUM</entry>
+   <entry key="E2E_1201_PAYMENTINFO:db_column_2">PAYMENT_TYPE</entry>
+   <entry key="E2E_1201_PAYMENTINFO:db_column_1">LAST_NAME</entry>
+   <entry key="E2E_1201_PAYMENTINFO:db_column_0">FIRST_NAME</entry>
+   <entry key="E2E_1201_PAYMENTINFO.CARD_NAME:db_column_type">VARCHAR</entry>
+   <entry key="return_single_result_set">false</entry>
+   <entry key="E2E_1201_PAYMENTINFO.CARD_NUM:db_column_type">VARCHAR</entry>
+   <entry key="E2E_1201_PAYMENTINFO.FIRST_NAME:db_column_type">VARCHAR</entry>
+   <entry key="E2E_1201_PAYMENTINFO.CARD_NUM:db_column_not_null">true</entry>
+   <entry key="E2E_1201_PAYMENTINFO.LAST_NAME:db_column_type">VARCHAR</entry>
+   <entry key="E2E_1201_PAYMENTINFO.EXPIRE_DATE:db_column_type">VARCHAR</entry>
+   <entry key="E2E_1201_PAYMENTINFO.DAILY_LIMIT:db_column_type">DOUBLE</entry>
+   <entry key="root_descriptor_alias">E2E_1201_PAYMENTINFO</entry>
+   <entry key="E2E_1201_PAYMENTINFO.CARD_NAME:db_column_size">50</entry>
+   <entry key="E2E_1201_PAYMENTINFO.CARD_NAME:db_column_not_null">false</entry>
+   <entry key="E2E_1201_PAYMENTINFO.CURRENT_LIMT:db_column_not_null">false</entry>
+   <entry key="E2E_1201_PAYMENTINFO.DAILY_LIMIT:db_column_not_null">false</entry>
+   <entry key="E2E_1201_PAYMENTINFO.FIRST_NAME:db_column_size">30</entry>
+   <entry key="E2E_1201_PAYMENTINFO.CARD_NUM:db_column_size">16</entry>
+   <entry key="E2E_1201_PAYMENTINFO.LAST_NAME:db_column_size">30</entry>
+</properties>

@@ -1,0 +1,53 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Tue Sep 15 18:14:34 IST 2015
+  Author:  ruppalapati
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="validateBpel"
+               targetNamespace="http://xmlns.oracle.com/e2e_1201_composites/ValidatePayment/validateBpel"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/e2e_1201_composites/ValidatePayment/validateBpel"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://oracle.com/sca/soapservice/e2e-1201-composites/ValidatePayment/ValidatePayment"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ui="http://xmlns.oracle.com/soa/designer">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="http://oracle.com/sca/soapservice/e2e-1201-composites/ValidatePayment/ValidatePayment"
+          location="../WSDLs/ValidatePaymentWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"
+          ui:processWSDL="true"/>
+  <partnerLinks>
+    <partnerLink name="ValidatePayment" partnerLinkType="ns1:ValidatePayment" myRole="validatePaymentPortType"/>
+  </partnerLinks>
+  <variables>
+    <variable name="Receive1_Validate_InputVariable" messageType="ns1:requestMessage"/>
+    <variable name="Reply1_Validate_OutputVariable" messageType="ns1:replyMessage"/>
+  </variables>
+  <sequence name="main">
+    <receive name="Receive" createInstance="yes" partnerLink="ValidatePayment" portType="ns1:validatePaymentPortType"
+             operation="Validate" variable="Receive1_Validate_InputVariable"/>
+    <assign name="Transformation1">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("../Transformations/Transformation_1.xsl", $Receive1_Validate_InputVariable.part1)</from>
+        <to variable="Reply1_Validate_OutputVariable" part="part1"/>
+      </copy>
+    </assign>
+    <reply name="Reply1" variable="Reply1_Validate_OutputVariable" partnerLink="ValidatePayment"
+           portType="ns1:validatePaymentPortType" operation="Validate"/>
+  </sequence>
+</process>

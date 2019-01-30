@@ -1,0 +1,4 @@
+This is sample data for the Weblogic EIS plugin.
+
+The myEIS.properties file gets referenced by the plugin.
+A folder for any Environment code could be here with a file of the same name.

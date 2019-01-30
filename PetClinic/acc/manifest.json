@@ -1,0 +1,13 @@
+{
+    "runtime": {
+        "majorVersion": "8"
+    },
+    "command": "sh bin/startup.sh",
+    "startupTime": "120",
+    "release": {
+        "build": "23",
+        "commit": "commitString",
+        "version": "v2.0"
+    },
+    "notes": "Mobile Banking App"
+}

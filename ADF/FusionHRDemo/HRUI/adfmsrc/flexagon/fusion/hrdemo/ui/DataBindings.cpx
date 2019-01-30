@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.1.2.66.68" id="DataBindings" SeparateXMLFiles="false" Package="flexagon.fusion.hrdemo.ui" ClientType="Generic">
+  <pageMap>
+    <page path="/departments.jsf" usageId="flexagon_fusion_hrdemo_ui_departmentsPageDef"/>
+    <page path="/employees.jsf" usageId="flexagon_fusion_hrdemo_ui_employeesPageDef"/>
+    <page path="/mainpagetemplate.jsf" usageId="flexagon_fusion_hrdemo_ui_mainpagetemplatePageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="flexagon_fusion_hrdemo_ui_departmentsPageDef" path="flexagon.fusion.hrdemo.ui.pageDefs.departmentsPageDef"/>
+    <page id="flexagon_fusion_hrdemo_ui_employeesPageDef" path="flexagon.fusion.hrdemo.ui.pageDefs.employeesPageDef"/>
+    <page id="flexagon_fusion_hrdemo_ui_mainpagetemplatePageDef" path="flexagon.fusion.hrdemo.ui.pageDefs.mainpagetemplatePageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="HRUIAMDataControl" Package="flexagon.fusion.hrdemo.model.appmodules" FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true" SupportsSortCollection="true" Configuration="HRUIAMLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

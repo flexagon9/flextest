@@ -1,0 +1,35 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ReceiveOrdersReadyForShipment"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites-templates/FulfillOrder/ReceiveOrdersReadyForShipment"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:ns1="http://www.oracle.com/soasample"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites-templates/FulfillOrder/ReceiveOrdersReadyForShipment"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:pc="http://xmlns.oracle.com/pcbpel/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/ReceiveOrdersReadyForShipment"
+    >
+    <plt:partnerLinkType name="ReceiveOrdersReadyForShipment_plt">
+        <plt:role name="ReceiveOrdersReadyForShipment_role">
+            <plt:portType name="tns:ReceiveOrdersReadyForShipment_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/ReceiveOrdersReadyForShipment"
+                 schemaLocation="../Schemas/ReceiveOrdersReadyForShipment_table.xsd"/>
+        </schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.oracle.com/soasample" schemaLocation="../Schemas/CanonicalOrder.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="E2E1201_OrdersCollection_msg">
+        <wsdl:part name="E2E1201_OrdersCollection" element="top:E2E1201_OrdersCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="ReceiveOrdersReadyForShipment_ptt">
+        <wsdl:operation name="receive">
+            <wsdl:input message="tns:E2E1201_OrdersCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

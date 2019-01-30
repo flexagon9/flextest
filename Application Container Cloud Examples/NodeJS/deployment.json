@@ -1,0 +1,6 @@
+{
+  "memory": "2G",
+  "instances": 3,
+  "services": [],
+  "environment": {}
+}

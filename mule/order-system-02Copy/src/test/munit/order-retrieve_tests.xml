@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+    <munit:config name="munit" doc:name="MUnit configuration" mock-connectors="false"/>
+    <spring:beans>
+        <spring:import resource="classpath:order-system.xml"/>
+    </spring:beans>
+    <munit:test name="retrieveOrders_returnsList" description="Calling retrieveOrders returns a java list of orders.">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[{'range' : '*'}]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="retrieveOrders" doc:name="Flow-ref to retrieveOrders"/>
+        <munit:assert-true message="not list" condition="#[message.payload is java.util.List]" doc:name="Assert payload is List."/>
+        <munit:assert-true condition="#[message.payload.size() &gt; 0]" doc:name="Assert has elements."/>
+    </munit:test>
+</mule>

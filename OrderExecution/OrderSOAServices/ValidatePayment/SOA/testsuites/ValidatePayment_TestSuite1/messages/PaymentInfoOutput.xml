@@ -1,0 +1,3 @@
+<PaymentStatus xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://www.oracle.com/ValidatePayment" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/ValidatePayment/getPaymentInformation" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:ns1="http://www.oracle.com/soasample" xmlns="http://www.oracle.com/soasample">
+	<ns1:Status>Authorized</ns1:Status>
+</PaymentStatus>

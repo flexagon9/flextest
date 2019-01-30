@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/getPaymentInformation" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/getPaymentInformation" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="E2E1201_PaymentinfoCollection" type="E2E1201_PaymentinfoCollection"/>
+   <xs:complexType name="E2E1201_PaymentinfoCollection">
+      <xs:sequence>
+         <xs:element name="E2E1201_Paymentinfo" type="E2E1201_Paymentinfo" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="E2E1201_Paymentinfo">
+      <xs:sequence>
+         <xs:element name="cardNum" type="string16"/>
+         <xs:element name="expireDate" type="string4" minOccurs="0" nillable="true"/>
+         <xs:element name="dailyLimit" type="xs:double" minOccurs="0" nillable="true"/>
+         <xs:element name="currentLimt" type="xs:double" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="getPaymentInformationSelect_ccnbInputParameters" type="getPaymentInformationSelect_ccnb"/>
+   <xs:complexType name="getPaymentInformationSelect_ccnb">
+      <xs:sequence>
+         <xs:element name="ccnb" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="string16">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="16"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string4">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="4"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

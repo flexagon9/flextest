@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="JobHistoryDefaultVO"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="JobHistoryEO.EMPLOYEE_ID, 
+       JobHistoryEO.START_DATE, 
+       JobHistoryEO.END_DATE, 
+       JobHistoryEO.JOB_ID, 
+       JobHistoryEO.DEPARTMENT_ID"
+  FromList="HR.JOB_HISTORY JobHistoryEO"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  RowClass="flexagon.fusion.hrdemo.model.views.JobHistoryDefaultVORowImpl"
+  ComponentClass="flexagon.fusion.hrdemo.model.views.JobHistoryDefaultVOImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <EntityUsage
+    Name="JobHistoryEO"
+    Entity="flexagon.fusion.hrdemo.model.entities.JobHistoryEO"/>
+  <ViewAttribute
+    Name="EmployeeId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="EmployeeId"
+    EntityUsage="JobHistoryEO"
+    AliasName="EMPLOYEE_ID"/>
+  <ViewAttribute
+    Name="StartDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="StartDate"
+    EntityUsage="JobHistoryEO"
+    AliasName="START_DATE"/>
+  <ViewAttribute
+    Name="EndDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="EndDate"
+    EntityUsage="JobHistoryEO"
+    AliasName="END_DATE"/>
+  <ViewAttribute
+    Name="JobId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="JobId"
+    EntityUsage="JobHistoryEO"
+    AliasName="JOB_ID"/>
+  <ViewAttribute
+    Name="DepartmentId"
+    PrecisionRule="true"
+    EntityAttrName="DepartmentId"
+    EntityUsage="JobHistoryEO"
+    AliasName="DEPARTMENT_ID"/>
+</ViewObject>

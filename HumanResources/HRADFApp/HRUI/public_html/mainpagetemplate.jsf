@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<af:pageTemplateDef xmlns:af="http://xmlns.oracle.com/adf/faces/rich" var="attrs" definition="private" xmlns:afc="http://xmlns.oracle.com/adf/faces/rich/component"
+                    xmlns:f="http://java.sun.com/jsf/core">
+  <af:xmlContent>
+    <afc:component>
+      <afc:description/>
+      <afc:display-name>mainpagetemplate</afc:display-name>
+     <afc:facet>
+        <afc:facet-name>pageContent</afc:facet-name>
+      </afc:facet>
+      <afc:attribute>
+        <afc:description>Pixel Size for top header bar, which contains Logo, Application Name, User Information etc</afc:description>
+        <afc:attribute-name>headerSize</afc:attribute-name>
+        <afc:attribute-class>java.lang.String</afc:attribute-class>
+        <afc:default-value>50</afc:default-value>
+      </afc:attribute>
+      <afc:attribute>
+        <afc:description>the id attribute of the command button inside the form whose action should be invoked by default, when the enter key is pressed with focus inside the form. Identifiers are
+                         relative to the form component, and must account for NamingContainers. You can use a single colon to start the search from the root.</afc:description>
+        <afc:attribute-name>defaultCommand</afc:attribute-name>
+        <afc:attribute-class>java.lang.String</afc:attribute-class>
+      </afc:attribute>
+      <afc:attribute>
+        <afc:description>Indicate whether the form supports file upload.</afc:description>
+        <afc:attribute-name>usesUpload</afc:attribute-name>
+        <afc:attribute-class>boolean</afc:attribute-class>
+        <afc:default-value>false</afc:default-value>
+      </afc:attribute>
+      <afc:attribute>
+        <afc:description>Specifies the branding logo.</afc:description>
+        <afc:attribute-name>logoImagePath</afc:attribute-name>
+        <afc:attribute-class>java.lang.String</afc:attribute-class>
+        <afc:default-value>/afr/oracle_logo.png</afc:default-value>
+      </afc:attribute>
+      <afc:attribute>
+        <afc:description>Specifies the branding logo styling.</afc:description>
+        <afc:attribute-name>logoStyleClass</afc:attribute-name>
+        <afc:attribute-class>java.lang.String</afc:attribute-class>
+        <afc:default-value>AFBrandingLogo</afc:default-value>
+      </afc:attribute>
+      <afc:attribute>
+        <afc:description>Specifies the alternate text and tooltip for the branding logo.</afc:description>
+        <afc:attribute-name>logoShortDesc</afc:attribute-name>
+        <afc:attribute-class>java.lang.String</afc:attribute-class>
+        <afc:default-value>ACE Common UI</afc:default-value>
+      </afc:attribute>
+      <afc:attribute>
+        <afc:description>Specifies navitation hint for 1st level.</afc:description>
+        <afc:attribute-name>level1NavigationHint</afc:attribute-name>
+        <afc:attribute-class>java.lang.String</afc:attribute-class>
+        <afc:default-value>tab</afc:default-value>
+        <afc:required>false</afc:required>
+      </afc:attribute>
+      <afc:attribute>
+        <afc:description>Specifies navitation hint for 2nd level.</afc:description>
+        <afc:attribute-name>level2NavigationHint</afc:attribute-name>
+        <afc:attribute-class>java.lang.String</afc:attribute-class>
+        <afc:default-value>bar</afc:default-value>
+        <afc:required>false</afc:required>
+      </afc:attribute>
+      <afc:attribute>
+        <afc:description>By default using immediate=true for naviation items.</afc:description>
+        <afc:attribute-name>immediate</afc:attribute-name>
+        <afc:attribute-class>boolean</afc:attribute-class>
+        <afc:default-value>true</afc:default-value>
+        <afc:required>false</afc:required>
+      </afc:attribute>
+      <afc:attribute>
+        <afc:attribute-name>applicationName</afc:attribute-name>
+        <afc:required>true</afc:required>
+      </afc:attribute>
+    </afc:component>
+  </af:xmlContent>
+  <af:form id="pt_f1" usesUpload="true">
+    <af:panelSplitter id="pt_ps1" splitterPosition="28" orientation="vertical" firstBorder="none" secondBorder="none" firstLandmark="banner" styleClass="AFBrandingSplitter">
+      <f:facet name="first">
+        <af:panelStretchLayout id="pt_psl1" startWidth="auto" endWidth="auto" topHeight="0px" bottomHeight="0px">
+          <f:facet name="start">
+            <af:panelGroupLayout styleClass="AFBrandingBar" id="pt_pgl2" layout="horizontal">
+              <af:image id="pt_i1" shortDesc="#{attrs.logoShortDesc}" styleClass="#{attrs.logoStyleClass}" source="#{attrs.logoImagePath}"/>
+              <af:spacer width="50" height="10" id="pt_s1"/>
+              <af:outputText value="#{attrs.applicationName}" id="pt_ot1" noWrap="true" styleClass="AFBrandingBarTitle"/>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="end">
+            <af:panelGroupLayout id="pt_pgl3" layout="horizontal" styleClass="AFBrandingBar">
+              <af:outputText value="User Name" id="pt_ot2"/>
+              <af:link text="Logout" id="pt_l1"/>
+              <af:statusIndicator id="pt_si1"/>
+              <f:facet name="separator">
+                <af:spacer width="5" height="10" id="pt_s2"/>
+                <af:outputLabel value="|" id="pt_ol1"/>
+                <af:spacer width="5" height="10" id="pt_s3"/>
+              </f:facet>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:panelStretchLayout>
+      </f:facet>
+      <f:facet name="second">
+        <af:decorativeBox id="pt_db2" dimensionsFrom="auto" topHeight="0">
+          <f:facet name="center">
+            <af:panelStretchLayout id="pt_psl2" topLandmark="navigation" startWidth="0px" endWidth="0px" topHeight="auto" bottomHeight="0px">
+              <f:facet name="top">
+                <af:panelGroupLayout id="pt_pgl1" layout="vertical">
+                  <af:navigationPane id="pt_np1" level="0" hint="#{attrs.level1NavigationHint}" value="#{root_menu}" var="menuModel">
+                    <f:facet name="nodeStamp">
+                      <af:commandNavigationItem id="pt_cni1" text="#{menuModel.label}" action="#{menuModel.doAction}" rendered="#{menuModel.rendered}" visible="#{menuModel.visible}"
+                                                disabled="#{menuModel.disabled}" immediate="true"/>
+                    </f:facet>
+                  </af:navigationPane>
+                  <af:navigationPane id="pt_np2" level="1" hint="#{attrs.level2NavigationHint}" value="#{root_menu}" var="menuModel">
+                    <f:facet name="nodeStamp">
+                      <af:commandNavigationItem id="pt_cni2" text="#{menuModel.label}" action="#{menuModel.doAction}" rendered="#{menuModel.rendered}" visible="#{menuModel.visible}"
+                                                disabled="#{menuModel.disabled}" immediate="#{menuModel.immediate}"/>
+                    </f:facet>
+                  </af:navigationPane>
+                </af:panelGroupLayout>
+              </f:facet>
+              <f:facet name="center">
+                <af:decorativeBox id="pt_db1" topHeight="0px" dimensionsFrom="parent">
+                  <f:facet name="center">
+                    <af:facetRef facetName="pageContent"/>
+                  </f:facet>
+                </af:decorativeBox>
+              </f:facet>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:decorativeBox>
+      </f:facet>
+    </af:panelSplitter>
+  </af:form>
+</af:pageTemplateDef>

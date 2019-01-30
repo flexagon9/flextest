@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<wsdl:definitions
+    
+     targetNamespace="http://www.oracle.com/ValidatePayment"
+     xmlns:tns="http://www.oracle.com/ValidatePayment"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:types="http://www.oracle.com/soasample"
+    >
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import schemaLocation="../Schemas/CanonicalOrder.xsd" namespace="http://www.oracle.com/soasample"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="validateInput">
+        <wsdl:part name="paymentInfo" element="types:PaymentInfo"/>
+    </wsdl:message>
+    <wsdl:message name="validateOutput">
+        <wsdl:part name="status" element="types:PaymentStatus"/>
+    </wsdl:message>
+    <wsdl:portType name="validatePaymentPortType">
+        <wsdl:operation name="validate">
+            <wsdl:input message="tns:validateInput"/>
+            <wsdl:output message="tns:validateOutput"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

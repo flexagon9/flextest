@@ -1,0 +1,11 @@
+<asset_composite xmlns="http://namespaces.softwareag.com/acdl/1.0" name="PartnerB" displayName="PartnerB" targetNamespace="http://namespaces.softwareag.com/webMethods/TN" runtimeVersion="10.2.0.0">
+  <buildInfo name="BuildTimestamp" value="2018-07-02T11:37:47" />
+  <buildInfo name="MinimumTargetRuntimeVersion" value="10.2.0.0" />
+  <asset name="partner.53000q00cgf6e8c20000000m.UGFydG5lciBC_U2hpcHBpbmc=" displayName="Partner B (Shipping)">
+    <implementation.generic type="partner" />
+    <property name="Partner Profile Status" displayName="Partner Profile Status">
+      <value>active</value>
+    </property>
+  </asset>
+</asset_composite>
+

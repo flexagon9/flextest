@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+    <munit:config name="munit" doc:name="MUnit configuration"/>
+    <spring:beans>
+        <spring:import resource="classpath:order-system.xml"/>
+    </spring:beans>
+    <munit:test name="processOrders_returns2ElementMap" description="calling processOrders returns 2 Element Map">
+        <flow-ref name="processOrders" doc:name="processOrders"/>
+        <munit:assert-true condition="#[payload is java.util.Map]" doc:name="Assert payload is java.util.map"/>
+        <munit:assert-on-equals expectedValue="#[2]" actualValue="#[payload.size()]" doc:name="Assert Equals #[payload.size()], 2"/>
+    </munit:test>
+        <munit:test name="processOrders_Internation_Key_returns_International_Orders" description="calling processOrders International Key returns only International Orders">
+        <flow-ref name="processOrders" doc:name="processOrders"/>
+        <munit:assert-true condition="#[payload.international.size() &gt; 0]" doc:name="Assert payload has international orders"/>
+        <foreach collection="#[payload.international]" doc:name="For Each International order">
+            <munit:assert-on-equals message="#[payload.location] was given." expectedValue="international" actualValue="#[payload.location]" doc:name="Assert Equals payload is an international order"/>
+        </foreach>
+    </munit:test>
+    <munit:before-test name="order-process_testsBefore_Test" description="Before tests actions">
+        <munit:set payload="#[[{'orderID':444, 'location':'international','price':14.01}, {'orderID':444, 'location':'international','price':14.01}, {'orderID':555, 'location':'domestic','price':14.01}]]" doc:name="Set Message"/>
+    </munit:before-test>
+    <munit:test name="processOrders_domestic_Key_returns_Domestic_Orders" description="calling processOrders International Key returns only International Orders">
+        <flow-ref name="processOrders" doc:name="processOrders"/>
+        <munit:assert-true condition="#[payload.domestic.size() &gt; 0]" doc:name="Assert payload has domestic orders"/>
+        <foreach collection="#[payload.domestic]" doc:name="For Each International order">
+            <munit:assert-on-equals message="#[payload.location] was given." expectedValue="domestic" actualValue="#[payload.location]" doc:name="Assert Equals payload is an domesticorder"/>
+        </foreach>
+    </munit:test>
+</mule>

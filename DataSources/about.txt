@@ -1,0 +1,7 @@
+This is sample data for the Weblogic datasources plugin.
+
+The my.properties file gets referenced by the plugin. The dev/my.properties will be used if the environment is dev.
+
+As the targets are dependent on the WLS server properties,
+I made them all AdminServer at this time so that you should be able to run it with varying WLS properties.
+If testing on localhost, change AdminServer to DefaultServer

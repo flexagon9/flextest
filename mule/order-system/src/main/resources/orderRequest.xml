@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ns0:provisionOrder xmlns:ns0="http://soap.training.mulesoft.com/">
+  <dateRange>#[flowVars.'dateRange']</dateRange>
+</ns0:provisionOrder>

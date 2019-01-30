@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<IDataXMLCoder version="1.0">
+  <record javaclass="com.wm.data.ISMemDataImpl">
+    <record name="version" javaclass="com.wm.data.ISMemDataImpl">
+      <value name="major">9</value>
+      <value name="minor">0</value>
+    </record>
+    <list name="profiles">
+      <record javaclass="com.wm.app.tn.profile.Profile">
+        <record name="Corporate" javaclass="com.wm.app.tn.profile.Corporation">
+          <value name="PartnerID">53000q00cgf6e8c20000000m</value>
+          <value name="CorporationName">Partner B</value>
+          <value name="OrgUnitName">Shipping</value>
+          <value name="Status">Active</value>
+          <value name="Type">TNServer    </value>
+          <idatacodable name="Self" javaclass="com.wm.data.MBoolean">            <value name="MBoolean">false</value>
+          </idatacodable>
+          <idatacodable name="Deleted" javaclass="com.wm.data.MBoolean">            <value name="MBoolean">false</value>
+          </idatacodable>
+          <value name="TNVersion">10.2.0.0</value>
+          <null name="Certificate"/>
+          <null name="CACertificate"/>
+          <null name="PrivateKey"/>
+          <null name="RemoteStatus"/>
+          <value name="PreferredProtocol">Queue for polling</value>
+          <float name="PollingFrequency" type="java.lang.Float">0.0</float>
+          <number name="DeliveryMaxRetries" type="java.lang.Short">3</number>
+          <number name="DeliveryRetryWait" type="java.lang.Integer">6000</number>
+          <null name="PollingProtocol"/>
+          <idatacodable name="B2BcomMember" javaclass="com.wm.data.MBoolean">            <value name="MBoolean">false</value>
+          </idatacodable>
+          <number name="RetryFactor" type="java.lang.Integer">3</number>
+          <null name="DeliveryQueue"/>
+          <null name="Company Logo"/>
+          <array name="Address" type="record" depth="1">
+            <record javaclass="com.wm.app.tn.profile.Address">
+              <value name="AddressID">53000q00cgf6p6g20000000o</value>
+              <value name="PartnerID">53000q00cgf6e8c20000000m</value>
+              <null name="ContactID"/>
+              <value name="AddressLine1">22 streest</value>
+              <null name="AddressLine2"/>
+              <null name="AddressLine3"/>
+              <value name="City">chicago</value>
+              <value name="State_Province">IL</value>
+              <null name="Zip_PostalCode"/>
+              <null name="Country"/>
+              <number name="SequenceNumber" type="java.lang.Short">2</number>
+            </record>
+          </array>
+          <null name="PreferredLocale"/>
+          <idatacodable name="RoutingOff" javaclass="com.wm.data.MBoolean">            <value name="MBoolean">false</value>
+          </idatacodable>
+          <null name="Substatus"/>
+        </record>
+        <array name="Contact" type="record" depth="1">
+          <record javaclass="com.wm.app.tn.profile.Contact">
+            <value name="PartnerID">53000q00cgf6e8c20000000m</value>
+            <value name="ContactID">53000q00cgf6p6ju0000000p</value>
+            <value name="GivenName">Julie</value>
+            <value name="Surname">Jones</value>
+            <number name="SequenceNumber" type="java.lang.Short">2</number>
+            <number name="Type" type="java.lang.Short">1</number>
+            <value name="Role">Operations Manager</value>
+            <value name="EmailAddress">juliejones@partnerb.com</value>
+            <value name="TelNumber">123-245-6879</value>
+            <null name="TelExtension"/>
+            <null name="FaxNumber"/>
+            <null name="PagerNumber"/>
+            <record name="Address" javaclass="com.wm.app.tn.profile.Address">
+              <value name="AddressID">53000q00cgf6p6k90000000q</value>
+              <null name="PartnerID"/>
+              <value name="ContactID">53000q00cgf6p6ju0000000p</value>
+              <value name="AddressLine1">22 Street main</value>
+              <null name="AddressLine2"/>
+              <null name="AddressLine3"/>
+              <value name="City">Chicago</value>
+              <value name="State_Province">IL</value>
+              <null name="Zip_PostalCode"/>
+              <null name="Country"/>
+              <number name="SequenceNumber" type="java.lang.Short">1</number>
+            </record>
+            <value name="TypeName">Technical</value>
+          </record>
+        </array>
+        <null name="Delivery"/>
+        <array name="ID" type="record" depth="1">
+          <record javaclass="com.wm.app.tn.profile.ID">
+            <value name="ExternalID">33333</value>
+            <number name="IDType" type="java.lang.Integer">1</number>
+            <value name="InternalID">53000q00cgf6e8c20000000m</value>
+            <number name="SequenceNumber" type="java.lang.Short">0</number>
+            <value name="PartnerIDID">53000q00cgf6e8c90000000n</value>
+            <value name="IDTypeName">DUNS</value>
+          </record>
+        </array>
+        <null name="ProfileGroups"/>
+        <null name="ProfileGroupNames"/>
+        <array name="Users" type="value" depth="1">
+          <value>parnetBuser</value>
+        </array>
+      </record>
+    </list>
+  </record>
+</IDataXMLCoder>

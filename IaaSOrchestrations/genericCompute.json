@@ -1,0 +1,38 @@
+{
+	"description": "oplan for ${{ORCHESTRATION_NAME}}",
+	"name": "/Compute-${{IDD}}/${{USER}}/${{ORCHESTRATION_NAME}}",
+	"oplans": [{
+		"label": "${{ORCHESTRATION_NAME}}_oplan",
+		"obj_type": "launchplan",
+		"objects": [{
+			"instances": [{
+				"imagelist": "/oracle/public/ol_6.4_5GB_v1",
+				"label": "${{ORCHESTRATION_NAME}}",
+				"hostname": "${{ORCHESTRATION_NAME}}",
+				"networking": {
+					"eth0": {
+						"seclists": ["/Compute-${{IDD}}/default/default",
+						"/Compute-${{IDD}}/jim.hardtke@flexagon.com/FDW_traffic"],
+						"nat": "ipreservation:${{IP}}"
+					}
+				},
+				"shape": "oc3",
+				"storage_attachments": [{
+					"index": 1,
+					"volume": "/Compute-${{IDD}}/${{USER}}/${{ORCHESTRATION_NAME}}_boot"
+				},
+				{
+					"index": 2,
+					"volume": "/Compute-${{IDD}}/${{USER}}/${{ORCHESTRATION_NAME}}_data1"
+				},
+				{
+					"index": 3,
+					"volume": "/Compute-${{IDD}}/${{USER}}/${{ORCHESTRATION_NAME}}_data2"
+				}],
+				"boot_order": [1],
+				"sshkeys": ["/Compute-${{IDD}}/jim.hardtke@flexagon.com/id_rsa"]
+			}]
+		}],
+		"ha_policy": "active"
+	}]
+}

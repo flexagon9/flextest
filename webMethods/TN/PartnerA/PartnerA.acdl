@@ -1,0 +1,23 @@
+<asset_composite xmlns="http://namespaces.softwareag.com/acdl/1.0" name="PartnerA" displayName="PartnerA" targetNamespace="http://namespaces.softwareag.com/webMethods/TN" runtimeVersion="10.2.0.0">
+  <buildInfo name="BuildTimestamp" value="2018-07-02T10:41:28" />
+  <buildInfo name="MinimumTargetRuntimeVersion" value="10.2.0.0" />
+  <asset name="partner.53000q00cgevg91a0000000g.UGFydG5lciBB_T3JkZXI=" displayName="Partner A (Order)">
+    <implementation.generic type="partner" />
+    <property name="Partner Profile Status" displayName="Partner Profile Status">
+      <value>active</value>
+    </property>
+    <property name="smtp:Host" displayName="smtp:Host">
+      <value />
+    </property>
+    <property name="smtp:Port" displayName="smtp:Port">
+      <value />
+    </property>
+    <property name="smtp:User Name" displayName="smtp:User Name">
+      <value />
+    </property>
+    <property name="smtp:Password" displayName="smtp:Password" isSecure="true">
+      <value>{AES}aYrXC43dTWsDUHRWG5mhTA==</value>
+    </property>
+  </asset>
+</asset_composite>
+

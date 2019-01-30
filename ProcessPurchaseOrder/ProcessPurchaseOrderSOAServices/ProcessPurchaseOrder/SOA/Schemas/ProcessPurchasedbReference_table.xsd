@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/ProcessPurchasedbReference" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/ProcessPurchasedbReference" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="PurchaseorderCollection" type="PurchaseorderCollection"/>
+   <xs:complexType name="PurchaseorderCollection">
+      <xs:sequence>
+         <xs:element name="Purchaseorder" type="Purchaseorder" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Purchaseorder">
+      <xs:sequence>
+         <xs:element name="ordernumber" type="xs:decimal" nillable="true"/>
+         <xs:element name="oldordernumber" type="xs:decimal" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

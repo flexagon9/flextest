@@ -1,0 +1,26 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ProcessPurchaseOrder"
+     targetNamespace="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseOrder"
+     xmlns:tns="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseOrder"
+     xmlns:inp1="http://www.flexagon.com/samples/ProcessPurchaseOrder"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.flexagon.com/samples/ProcessPurchaseOrder" schemaLocation="../Schemas/ProcessPurchaseOrderClient.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="requestMessage">
+        <wsdl:part name="part1" element="inp1:Input"/>
+    </wsdl:message>
+    <wsdl:message name="replyMessage">
+        <wsdl:part name="part1" element="inp1:Output"/>
+    </wsdl:message>
+    <wsdl:portType name="execute_ptt">
+        <wsdl:operation name="execute">
+            <wsdl:input message="tns:requestMessage"/>
+            <wsdl:output message="tns:replyMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

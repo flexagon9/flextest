@@ -1,0 +1,86 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Mon Nov 02 10:35:00 CST 2015
+  Author:  flexagon
+  Type: BPEL 2.0 Process
+  Purpose: Asynchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="ProcessPurchaseBPEL" targetNamespace="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:client="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL"
+         xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:ui="http://xmlns.oracle.com/soa/designer" xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchasedbReference" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/top/ProcessPurchasedbReference" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:flexlog="http://www.oracle.com/XSL/Transform/java/com.flexagon.foundation.xpath.FlexLoggingFunctions" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:xflex="http://www.oracle.com/XSL/Transform/java/com.flexagon.foundation.xpath.FlexFunctions" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:ess="http://xmlns.oracle.com/scheduler" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:xssi="http://www.oracle.com/XSL/Transform/java/com.schoolspecialty.soaclasspathproperties"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessPurchaseOrder/ProcessPurchaseOrder/dbRead"
+         xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/db/top/dbRead">
+  <import ui:processWSDL="true" namespace="http://xmlns.oracle.com/ProcessPurchaseOrder/ProcessPurchaseOrder/ProcessPurchaseBPEL" location="../WSDLs/ProcessPurchaseBPEL.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/"/>
+  <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="processpurchasebpel_client" partnerLinkType="client:ProcessPurchaseBPEL" myRole="ProcessPurchaseBPELProvider" partnerRole="ProcessPurchaseBPELRequester"/>
+    <partnerLink name="dbRead" partnerLinkType="ns3:dbRead_plt" partnerRole="dbRead_role"/>
+  </partnerLinks>
+  <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        VARIABLES                                                        
+        List of messages and XML documents used within this BPEL process 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:ProcessPurchaseBPELRequestMessage"/>
+    <!-- Reference to the message that will be sent back to the requester during callback -->
+    <variable name="outputVariable" messageType="client:ProcessPurchaseBPELResponseMessage"/>
+    <variable name="ReadFromDB_dbReadSelect_InputVariable" messageType="ns3:dbReadSelect_inputParameters"/>
+    <variable name="ReadFromDB_dbReadSelect_OutputVariable" messageType="ns3:PurchaseorderCollection_msg"/>
+  </variables>
+  <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       ORCHESTRATION LOGIC                                               
+       Set of activities coordinating the flow of messages across the    
+       services integrated within this business process                  
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+  <sequence name="main">
+    <!-- Receive input from requestor. (Note: This maps to operation defined in ProcessPurchaseBPEL.wsdl) -->
+    <receive name="receiveInput" partnerLink="processpurchasebpel_client" portType="client:ProcessPurchaseBPEL" operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="AssignOrderNumber">
+      <copy>
+        <from>$inputVariable.payload/client:input</from>
+        <to>$ReadFromDB_dbReadSelect_InputVariable.dbReadSelect_inputParameters/ns4:newOrderNumber</to>
+      </copy>
+    </assign>
+    <invoke name="ReadFromDB" partnerLink="dbRead" portType="ns3:dbRead_ptt" operation="dbReadSelect" inputVariable="ReadFromDB_dbReadSelect_InputVariable"
+            outputVariable="ReadFromDB_dbReadSelect_OutputVariable" bpelx:invokeAsDetail="no"/>
+    <assign name="AssignOutput">
+      <copy>
+        <from>$ReadFromDB_dbReadSelect_OutputVariable.PurchaseorderCollection/ns4:Purchaseorder/ns4:oldordernumber</from>
+        <to>$outputVariable.payload/client:result</to>
+      </copy>
+    </assign>
+    <!-- 
+          Asynchronous callback to the requester. (Note: the callback location and correlation id is transparently handled using WS-addressing.)
+        -->
+    <invoke name="callbackClient" partnerLink="processpurchasebpel_client" portType="client:ProcessPurchaseBPELCallback" operation="processResponse" inputVariable="outputVariable"/>
+  </sequence>
+</process>

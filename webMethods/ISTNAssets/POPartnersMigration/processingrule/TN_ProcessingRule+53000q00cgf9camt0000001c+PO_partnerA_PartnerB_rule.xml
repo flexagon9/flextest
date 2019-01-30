@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<IDataXMLCoder version="1.0">
+  <record javaclass="com.wm.data.ISMemDataImpl">
+    <record name="version" javaclass="com.wm.data.ISMemDataImpl">
+      <value name="major">9</value>
+      <value name="minor">0</value>
+    </record>
+    <idatacodable name="rules" javaclass="com.wm.app.tn.route.RoutingRuleList">
+      <list name="contents">
+        <record javaclass="com.wm.app.tn.route.RoutingRule">
+          <value name="RuleName">PO_partnerA-PartnerB_rule</value>
+          <null name="RuleDescription"/>
+          <value name="Disabled?">false</value>
+          <array name="SenderID" type="value" depth="1">
+            <value>53000q00cgevg91a0000000g</value>
+          </array>
+          <array name="ReceiverID" type="value" depth="1">
+            <value>53000q00cgf6e8c20000000m</value>
+          </array>
+          <array name="DocTypeID" type="value" depth="1">
+            <value>53000q00cgf90gf20000000t</value>
+          </array>
+          <null name="UserStatus"/>
+          <value name="HasErrors">don't care</value>
+          <record name="PreRoutingFlags" javaclass="com.wm.app.tn.route.PreRoutingFlags">
+            <value name="verify?">no</value>
+            <value name="validate?">no</value>
+            <value name="persist?">yes</value>
+            <value name="unique?">don't care</value>
+            <value name="persistOption?">content and activity log</value>
+            <null name="dupCheckSvc"/>
+          </record>
+          <null name="AlertID"/>
+          <null name="AlertType"/>
+          <null name="AlertSubject"/>
+          <null name="AlertMessage"/>
+          <array name="ResponseMessage" type="value" depth="1">
+            <null/>
+            <null/>
+          </array>
+          <value name="IntendedUserStatus">Need verify</value>
+          <null name="ServiceName"/>
+          <null name="ServiceInput"/>
+          <value name="ServiceAsync?">sync</value>
+          <null name="SendTo"/>
+          <value name="LastModified">2018-06-20 15:45:53.716</value>
+          <null name="AttributeConditions"/>
+          <null name="DeliveryQueue"/>
+          <value name="RuleID">53000q00cgf9camt0000001c</value>
+          <value name="LastChangeID">53000q00cgff4jlk00000086</value>
+          <value name="LastChangeUser">Administrator</value>
+          <value name="LastChangeSession">4b7470438c11406b896e627f8aa41e99</value>
+          <number name="RuleIndex" type="java.lang.Integer">1</number>
+          <null name="SenderGroup"/>
+          <null name="ReceiverGroup"/>
+          <array name="SenderDisplayName" type="value" depth="1">
+            <value>Partner A (Order)</value>
+          </array>
+          <array name="ReceiverDisplayName" type="value" depth="1">
+            <value>Partner B (Shipping)</value>
+          </array>
+          <array name="DocTypeName" type="value" depth="1">
+            <value>POrequest</value>
+          </array>
+          <null name="SenderGroupName"/>
+          <null name="ReceiverGroupName"/>
+          <value name="ToMwSString">    Internal ID:                                                                                                                                      53000q00cgf9camt0000001c
+    Name:                                                                                                                                             PO_partnerA-PartnerB_rule
+    Disabled?:                                                                                                                                        false
+
+    Criteria:                                                                                                                                        
+                Sender:                                                                                                                               Partner A (Order)
+
+                Receiver:                                                                                                                             Partner B
+
+                DocType:                                                                                                                              POrequest
+
+                Has Errors:                                                                                                                           May have errors
+
+    PreProcessing Flags:                 
+                verify?                                                                                                                               No
+                validate?                                                                                                                             No
+                persist?                                                                                                                              No
+                persistOption?                                                                                                                        Persist none
+                unique?                                                                                                                               Defer to document type
+
+    Action - message:                  
+                Response Message:                                                                                                                     , 
+    Action: change status:                  
+                Intended User Status:                                                                                                                 Need verify
+
+    Last Modified Time:                                                                                                                               2018-06-20 15:45:32.189
+    Last Change User:                                                                                                                                 Administrator
+    Last Change Session:                                                                                                                              4b7470438c11406b896e627f8aa41e99
+</value>
+        </record>
+      </list>
+    </idatacodable>
+  </record>
+</IDataXMLCoder>

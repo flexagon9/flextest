@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<MftConfigPlan xmlns="http://xmlns.oracle.com/mft/configPlan/v1">
+	<global>
+	<!--Add global search and replace rules. Example :
+	<searchReplace>
+		<search>http://my-test-server</search>
+		<replace>http://my-server</replace>
+	</searchReplace>-->
+	</global>
+	<!--Add source level search and replace rules. Example :
+	<sourcePattern namePattern="*">
+		<searchReplace>
+			<search>http://my-test-server</search>
+			<replace>http://my-server</replace>
+		</searchReplace>
+	</sourcePattern>-->
+	<!--Add target level search and replace rules. Example :
+	<targetPattern namePattern="*">
+		<searchReplace>
+			<search>http://my-test-server</search>
+			<replace>http://my-server</replace>
+		</searchReplace>
+	</targetPattern>-->
+	<!--add search and replace rules for the artifact properties-->
+	<sources>
+		<source name="FileInput">
+			<binding technologyBinding="File">
+				<attribute name="Content Folder">
+					<replace>C:\00Input</replace>
+				</attribute>
+			</binding>
+		</source>
+	</sources>
+	<targets>
+		<target name="FileTarget">
+			<binding technologyBinding="File">
+				<attribute name="Content Folder">
+					<replace>C:\01Output</replace>
+				</attribute>
+			</binding>
+		</target>
+	</targets>
+	<transfers>
+	</transfers>
+	<include>
+		<transferName>FileTransfer</transferName>
+	</include>
+</MftConfigPlan>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sensors xmlns="http://xmlns.oracle.com/bpel/sensor">
+    <sensor sensorName="OrderNumber" kind="service" target="undefined" filter="" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/ReceiveOrdersReadyForShipment">
+        <serviceConfig service="ReceiveOrdersReadyForShipment" expression="$in.E2E1201_OrdersCollection/top:E2E1201_OrdersCollection/top:E2E1201_Orders/top:orderNumber" operation="receive" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+</sensors>

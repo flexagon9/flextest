@@ -1,0 +1,12 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/file/e2e-1201-servicebus/ProcessOrderSB/ProcessPS_File" name="ProcessPS_File-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="ProcessPS_File.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/file/e2e-1201-servicebus/ProcessOrderSB/ProcessPS_File"/>
+    <wsdl:binding name="Read_ptt-binding" type="proc:Read_ptt" xmlns:proc="http://xmlns.oracle.com/pcbpel/adapter/file/e2e-1201-servicebus/ProcessOrderSB/ProcessPS_File">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="Read">
+            <soap:operation soapAction="Read"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

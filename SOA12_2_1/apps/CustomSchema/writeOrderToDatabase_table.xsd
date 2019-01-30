@@ -1,0 +1,125 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/writeOrderToDatabase" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/writeOrderToDatabase" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="E2E1201_OrdersCollection" type="E2E1201_OrdersCollection"/>
+   <xs:complexType name="E2E1201_OrdersCollection">
+      <xs:sequence>
+         <xs:element name="E2E1201_Orders" type="E2E1201_Orders" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="E2E1201_Orders">
+      <xs:sequence>
+         <xs:element name="orderNumber" type="xs:integer"/>
+         <xs:element name="sessionid" type="string20" minOccurs="0" nillable="true"/>
+         <xs:element name="orderDate" type="xs:dateTime" minOccurs="0"/>
+         <xs:element name="totalAmount" type="xs:double" minOccurs="0" nillable="true"/>
+         <xs:element name="email" type="string50" minOccurs="0"/>
+         <xs:element name="status" type="string20" minOccurs="0"/>
+         <xs:element name="e2E1201_BillinginfoCollection" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="E2E1201_Billinginfo" type="E2E1201_Billinginfo" minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="e2E1201_OrderItemsCollection" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="E2E1201_OrderItems" type="E2E1201_OrderItems" minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="e2E1201_ShippinginfoCollection" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="E2E1201_Shippinginfo" type="E2E1201_Shippinginfo" minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="E2E1201_Billinginfo">
+      <xs:sequence>
+         <xs:element name="billingId" type="xs:integer"/>
+         <xs:element name="cardpaymenttype" type="xs:integer" minOccurs="0"/>
+         <xs:element name="cardnum" type="string16" minOccurs="0"/>
+         <xs:element name="expiredate" type="string4" minOccurs="0"/>
+         <xs:element name="cardname" type="string50" minOccurs="0"/>
+         <xs:element name="authorizationdate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="addressId" type="E2E1201_Addresses" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="E2E1201_Addresses">
+      <xs:sequence>
+         <xs:element name="addressId" type="xs:integer"/>
+         <xs:element name="firstName" type="string50" minOccurs="0" nillable="true"/>
+         <xs:element name="lastName" type="string50" minOccurs="0"/>
+         <xs:element name="addressLine1" type="string180" minOccurs="0"/>
+         <xs:element name="addressLine2" type="string180" minOccurs="0" nillable="true"/>
+         <xs:element name="city" type="string25" minOccurs="0"/>
+         <xs:element name="state" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="zipCode" type="string15" minOccurs="0"/>
+         <xs:element name="phone" type="string11" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="E2E1201_OrderItems">
+      <xs:sequence>
+         <xs:element name="itemId" type="xs:integer"/>
+         <xs:element name="sku" type="string20" minOccurs="0"/>
+         <xs:element name="quantity" type="xs:integer" minOccurs="0"/>
+         <xs:element name="unitprice" type="xs:double" minOccurs="0"/>
+         <xs:element name="brand" type="string20" minOccurs="0"/>
+         <xs:element name="model" type="string20" minOccurs="0"/>
+         <xs:element name="categoryId" type="xs:integer" minOccurs="0"/>
+         <xs:element name="description" type="string50" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="E2E1201_Shippinginfo">
+      <xs:sequence>
+         <xs:element name="shippingId" type="xs:integer"/>
+         <xs:element name="shippingProviderId" type="xs:integer" minOccurs="0" nillable="true"/>
+         <xs:element name="shipmethod" type="xs:integer" minOccurs="0" nillable="true"/>
+         <xs:element name="shipspeed" type="string16" minOccurs="0" nillable="true"/>
+         <xs:element name="addressId" type="E2E1201_Addresses" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="string20">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="20"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string50">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="50"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string16">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="16"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string4">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="4"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string180">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="180"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string25">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="25"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string15">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="15"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string11">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="11"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

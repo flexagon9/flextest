@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ns0:provisionOrderResponse xmlns:ns0="http://soap.training.mulesoft.com/">
+85
+<return>
+<location>international</location>
+<price>2</price>
+<orderID>123E</orderID>
+</return>
+<return>
+<location>domestic</location>
+<price>2</price>
+<orderID>123E</orderID>
+</return>
+</ns0:provisionOrderResponse>

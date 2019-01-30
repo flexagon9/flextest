@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+
+<!-- $Header: POSAPSPE.wfx 120.0.12010000.3 2010/02/05 13:34:57 ntungare noship $ -->
+<!-- dbdrv: exec java oracle/apps/fnd/wf WFXLoad.class java &phase=daa+38 \ -->
+<!-- dbdrv: checkfile:~PROD:~PATH:~FILE \ -->
+<!-- dbdrv: -u &un_apps &pw_apps &jdbc_db_addr &jdbc_protocol US \ -->
+<!-- dbdrv: &fullpath_~PROD_~PATH_~FILE -->
+<!-- Source Database seed121 -->
+
+<oracle.apps.wf.event.all.sync><ExternalElement>
+<OraTranslatibility>
+<XlatElement Name="WF_EVENTS">
+<XlatID>
+<Key>NAME</Key>
+</XlatID>
+<XlatElement Name="DISPLAY_NAME" MaxLen="80"
+Expansion="50"/>
+<XlatID>
+<Key Type="CONSTANT">DISPLAY_NAME</Key>
+</XlatID>
+<XlatElement Name="DESCRIPTION" MaxLen="2000"
+Expansion="50"/>
+<XlatID>
+<Key Type="CONSTANT">DESCRIPTION</Key>
+</XlatID>
+</XlatElement>
+</OraTranslatibility>
+</ExternalElement>
+<WF_TABLE_DATA>
+  <WF_EVENTS>
+    <VERSION>1.0</VERSION>
+    <GUID>#NEW</GUID>
+    <NAME>oracle.apps.pos.supplier.approvesupplier</NAME>
+    <TYPE>EVENT</TYPE>
+    <STATUS>ENABLED</STATUS>
+    <GENERATE_FUNCTION/>
+    <OWNER_NAME>iSupplier Portal</OWNER_NAME>
+    <OWNER_TAG>POS</OWNER_TAG>
+    <CUSTOMIZATION_LEVEL>U</CUSTOMIZATION_LEVEL>
+    <LICENSED_FLAG>Y</LICENSED_FLAG>
+    <JAVA_GENERATE_FUNC/>
+    <DISPLAY_NAME>Supplier Hub - Approve Supplier Event</DISPLAY_NAME>
+    <DESCRIPTION>Supplier Hub - Approve Supplier Event</DESCRIPTION>
+  </WF_EVENTS>
+</WF_TABLE_DATA>
+</oracle.apps.wf.event.all.sync>

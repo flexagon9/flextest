@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cus:Customizations xmlns:cus="http://www.bea.com/wli/config/customizations" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xt="http://www.bea.com/wli/config/xmltypes">
+  <cus:customization xsi:type="cus:EnvValueActionsCustomizationType">
+    <cus:description/>
+    <cus:owners>
+      <xt:owner>
+        <xt:type>BusinessService</xt:type>
+        <xt:path>ValidatePayment/ValidateBS</xt:path>
+      </xt:owner>
+    </cus:owners>
+    <cus:actions>
+      <xt:replace>
+        <xt:envValueType>Service Operational Settings</xt:envValueType>
+        <xt:value>
+          <oper:operations enabled="true" xmlns:con="http://xmlns.oracle.com/servicebus/business/config" xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:oper="http://xmlns.oracle.com/servicebus/business/operations" xmlns:env="http://www.bea.com/wli/config/env" xmlns:tran="http://www.bea.com/wli/sb/transports">
+            <oper:throttling enabled="false"/>
+            <oper:resultCachingEnabled>true</oper:resultCachingEnabled>
+          </oper:operations>
+        </xt:value>
+      </xt:replace>
+      <xt:replace>
+        <xt:envValueType>Service URI Weight</xt:envValueType>
+        <xt:location>0</xt:location>
+        <xt:value xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">0</xt:value>
+      </xt:replace>
+      <xt:replace>
+        <xt:envValueType>Service URI</xt:envValueType>
+        <xt:location>0</xt:location>
+        <xt:value xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">${{SOASERVER_URL_PREFIX}}/soa-infra/services/default/ValidatePayment/ValidatePayment</xt:value>
+      </xt:replace>
+      <xt:replace>
+        <xt:envValueType>Service URI Table</xt:envValueType>
+        <xt:value xsi:type="tran:URITableType" xmlns:tran="http://www.bea.com/wli/sb/transports">
+          <tran:tableElement>
+            <tran:URI>${{SOASERVER_URL_PREFIX}}/soa-infra/services/default/ValidatePayment/ValidatePayment</tran:URI>
+            <tran:weight>0</tran:weight>
+          </tran:tableElement>
+        </xt:value>
+      </xt:replace>
+      <xt:replace>
+        <xt:envValueType>Service Retry Count</xt:envValueType>
+        <xt:value xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">0</xt:value>
+      </xt:replace>
+      <xt:replace>
+        <xt:envValueType>Service Retry Iteration Interval</xt:envValueType>
+        <xt:value xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">30</xt:value>
+      </xt:replace>
+      <xt:replace>
+        <xt:envValueType>Work Manager</xt:envValueType>
+        <xt:value xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">SBDefaultResponseWorkManager</xt:value>
+      </xt:replace>
+      <xt:replace>
+        <xt:envValueType>Read Timeout for HTTP Outbound Transport Provider</xt:envValueType>
+        <xt:value xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">0</xt:value>
+      </xt:replace>
+      <xt:replace>
+        <xt:envValueType>Connection Timeout for HTTP Outbound Transport Provider</xt:envValueType>
+        <xt:value xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">0</xt:value>
+      </xt:replace>
+    </cus:actions>
+  </cus:customization>
+  <cus:customization xsi:type="cus:EnvValueActionsCustomizationType">
+    <cus:description/>
+    <cus:owners>
+      <xt:owner>
+        <xt:type>ProxyService</xt:type>
+        <xt:path>ValidatePayment/ValidatePS</xt:path>
+      </xt:owner>
+    </cus:owners>
+    <cus:actions>
+      <xt:replace>
+        <xt:envValueType>Service URI</xt:envValueType>
+        <xt:value xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">/ValidatePayment/ValidatePS</xt:value>
+      </xt:replace>
+      <xt:replace>
+        <xt:envValueType>Service Operational Settings</xt:envValueType>
+        <xt:value>
+          <oper:operations enabled="true" xmlns:con="http://www.bea.com/wli/sb/services/security/config" xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:oper="http://xmlns.oracle.com/servicebus/proxy/operations" xmlns:env="http://www.bea.com/wli/config/env" xmlns:tran="http://www.bea.com/wli/sb/transports"/>
+        </xt:value>
+      </xt:replace>
+      <xt:replace>
+        <xt:envValueType>UDDI Auto Publish</xt:envValueType>
+        <xt:value xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">false</xt:value>
+      </xt:replace>
+    </cus:actions>
+  </cus:customization>
+  <cus:customization xsi:type="cus:FindAndReplaceCustomizationType">
+    <cus:description/>
+    <cus:query>
+      <xt:resourceTypes>ProxyService</xt:resourceTypes>
+      <xt:resourceTypes>BusinessService</xt:resourceTypes>
+      <xt:envValueTypes>Read Timeout for HTTP Outbound Transport Provider</xt:envValueTypes>
+      <xt:envValueTypes>Connection Timeout for HTTP Outbound Transport Provider</xt:envValueTypes>
+      <xt:envValueTypes>Service Retry Iteration Interval</xt:envValueTypes>
+      <xt:envValueTypes>Work Manager</xt:envValueTypes>
+      <xt:envValueTypes>UDDI Auto Publish</xt:envValueTypes>
+      <xt:envValueTypes>Service URI Weight</xt:envValueTypes>
+      <xt:envValueTypes>Service Retry Count</xt:envValueTypes>
+      <xt:envValueTypes>Service URI</xt:envValueTypes>
+      <xt:refsToSearch xsi:type="xt:ResourceRefType">
+        <xt:type>BusinessService</xt:type>
+        <xt:path>ValidatePayment/ValidateBS</xt:path>
+      </xt:refsToSearch>
+      <xt:refsToSearch xsi:type="xt:ResourceRefType">
+        <xt:type>ProxyService</xt:type>
+        <xt:path>ValidatePayment/ValidatePS</xt:path>
+      </xt:refsToSearch>
+      <xt:includeOnlyModifiedResources>false</xt:includeOnlyModifiedResources>
+      <xt:searchString>Search String</xt:searchString>
+      <xt:isCompleteMatch>false</xt:isCompleteMatch>
+    </cus:query>
+    <cus:replacement>Replacement String</cus:replacement>
+  </cus:customization>
+  <cus:customization xsi:type="cus:ReferenceCustomizationType">
+    <cus:description/>
+    <cus:refsToBeConsidered xsi:type="xt:ResourceRefType">
+      <xt:type>Pipeline</xt:type>
+      <xt:path>ValidatePayment/ValidatePP</xt:path>
+    </cus:refsToBeConsidered>
+    <cus:refsToBeConsidered xsi:type="xt:ResourceRefType">
+      <xt:type>ProxyService</xt:type>
+      <xt:path>ValidatePayment/ValidatePS</xt:path>
+    </cus:refsToBeConsidered>
+    <cus:refsToBeConsidered xsi:type="xt:ResourceRefType">
+      <xt:type>WSDL</xt:type>
+      <xt:path>ValidatePayment/WSDLs/ValidatePayment-concrete</xt:path>
+    </cus:refsToBeConsidered>
+    <cus:refsToBeConsidered xsi:type="xt:ResourceRefType">
+      <xt:type>BusinessService</xt:type>
+      <xt:path>ValidatePayment/ValidateBS</xt:path>
+    </cus:refsToBeConsidered>
+    <cus:externalReferenceMap>
+      <xt:oldRef>
+        <xt:type>Pipeline</xt:type>
+        <xt:path>ValidatePayment/ValidatePP</xt:path>
+      </xt:oldRef>
+      <xt:newRef>
+        <xt:type>Pipeline</xt:type>
+        <xt:path>ValidatePayment/ValidatePP</xt:path>
+      </xt:newRef>
+    </cus:externalReferenceMap>
+    <cus:externalReferenceMap>
+      <xt:oldRef>
+        <xt:type>BusinessService</xt:type>
+        <xt:path>ValidatePayment/ValidateBS</xt:path>
+      </xt:oldRef>
+      <xt:newRef>
+        <xt:type>BusinessService</xt:type>
+        <xt:path>ValidatePayment/ValidateBS</xt:path>
+      </xt:newRef>
+    </cus:externalReferenceMap>
+    <cus:externalReferenceMap>
+      <xt:oldRef>
+        <xt:type>WSDL</xt:type>
+        <xt:path>ValidatePayment/WSDLs/ValidatePayment-concrete</xt:path>
+      </xt:oldRef>
+      <xt:newRef>
+        <xt:type>WSDL</xt:type>
+        <xt:path>ValidatePayment/WSDLs/ValidatePayment-concrete</xt:path>
+      </xt:newRef>
+    </cus:externalReferenceMap>
+    <cus:externalReferenceMap>
+      <xt:oldRef>
+        <xt:type>XMLSchema</xt:type>
+        <xt:path>ValidatePayment/Schemas/CanonicalOrder</xt:path>
+      </xt:oldRef>
+      <xt:newRef>
+        <xt:type>XMLSchema</xt:type>
+        <xt:path>ValidatePayment/Schemas/CanonicalOrder</xt:path>
+      </xt:newRef>
+    </cus:externalReferenceMap>
+  </cus:customization>
+</cus:Customizations>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>HR</groupId>
+	<artifactId>HRJavaApp</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<description>POM for Hr App ADF</description>
+	<packaging>ear</packaging>
+    <parent>
+        <groupId>HR</groupId>
+        <artifactId>HR</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>pom.xml</relativePath>
+    </parent>
+	<properties>
+		<sonar.projectKey>HRJavaApp</sonar.projectKey>
+		<sonar.projectName>HRJavaApp</sonar.projectName>
+	</properties>
+</project>

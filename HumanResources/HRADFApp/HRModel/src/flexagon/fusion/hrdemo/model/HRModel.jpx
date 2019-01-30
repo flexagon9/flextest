@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+<JboProject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="HRModel"
+  Version="12.1.2.66.68"
+  SeparateXMLFiles="true"
+  PackageName="flexagon.fusion.hrdemo.model">
+  <DesignTime>
+    <Attr Name="_jprName" Value="../../../../../HRModel.jpr"/>
+    <Attr Name="_jbo.TypeMapEntries" Value="OracleApps"/>
+    <Attr Name="_NamedConnection" Value="hrdb"/>
+    <Attr Name="_appModuleNames0" Value="flexagon.fusion.hrdemo.model.appmodules.HRUIAM"/>
+  </DesignTime>
+  <Containee
+    Name="appmodules"
+    PackageName="flexagon.fusion.hrdemo.model.appmodules"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="entities"
+    PackageName="flexagon.fusion.hrdemo.model.entities"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="links"
+    PackageName="flexagon.fusion.hrdemo.model.entities.links"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AS" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="links"
+    PackageName="flexagon.fusion.hrdemo.model.views.links"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VL" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="views"
+    PackageName="flexagon.fusion.hrdemo.model.views"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+</JboProject>

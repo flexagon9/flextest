@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<catalogDefinition xmlns="http://xmlns.oracle.com/adf/rcs/catalog"
+                   id="defaultCatalog" name="Default Resource Catalog"
+                   description="Default resource catalog definition containing sample entries"
+                   visible="${true}">
+  <contents>
+    <!-- **********************************************************************
+    * Custom folder exposing ADF Faces components                             *
+    * Comment out this element if you want to remove it from the catalog.     *
+    *********************************************************************** -->
+    <customFolder id="facesComponents" name="ADF Faces Components"
+                  description="ADF Faces components you can add to application pages"
+                  factoryClass="oracle.adfinternal.view.page.editor.componentcatalog.adapter.ComponentObjectFactory"
+                  visible="${true}"/>
+    <!-- **********************************************************************
+    * Dynamically include the portlets custom folder into the catalog at      *
+    * runtime. The custom folder will only be included if the portlet runtime *
+    * jar files are included in the application classpath.                    *
+    *********************************************************************** -->
+    <customContent id="portletContent"
+                   contentProviderClass="oracle.adf.rc.webcenter.WebCenterContentProvider"
+                   visible="${true}"/>
+    <!-- **********************************************************************
+    * Uncomment the following <customFolder> element if you have configured   *
+    * the Documents service in your application and want to include           *
+    * documents in the catalog.                                               *  
+    *********************************************************************** -->
+    <!--
+    <customFolder id="doclibDocuments"
+                  name="Documents"
+                  description="Documents from the Documents service"
+                  factoryClass="oracle.webcenter.content.model.rc.CustomFolderContextFactory"
+                  visible="${true}"/>
+-->
+    <!-- **********************************************************************
+    * Uncomment the following <url> element if you have configured the        *
+    * Documents service in your application and want to include the           *
+    * Documents main view in the catalog.                                     *
+    *                                                                         *    
+    *********************************************************************** -->
+    <!--
+    <url visible="${true}"
+         factoryClass="oracle.webcenter.portalframework.sitestructure.rc.TaskFlowResourceFactory"
+         id="doclibMainView"
+         name="Documents Task Flow"
+         description="Main view of the Documents service"
+         url="taskflow://oracle/webcenter/doclib/view/jsf/taskflows/mainView.xml#doclib-document-library"/>
+
+    <url visible="${true}"
+         factoryClass="oracle.webcenter.portalframework.sitestructure.rc.TaskFlowResourceFactory"
+         id="doclibContentPresenter"
+         name="Content Presenter Task Flow"
+         description="Content Presenter"
+         url="taskflow://oracle/webcenter/doclib/view/jsf/taskflows/presenter/contentPresenter.xml#doclib-content-presenter">
+
+    <url visible="${true}"
+         factoryClass="oracle.webcenter.portalframework.sitestructure.rc.TaskFlowResourceFactory"
+         id="doclibMiniProperties"
+         name="Documents Mini Properties Task Flow"
+         description="Documents Mini Properties"
+         url="taskflow://oracle/webcenter/doclib/view/jsf/taskflows/miniProperties/miniProps.xml#doclib-mini-properties">
+-->
+  </contents>
+  <schema resourceBundle="oracle.adf.rc.attribute.nls.AttributeBundle"
+          xmlns="http://xmlns.oracle.com/adf/rcs/catalog">
+    <descriptor multivalue="false" endUserVisible="true"
+                labelKey="TITLE.PROMPT_KEY" searchable="true"
+                shortLabelKey="TITLE.SHORT_PROMPT_KEY" attributeId="Title"
+                xmlns="http://xmlns.oracle.com/adf/rcs/catalog"/>
+    <descriptor multivalue="false" endUserVisible="true"
+                labelKey="DESCRIPTION.PROMPT_KEY" searchable="true"
+                shortLabelKey="DESCRIPTION.SHORT_PROMPT_KEY"
+                attributeId="Description"
+                xmlns="http://xmlns.oracle.com/adf/rcs/catalog"/>
+    <descriptor multivalue="false" endUserVisible="true"
+                labelKey="SUBJECT.PROMPT_KEY" searchable="true"
+                shortLabelKey="SUBJECT.SHORT_PROMPT_KEY" attributeId="Subject"
+                xmlns="http://xmlns.oracle.com/adf/rcs/catalog"/>
+    <descriptor multivalue="false" endUserVisible="true"
+                labelKey="TOOL_TIP.PROMPT_KEY" searchable="false"
+                shortLabelKey="TOOL_TIP.SHORT_PROMPT_KEY" attributeId="ToolTip"
+                xmlns="http://xmlns.oracle.com/adf/rcs/catalog"/>
+    <descriptor multivalue="false" endUserVisible="false"
+                labelKey="ICON_URI.PROMPT_KEY" searchable="false"
+                shortLabelKey="ICON_URI.SHORT_PROMPT_KEY" attributeId="IconURI"
+                xmlns="http://xmlns.oracle.com/adf/rcs/catalog"/>
+  </schema>
+</catalogDefinition>

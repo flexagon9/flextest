@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAConfigPlan xmlns:jca="http://platform.integration.oracle/blocks/adapter/fw/metadata" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy" xmlns:edl="http://schemas.oracle.com/events/edl" xmlns="http://schemas.oracle.com/soa/configplan">
+   <composite name="ProcessOrder">
+      <!--Add search and replace rules for the import section of a composite
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>8888</search>
+		<replace>8889</replace>
+	<searchReplace>-->
+      <import>
+         <searchReplace>
+            <search/>
+            <replace/>
+         </searchReplace>
+      </import>
+      <service name="receiveorder_client_ep">
+         <binding type="ws">
+            <attribute name="port">
+               <replace>http://www.oracle.com/ProcessOrder#wsdl.endpoint(receiveorder_client_ep/processOrderPort)</replace>
+            </attribute>
+         </binding>
+      </service>
+      <service name="receiveorder_client"/>
+      <service name="validateandprocessorder_client"/>
+      <property name="compositeID">
+         <replace>9d76495b-e724-4d6b-9cfd-353d38ab0766</replace>
+      </property>
+      <property name="productVersion">
+         <replace>12.1.3.0.0</replace>
+      </property>
+      <!--Add search and replace rules for the component properties
+	For components and service/reference bindings, you can add policy references.
+	Example:
+	<component name="*">
+		<wsp:PolicyReference orawsp:category="management" orawsp:status="enabled" URI="oracle/log_policy"/>
+	</component>-->
+      <component name="receiveOrder">
+         <property name="bpel.config.transaction">
+            <replace>required</replace>
+         </property>
+      </component>
+      <component name="validateAndProcessOrder">
+         <property name="bpel.config.transaction">
+            <replace>required</replace>
+         </property>
+         <property name="bpel.config.oneWayDeliveryPolicy">
+            <replace>async.persist</replace>
+         </property>
+      </component>
+      <reference name="validateAndProcessOrder.validateandprocessorder_client"/>
+      <reference name="validatePayment"/>
+      <reference name="writeToFile"/>
+      <reference name="UpdateOrderWsdl"/>
+      <reference name="validatePayment">
+         <!--Add search and replace rules for the binding properties-->
+         <binding type="ws">
+            <attribute name="port">
+               <replace>http://www.oracle.com/ValidatePayment#wsdl.endpoint(validatePaymentBindingQSService/validatePaymentBindingQSPort)</replace>
+            </attribute>
+            <attribute name="location">
+               <replace>WSDLs/validatePaymentWrapper.wsdl</replace>
+            </attribute>
+            <property name="weblogic.wsee.wsat.transaction.flowOption">
+               <replace>WSDLDriven</replace>
+            </property>
+         </binding>
+      </reference>
+      <reference name="writeToFile">
+         <binding type="jca"/>
+      </reference>
+      <reference name="UpdateOrderWsdl">
+         <!--Add search and replace rules for the binding properties-->
+         <binding type="ws">
+            <attribute name="port">
+               <replace>http://model/#wsdl.endpoint(OrderService/updateOrder)</replace>
+            </attribute>
+            <attribute name="location">
+               <replace>${{SOASERVER_URL_PREFIX}}/OrderProcessing/updateOrder?wsdl</replace>
+            </attribute>
+            <property name="weblogic.wsee.wsat.transaction.flowOption">
+               <replace>WSDLDriven</replace>
+            </property>
+         </binding>
+      </reference>
+   </composite>
+   <!--To configure monitor.config: 
+	<property name="enabled"><replace>true</replace></property>
+	<property name="dataObjectsFolder"><searchReplace><search>mydev</search><replace>myproduction</replace></searchReplace></property>
+	
+	sample properties to configure for file/ftp adapter: 
+	<jca:property name="PhysicalDirectory"><replace>c:\temp</replace></jca:property>
+	<jca:property name="DeleteFile"><replace>true</replace></jca:property>
+	<jca:property name="PollingFrequency"><replace>3</replace></jca:property>
+	
+	To add search and replace rules for wsdls, xsd and jca files
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>http://localhost:7001/ValidatePayment</search>
+		<replace>${{SOASERVER_URL_PREFIX}}/ValidatePayment</replace>
+	<searchReplace>
+	-->
+   <wsdlAndSchema name="Adapters/updateOrderStatus_db.jca|Adapters/writeOrderToDatabase_db.jca|Adapters/writeToFile_file.jca|CanonicalOrder.xsd|Schemas/CanonicalOrder.xsd|Schemas/NotifyUser.xsd|Schemas/updateOrderJava.xsd|Schemas/updateOrderStatus_table.xsd|Schemas/writeOrderToDatabase_table.xsd|WSDLs/OrderServiceWrapper.wsdl|WSDLs/ProcessOrder.wsdl|WSDLs/ProcessOrderWrapper.wsdl|WSDLs/updateOrderJavaWS.wsdl|WSDLs/updateOrderStatus.wsdl|WSDLs/validateAndProcessOrder.wsdl|WSDLs/validatePaymentWrapper.wsdl|WSDLs/ValidatePS.wsdl|WSDLs/writeOrderToDatabase.wsdl|WSDLs/writeToFile.wsdl">
+	<searchReplace>
+		<search>http://localhost:7001/ValidatePayment</search>
+		<replace>${{OSBSERVER_URL_PREFIX}}/ValidatePayment</replace>
+	</searchReplace>
+   </wsdlAndSchema>
+</SOAConfigPlan>

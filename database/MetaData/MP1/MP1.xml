@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseSchema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../DatabaseMetadata.xsd">
+  <schemaName>${{MP1_SCHEMA}}</schemaName>
+  <table>
+    <tableName>TABLE3</tableName>
+    <calculatedColumns>
+      <calculatedColumn>
+        <columnName>TIMESTAMP</columnName>
+        <defaultValue>SYSDATE</defaultValue>
+        <quoted>false</quoted>
+      </calculatedColumn>
+    </calculatedColumns>
+  </table>
+  <table>
+    <tableName>TABLE1</tableName>
+    <calculatedColumns>
+      <calculatedColumn>
+        <columnName></columnName>
+        <defaultValue></defaultValue>
+        <quoted>true</quoted>
+      </calculatedColumn>
+    </calculatedColumns>
+  </table>
+  <table>
+    <tableName>TABLE2</tableName>
+    <matchRowsOn>MATCHON</matchRowsOn>
+    <criteria></criteria>
+    <calculatedColumns>
+      <calculatedColumn>
+        <columnName>SEQUENCE</columnName>
+        <defaultValue>mp1.SEQUENCE1.NEXTVAL</defaultValue>
+        <quoted>false</quoted>
+      </calculatedColumn>
+      <calculatedColumn>
+        <columnName>calced</columnName>
+        <defaultValue>bob was here</defaultValue>
+        <quoted>true</quoted>
+      </calculatedColumn>
+    </calculatedColumns>
+  </table>
+  <table>
+    <tableName>TABLEPARENT4</tableName>
+  </table>
+  <table>
+    <tableName>TABLECHILD4</tableName>
+  </table>
+</databaseSchema>

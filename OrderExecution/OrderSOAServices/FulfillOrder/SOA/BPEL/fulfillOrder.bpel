@@ -1,0 +1,197 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Tue Apr 16 08:29:40 PDT 2013
+  Author:  sgeib
+  Type: BPEL 2.0 Process
+  Purpose: One Way BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="fulfillOrder"
+               targetNamespace="http://xmlns.oracle.com/e2e_1201_composites_templates/FulfillOrder/fulfillOrder"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/e2e_1201_composites_templates/FulfillOrder/fulfillOrder"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:ui="http://xmlns.oracle.com/soa/designer"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"         
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/top/getShippingProvider"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="http://www.oracle.com/soasample"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/e2e-1201-composites/FulfillOrder/getShippingProvider"
+         xmlns:ns4="http://xmlns.oracle.com/DetermineShippingRules/DetermineShippingRules_DecisionService_1"
+         xmlns:ns5="http://xmlns.oracle.com/bpel"
+         xmlns:ns6="http://xmlns.oracle.com/e2e-1201-composites/FulfillOrder/RestReference"
+         xmlns:ns7="http://xmlns.oracle.com/pcbpel/adapter/coherence/e2e-1201-composites/FulfillOrder/queryCoherence"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns8="http://xmlns.oracle.com/pcbpel/adapter/coherence/e2e-1201-composites/FulfillOrder/putIntoCoherence">
+
+  <import ui:processWSDL="true" namespace="http://xmlns.oracle.com/e2e_1201_composites_templates/FulfillOrder/fulfillOrder" location="../WSDLs/fulfillOrder.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="fulfillorder_client" partnerLinkType="client:fulfillOrder" myRole="fulfillOrderProvider"/>
+    <partnerLink name="getShippingProvider" partnerLinkType="ns1:getShippingProvider_plt"
+                 partnerRole="getShippingProvider_role"/>
+    <partnerLink name="DetermineShippingRules.DetermineShippingRules_DecisionService_1"
+                 partnerRole="IDecisionService_Role" partnerLinkType="ns4:IDecisionService_PLT"/>
+    <partnerLink name="packAndShipOrder" partnerLinkType="ns6:RestReference" partnerRole="RestReferenceProvider"/>
+    <partnerLink name="queryCoherence" partnerLinkType="ns7:Get_plt" partnerRole="Get_role"/>
+    <partnerLink name="putIntoCoherence" partnerLinkType="ns8:Put_plt" partnerRole="Put_role"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:fulfillOrderRequestMessage"/>
+    <variable name="shippingMethodID" type="xsd:integer">
+      <from>2</from>
+    </variable>
+    <variable name="getShippingProvider_getShippingProviderSelect_InputVariable"
+              messageType="ns1:getShippingProviderSelect_inputParameters"/>
+    <variable name="getShippingProvider_getShippingProviderSelect_OutputVariable"
+              messageType="ns1:E2E1201_ShippingMethodsCollection_msg"/>
+    <variable name="invokePackAndShipOrder_packAndShip_InputVariable" messageType="ns6:packAndShip_inputMessage"/>
+    <variable name="invokePackAndShipOrder_packAndShip_OutputVariable" messageType="ns6:packAndShip_outputMessage"/>
+    <variable name="queryCoherence_Get_InputVariable" messageType="ns7:Get_msg"/>
+    <variable name="queryCoherence_Get_OutputVariable" messageType="ns7:GetResponse_msg"/>
+    <variable name="putIntoCoherene_Put_InputVariable" messageType="ns8:Put_msg"/>
+    <variable name="putIntoCoherene_Put_OutputVariable" messageType="ns8:PutResponse_msg"/>
+  </variables>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in fulfillOrder.wsdl) -->
+    <receive name="receiveInput" partnerLink="fulfillorder_client" portType="client:fulfillOrder" operation="process" variable="inputVariable" createInstance="yes"/>
+    <scope name="determineShippingMethod">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:decide"/>
+      </bpelx:annotation>
+      <variables>
+        <variable name="dsIn" messageType="ns4:callFunctionStatelessMessage"/>
+        <variable name="dsOut" messageType="ns4:callFunctionStatelessDecisionMessage"/>
+      </variables>
+      <sequence name="Sequence1">
+        <assign name="Facts_To_Rule_Service">
+          <copy>
+            <from variable="inputVariable" part="payload"><query>ns3:Shipping</query></from>
+            <to variable="dsIn" part="payload"><query>ns4:parameterList/ns3:Shipping</query></to>
+          </copy>
+        </assign>
+        <assign name="BPEL_Header">
+          <copy>
+            <from>"DetermineShippingRules_DecisionService_1"</from>
+            <to variable="dsIn" part="payload"><query>@name</query></to>
+          </copy>
+        </assign>
+        <invoke name="Invoke" partnerLink="DetermineShippingRules.DetermineShippingRules_DecisionService_1"
+                portType="ns4:IDecisionService" operation="callFunctionStateless" inputVariable="dsIn"
+                outputVariable="dsOut"/>
+        <assign name="Rule_Service_To_Facts">
+          <copy>
+            <from variable="dsOut" part="payload"><query>ns4:resultList/ns3:Shipping/ns3:ShipMethod</query></from>
+            <to variable="shippingMethodID"/>
+          </copy>
+        </assign>
+      </sequence>
+    </scope>
+    <invoke name="queryCoherence" bpelx:invokeAsDetail="no" partnerLink="queryCoherence" portType="ns7:Get_ptt"
+            operation="Get" inputVariable="queryCoherence_Get_InputVariable"
+            outputVariable="queryCoherence_Get_OutputVariable">
+      <bpelx:toProperties>
+        <bpelx:toProperty name="jca.coherence.Key" variable="shippingMethodID"/>
+      </bpelx:toProperties>
+    </invoke>
+    <if name="DataInCache">
+      <documentation>
+        <![CDATA[DataInCache]]>
+      </documentation>
+      <condition>$queryCoherence_Get_OutputVariable.body/ns2:E2E1201_ShippingMethods/ns2:providerId/ns2:name</condition>
+      <assign name="assignShippingProvider">
+        <copy bpelx:insertMissingToData="yes">
+          <from>$queryCoherence_Get_OutputVariable.body/ns2:E2E1201_ShippingMethods/ns2:providerId/ns2:name</from>
+          <to>$inputVariable.payload/ns3:Shipping/ns3:ShippingProvider/ns3:Name</to>
+        </copy>
+      </assign>
+      <else>
+        <documentation>
+          <![CDATA[DataNotInCache]]>
+        </documentation>
+        <sequence>
+          <assign name="assignShippingMethodForDBAdapter">
+            <copy>
+              <from>$shippingMethodID</from>
+              <to>$getShippingProvider_getShippingProviderSelect_InputVariable.getShippingProviderSelect_inputParameters/ns2:smi</to>
+            </copy>
+          </assign>
+          <invoke name="getShippingProvider" partnerLink="getShippingProvider" portType="ns1:getShippingProvider_ptt"
+                  operation="getShippingProviderSelect"
+                  inputVariable="getShippingProvider_getShippingProviderSelect_InputVariable"
+                  outputVariable="getShippingProvider_getShippingProviderSelect_OutputVariable"
+                  bpelx:invokeAsDetail="no"/>
+          <assign name="assignShippingProvider">
+            <copy bpelx:insertMissingToData="yes">
+              <from>$getShippingProvider_getShippingProviderSelect_OutputVariable.E2E1201_ShippingMethodsCollection/ns2:E2E1201_ShippingMethods/ns2:providerId/ns2:name</from>
+              <to>$inputVariable.payload/ns3:Shipping/ns3:ShippingProvider/ns3:Name</to>
+            </copy>
+          </assign>
+          <assign name="assignCoherenceInput">
+            <copy>
+              <from>$getShippingProvider_getShippingProviderSelect_OutputVariable.E2E1201_ShippingMethodsCollection</from>
+              <to>$putIntoCoherene_Put_InputVariable.body</to>
+            </copy>
+          </assign>
+          <invoke name="putIntoCoherene" portType="ns8:Put_ptt" partnerLink="putIntoCoherence" operation="Put"
+                  inputVariable="putIntoCoherene_Put_InputVariable" outputVariable="putIntoCoherene_Put_OutputVariable">
+            <bpelx:toProperties>
+              <bpelx:toProperty name="jca.coherence.Key" variable="shippingMethodID"/>
+            </bpelx:toProperties>
+          </invoke>
+        </sequence>
+      </else>
+    </if>
+    <assign name="assignShipping">
+      <copy bpelx:insertMissingToData="yes">
+        <from>$inputVariable.payload/ns3:Shipping</from>
+        <to>$invokePackAndShipOrder_packAndShip_InputVariable.request</to>
+      </copy>
+      <copy bpelx:insertMissingToData="yes">
+        <from>$inputVariable.payload/ns3:OrderNumber</from>
+        <to>$invokePackAndShipOrder_packAndShip_InputVariable.request/ns3:OrderNumber</to>
+      </copy>
+    </assign>
+    <invoke name="invokePackAndShipOrder" portType="ns6:RestReference_ptt" partnerLink="packAndShipOrder"
+            operation="packAndShip" inputVariable="invokePackAndShipOrder_packAndShip_InputVariable"
+            outputVariable="invokePackAndShipOrder_packAndShip_OutputVariable"/>
+  </sequence>
+</process>

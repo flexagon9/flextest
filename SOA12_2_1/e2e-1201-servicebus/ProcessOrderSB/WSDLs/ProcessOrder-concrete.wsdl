@@ -1,0 +1,39 @@
+<wsdl:definitions targetNamespace="http://www.oracle.com/ProcessOrder" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.oracle.com/ProcessOrder" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:types="http://www.oracle.com/soasample">
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://www.oracle.com/soasample"/>
+               <xsd:import schemaLocation="../Schemas/CanonicalOrder.xsd" namespace="http://www.oracle.com/soasample"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="orderInput">
+        <wsdl:part name="order" element="types:Order"/>
+    </wsdl:message>
+    <wsdl:message name="orderOutput">
+        <wsdl:part name="ack" element="types:OrderAck"/>
+    </wsdl:message>
+    <wsdl:portType name="processOrderPortType">
+        <wsdl:operation name="process">
+            <wsdl:input message="tns:orderInput"/>
+            <wsdl:output message="tns:orderOutput"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="processOrderBinding" type="tns:processOrderPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="receiveorder_client_ep">
+        <wsdl:port name="processOrderPort" binding="tns:processOrderBinding">
+            <soap:address location="http://localhost:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
