@@ -1,6 +1,6 @@
 -- aa
 -- bb
---
+-- cc
 --XXHR_BIPUB_REP_PKG.pkb comment updated on 1/28/2019 4:15 PM
 CREATE OR REPLACE PACKAGE BODY APPS.xxhr_bipub_rep_pkg IS
 
