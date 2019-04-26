@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "${{FD_ENVIRONMENT_CODE}}",
+            "name": "test",
             "policies": [
                 {
                     "name": "Assign-Message-1.xml",
