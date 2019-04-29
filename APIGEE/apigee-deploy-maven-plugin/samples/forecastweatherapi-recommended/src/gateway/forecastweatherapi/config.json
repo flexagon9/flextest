@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "testabc",
+            "name": "test",
             "policies": [
                 {
                     "name": "Assign-Message-1.xml",
