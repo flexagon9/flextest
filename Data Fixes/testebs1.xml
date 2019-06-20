@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFix xmlns="http://flexagon.com/database/datafix">
+    <Description>Delete from countries table by region id</Description>
+    <FixSQL>delete from hr.countries where region_id=4;
+    /*comment*/
+    insert into hr.countries values ('IL', 'Israel', 4); </FixSQL>
+    <BackupSQL>create table HR.countries_backup as (select * from HR.countries)</BackupSQL>
+    <ConnectStringProperty></ConnectStringProperty>
+    <UserProperty>FDEBS_DB_USER</UserProperty>
+    <PasswordProperty>FDEBS_DB_PASSWORD</PasswordProperty>
+    <Validations>
+        <Validation> <!-- Can be one or more -->
+            <Description>Validate row count</Description>
+            <ValidationSQL>select count(1) from hr.countries</ValidationSQL>
+            <Environment>
+                <EnvironmentCode>DEV</EnvironmentCode>
+                <Before>
+                    <LessThan>250</LessThan>
+                </Before>
+                <After>
+                    <GreaterThanEqual>0</GreaterThanEqual>
+                    <LessThan>500</LessThan>
+                </After>
+                <UpdateCount>
+                    <LessThan>10</LessThan>
+                </UpdateCount>
+            </Environment>
+
+        </Validation>
+    </Validations>
+</DataFix>
