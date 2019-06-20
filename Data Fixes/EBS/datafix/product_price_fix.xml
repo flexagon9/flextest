@@ -3,15 +3,12 @@
     <Description>Fix list price of product ID 47809</Description>
     <FixSQL>update xxhr.XXHR_PRODUCT_LIST_TEST set list_price = 150 where product_id = 47809;</FixSQL>
     <BackupSQL>create table xxhr.xxhr_product_list_test_bkp as (select * from xxhr.xxhr_product_list_test);</BackupSQL>
-    <ConnectString></ConnectString>
-    <User></User>
-    <Password></Password>
     <Validations>
         <Validation> <!-- Can be one or more -->
             <Description>Make sure product_id = 47809 has a list_price of 150</Description>
             <ValidationSQL>select count(*) from xxhr.xxhr_product_list_test where list_price = 150 and product_id = 47809;</ValidationSQL>
             <Environment>
-                <EnvironmentCode></EnvironmentCode>
+                <EnvironmentCode>DEV</EnvironmentCode>
                 <Before>
                     <Equals>0</Equals>
                 </Before>
