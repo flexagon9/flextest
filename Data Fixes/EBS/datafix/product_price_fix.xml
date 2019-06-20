@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<DataFix>
+<DataFix xmlns="http://flexagon.com/database/datafix">
     <Description>Fix list price of product ID 47809</Description>
     <FixSQL>update xxhr.XXHR_PRODUCT_LIST_TEST set list_price = 150 where product_id = 47809;</FixSQL>
     <BackupSQL>create table xxhr.xxhr_product_list_test_bkp as (select * from xxhr.xxhr_product_list_test);</BackupSQL>
@@ -18,7 +18,6 @@
                 <UpdateCount>
                     <Equals>1</Equals>
                 </UpdateCount>
-            </Environment>
             </Environment>
         </Validation>
     </Validations>
