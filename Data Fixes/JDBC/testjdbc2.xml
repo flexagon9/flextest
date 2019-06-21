@@ -11,7 +11,7 @@ update hr.employees set salary = salary * 10 where JOB_ID='IT_PROG'; </FixSQL>
     <Validations>
         <Validation> <!-- Can be one or more -->
             <Description>Validate no programmers have salary less than min</Description>
-            <ValidationSQL>select * from hr.employees where job_id = 'IT_PROG' and salary < (select min_salary from hr.jobs where job_id='IT_PROG')</ValidationSQL>
+            <ValidationSQL>select * from hr.employees where job_id = 'IT_PROG' and salary &lt; (select min_salary from hr.jobs where job_id='IT_PROG')</ValidationSQL>
             <Environment>
                 <EnvironmentCode>DEV</EnvironmentCode>
                 <After>
@@ -25,7 +25,7 @@ update hr.employees set salary = salary * 10 where JOB_ID='IT_PROG'; </FixSQL>
         </Validation>
         <Validation> <!-- Can be one or more -->
             <Description>Validate no programmers have salary more than max</Description>
-            <ValidationSQL>select * from hr.employees where job_id = 'IT_PROG' and salary > (select max_salary from hr.jobs where job_id='IT_PROG')</ValidationSQL>
+            <ValidationSQL>select * from hr.employees where job_id = 'IT_PROG' and salary &gt; (select max_salary from hr.jobs where job_id='IT_PROG')</ValidationSQL>
             <Environment>
                 <EnvironmentCode>DEV</EnvironmentCode>
                 <After>
