@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DataFix xmlns="http://flexagon.com/database/datafix">
-    <Description>Delete/insert region 4 in countries table. Tests comments/multiple fix stmts, using attributes for db login, and default env.</Description>
+    <Description></Description>
     <FixSQL>delete from hr.countries where region_id=4;
     /*comment*/
     insert into hr.countries values ('IL', 'Israel', 4); </FixSQL>
-    <BackupSQL>create table HR.countries_backup as (select * from HR.countries)</BackupSQL>
+    <BackupSQL>create table HR.countries_backup_${{FD_PROJECT_VERSION}} as (select * from HR.countries)</BackupSQL>
     <ConnectStringProperty></ConnectStringProperty>
     <UserProperty></UserProperty>
     <PasswordProperty></PasswordProperty>
     <Validations>
+        <Validation> <!-- Can be one or more -->
+            <Description>Validate row count</Description>
+            <ValidationSQL>select count(1) from hr.countries</ValidationSQL>
+            <Environment>
+                <EnvironmentCode>QA</EnvironmentCode>
+                <Before>
+                    <LessThan>0</LessThan>
+                </Before>
+                <After>
+                    <GreaterThanEqual>100</GreaterThanEqual>
+                    <LessThan>30</LessThan>
+                </After>
+                <UpdateCount>
+                    <LessThan>1</LessThan>
+                </UpdateCount>
+            </Environment>
+        </Validation>
         <Validation> <!-- Can be one or more -->
             <Description>Validate row count</Description>
             <ValidationSQL>select count(1) from hr.countries</ValidationSQL>
