@@ -1,45 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DataFix xmlns="http://flexagon.com/database/datafix">
     <Description></Description>
-    <FixSQL>delete from hr.countries where region_id=4;
-    /*comment*/
-    insert into hr.countries values ('IL', 'Israel', 4); </FixSQL>
-    <BackupSQL>create table HR.countries_backup_${{FD_PROJECT_VERSION}} as (select * from HR.countries)</BackupSQL>
+    <FixSQL>update hr.employees set salary=11000 set employee_id = 103; </FixSQL>
+    <BackupSQL>create table HR.employees_backup_${{FD_PROJECT_VERSION}} as (select * from HR.employees </BackupSQL>
     <ConnectStringProperty></ConnectStringProperty>
     <UserProperty></UserProperty>
     <PasswordProperty></PasswordProperty>
     <Validations>
         <Validation> <!-- Can be one or more -->
             <Description>Validate row count</Description>
-            <ValidationSQL>select count(1) from hr.countries</ValidationSQL>
+            <ValidationSQL>select salary from hr.employees where employee_id = 103</ValidationSQL>
             <Environment>
                 <EnvironmentCode>QA</EnvironmentCode>
                 <Before>
-                    <LessThan>0</LessThan>
+                    <GreaterThan>10000</GreaterThan>
+                    <LessThan>4000</LessThan>
                 </Before>
                 <After>
-                    <GreaterThanEqual>100</GreaterThanEqual>
-                    <LessThan>30</LessThan>
+                    <GreaterThanEqual>10000</GreaterThanEqual>
+                    <LessThan>4000</LessThan>
                 </After>
                 <UpdateCount>
                     <LessThan>1</LessThan>
-                </UpdateCount>
-            </Environment>
-        </Validation>
-        <Validation> <!-- Can be one or more -->
-            <Description>Validate row count</Description>
-            <ValidationSQL>select count(1) from hr.countries</ValidationSQL>
-            <Environment>
-                <EnvironmentCode>DEFAULT</EnvironmentCode>
-                <Before>
-                    <LessThan>25</LessThan>
-                </Before>
-                <After>
-                    <GreaterThanEqual>20</GreaterThanEqual>
-                    <LessThan>30</LessThan>
-                </After>
-                <UpdateCount>
-                    <LessThan>5</LessThan>
                 </UpdateCount>
             </Environment>
         </Validation>
