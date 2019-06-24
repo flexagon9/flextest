@@ -13,12 +13,12 @@
             <Environment>
                 <EnvironmentCode>Dev</EnvironmentCode>
                 <Before>
-                    <GreaterThan>10000</GreaterThan>
-                    <LessThan>4000</LessThan>
+                    <GreaterThan>4000</GreaterThan>
+                    <LessThan>10000</LessThan>
                 </Before>
                 <After>
-                    <GreaterThanEqual>10000</GreaterThanEqual>
-                    <LessThan>4000</LessThan>
+                    <GreaterThanEqual>4000</GreaterThanEqual>
+                    <LessThan>10000</LessThan>
                 </After>
                 <UpdateCount>
                     <LessThan>1</LessThan>
@@ -27,12 +27,12 @@
             <Environment>
                 <EnvironmentCode>QA</EnvironmentCode>
                 <Before>
-                    <GreaterThan>10000</GreaterThan>
-                    <LessThan>4000</LessThan>
+                    <GreaterThan>4000</GreaterThan>
+                    <LessThan>10000</LessThan>
                 </Before>
                 <After>
-                    <GreaterThanEqual>10000</GreaterThanEqual>
-                    <LessThan>4000</LessThan>
+                    <GreaterThanEqual>4000</GreaterThanEqual>
+                    <LessThan>10000</LessThan>
                 </After>
                 <UpdateCount>
                     <LessThan>1</LessThan>
