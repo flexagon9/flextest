@@ -11,6 +11,20 @@
             <Description>Validate row count</Description>
             <ValidationSQL>select salary from hr.employees where employee_id = 103</ValidationSQL>
             <Environment>
+                <EnvironmentCode>Dev</EnvironmentCode>
+                <Before>
+                    <GreaterThan>10000</GreaterThan>
+                    <LessThan>4000</LessThan>
+                </Before>
+                <After>
+                    <GreaterThanEqual>10000</GreaterThanEqual>
+                    <LessThan>4000</LessThan>
+                </After>
+                <UpdateCount>
+                    <LessThan>1</LessThan>
+                </UpdateCount>
+            </Environment>
+            <Environment>
                 <EnvironmentCode>QA</EnvironmentCode>
                 <Before>
                     <GreaterThan>10000</GreaterThan>
