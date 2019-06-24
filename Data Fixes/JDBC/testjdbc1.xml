@@ -21,7 +21,7 @@
                     <LessThan>12000</LessThan>
                 </After>
                 <UpdateCount>
-                    <LessThan>1</LessThan>
+                    <LessThan>2</LessThan>
                 </UpdateCount>
             </Environment>
             <Environment>
@@ -35,7 +35,7 @@
                     <LessThan>12000</LessThan>
                 </After>
                 <UpdateCount>
-                    <LessThan>1</LessThan>
+                    <LessThan>2</LessThan>
                 </UpdateCount>
             </Environment>
         </Validation>
