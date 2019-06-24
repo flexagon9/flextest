@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DataFix xmlns="http://flexagon.com/database/datafix">
     <Description></Description>
-    <FixSQL>update hr.employees set salary=11000 set employee_id = 103; </FixSQL>
+    <FixSQL>update hr.employees set salary=11000 where employee_id = 103; </FixSQL>
     <BackupSQL>create table HR.employees_backup_${{FD_PROJECT_VERSION}} as (select * from HR.employees) </BackupSQL>
     <ConnectStringProperty></ConnectStringProperty>
     <UserProperty></UserProperty>
