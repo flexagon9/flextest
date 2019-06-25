@@ -10,7 +10,7 @@
     <Validations>
         <Validation> <!-- Can be one or more -->
             <Description>Make sure only a few items were marked</Description>
-            <ValidationSQL>select count(*) from xxhr.xhr_order_header_test where sales_rep_id = 1 and order_status = 1</ValidationSQL>
+            <ValidationSQL>select count(*) from xxhr.xxhr_order_header_test where sales_rep_id = 1 and order_status = 1</ValidationSQL>
             <Environment>
                 <EnvironmentCode>DEV</EnvironmentCode>
                 <After>
