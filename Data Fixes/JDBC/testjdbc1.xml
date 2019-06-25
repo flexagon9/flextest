@@ -23,7 +23,7 @@
                     <LessThan>12000</LessThan>
                 </After>
                 <UpdateCount>
-                    <LessThan>2</LessThan>
+                    <Equal>3</Equal>
                 </UpdateCount>
             </Environment>
             <Environment>
