@@ -3,7 +3,7 @@
     <Description></Description>
     <FixSQL>update hr.employees set salary=10000 where employee_id = 103; 
             update hr.employees set salary=9500 where employee_id = 104;
-            update hr.employees set salary=8800 where employee_id = 1005;</FixSQL>
+            update hr.employees set salary=8800 where employee_id = 105;</FixSQL>
     <BackupSQL>create table HR.employees_backup_${{FD_PROJECT_VERSION}} as (select * from HR.employees) </BackupSQL>
     <ConnectStringProperty></ConnectStringProperty>
     <UserProperty></UserProperty>
