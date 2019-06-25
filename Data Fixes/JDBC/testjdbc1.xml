@@ -11,33 +11,31 @@
     <Validations>
         <Validation> <!-- Can be one or more -->
             <Description>Validate row count</Description>
-            <ValidationSQL>select salary from hr.employees where employee_id = 103</ValidationSQL>
+            <ValidationSQL>select count(*) from hr.jobs j, hr.employees e where j.job_id = 'IT_PROG'
+                   and j.job_id = e.job_id and e.employee_id in (103,104,105) 
+                   and e.salary between j.min_salary and j.max_salary</ValidationSQL>
             <Environment>
                 <EnvironmentCode>Dev</EnvironmentCode>
                 <Before>
-                    <GreaterThan>4000</GreaterThan>
-                    <LessThan>12000</LessThan>
+                    <Equals>3</Eqauls>
                 </Before>
                 <After>
-                    <GreaterThanEqual>4000</GreaterThanEqual>
-                    <LessThan>12000</LessThan>
+                    <Equals>3</Eqauls>
                 </After>
                 <UpdateCount>
-                    <Equal>3</Equal>
+                    <Equals>3</Equals>
                 </UpdateCount>
             </Environment>
             <Environment>
                 <EnvironmentCode>QA</EnvironmentCode>
                 <Before>
-                    <GreaterThan>4000</GreaterThan>
-                    <LessThan>12000</LessThan>
+                    <Equals>3</Eqauls>
                 </Before>
                 <After>
-                    <GreaterThanEqual>4000</GreaterThanEqual>
-                    <LessThan>12000</LessThan>
+                    <Equals>3</Eqauls>
                 </After>
                 <UpdateCount>
-                    <Equal>3</Equal>
+                    <Equals>3</Equals>
                 </UpdateCount>
             </Environment>
         </Validation>
