@@ -17,10 +17,10 @@
             <Environment>
                 <EnvironmentCode>Dev</EnvironmentCode>
                 <Before>
-                    <Equals>3</Eqauls>
+                    <Equals>3</Equals>
                 </Before>
                 <After>
-                    <Equals>3</Eqauls>
+                    <Equals>3</Equals>
                 </After>
                 <UpdateCount>
                     <Equals>3</Equals>
@@ -29,10 +29,10 @@
             <Environment>
                 <EnvironmentCode>QA</EnvironmentCode>
                 <Before>
-                    <Equals>3</Eqauls>
+                    <Equals>3</Equals>
                 </Before>
                 <After>
-                    <Equals>3</Eqauls>
+                    <Equals>3</Equals>
                 </After>
                 <UpdateCount>
                     <Equals>3</Equals>
