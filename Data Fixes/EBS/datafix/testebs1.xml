@@ -2,7 +2,7 @@
 <DataFix xmlns="http://flexagon.com/database/datafix">
     <Description>Marking item as shipped for sales rep</Description>
     <FixSQL> --marking item as shipped
-    update xxhr.xxhr_order_header_test set order_status = 2 where sales_rep_id = 1;</FixSQL>
+    update xxhr.xxhr_order_header_test set order_status = 1 where sales_rep_id = 1;</FixSQL>
     <BackupSQL>create table xxhr.xxhr_order_hdr_tst_${{FD_PROJECT_VERSION}} as (select * from xxhr.xxhr_order_header_test)</BackupSQL>
     <ConnectStringProperty></ConnectStringProperty>
     <UserProperty>FDEBS_DB_USER</UserProperty>
