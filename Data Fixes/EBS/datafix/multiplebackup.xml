@@ -5,7 +5,7 @@
             update XXHR.xxhr_order_items set unit_price = 100 where order_id = 1 and line_item_id = 3 and product_id = 47809;
             update XXHR.xxhr_order_header set order_status = 2 where order_id = 1;</FixSQL>
     <BackupSQL>create table xxhr.xxhr_order_items_bkp as (select * from xxhr.xxhr_order_items);
-               create table xxhr.xxhr_order_header_bkp as (select * from xxhr.xxhr_order_header_bkp);</BackupSQL>
+               create table xxhr.xxhr_order_header_bkp as (select * from xxhr.xxhr_order_header);</BackupSQL>
     <ConnectStringProperty></ConnectStringProperty>
     <UserProperty></UserProperty>
     <PasswordProperty></PasswordProperty>
