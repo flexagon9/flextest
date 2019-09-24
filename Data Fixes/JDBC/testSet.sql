@@ -1,3 +1,3 @@
-set time on;
-set timing on;
-set echo on;
+ALTER SESSION SET TIMED_STATISTICS=TRUE;
+
+select * from hr.COUNTRIES;
