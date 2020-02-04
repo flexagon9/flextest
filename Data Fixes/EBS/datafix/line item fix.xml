@@ -8,7 +8,7 @@
     <UserProperty></UserProperty>
     <PasswordProperty></PasswordProperty>
     <Validations>
-        <Validation> <!-- Can be one or more -->
+        <Validation> <!-- Can be one or more --> 
             <Description>Make sure two order_items are updated</Description>
             <ValidationSQL></ValidationSQL>
             <Environment>
