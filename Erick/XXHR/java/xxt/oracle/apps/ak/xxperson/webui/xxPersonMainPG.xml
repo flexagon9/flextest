@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!-- dbdrv: exec java oracle/jrad/tools/xml/importer XMLImporter.class java &phase=dat+24 checkfile:~PROD:~PATH:~FILE &fullpath:~PROD:~PATH:~FILE -username &un_apps -password &pw_apps -dbconnection &jdbc_db_addr  -userId "1" -rootPackage /oracle/apps/~PROD  -rootdir &fullpath:~PROD:mds:directory  -->
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="9.0.3.8.13_1550" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="MainRN" amDefName="xxt.oracle.apps.ak.xxperson.server.xxPersonAM" windowTitle="Main Person Page for Search" title="Main Person Page for Search" controllerClass="xxt.oracle.apps.ak.xxperson.webui.xxPersonMainCO">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:query id="QueryRN" mode="resultsBasedSearch" dispCustomized="true" dispAdvanced="true" dispSimple="true">
+               <ui:contents>
+                  <oa:table id="xxPersonDetailsVO1">
+                     <ui:contents>
+                        <oa:messageStyledText id="PersonId" dataType="NUMBER" prompt="PersonId" viewName="xxPersonDetailsVO1" viewAttr="PersonId" queryable="true" sortState="ascending"/>
+                        <oa:messageStyledText id="FirstName" dataType="VARCHAR2" prompt="FirstName" viewName="xxPersonDetailsVO1" viewAttr="FirstName" maximumLength="50" queryable="true"/>
+                        <oa:messageStyledText id="LastName" dataType="VARCHAR2" prompt="LastName" viewName="xxPersonDetailsVO1" viewAttr="LastName" maximumLength="50" queryable="true"/>
+                        <oa:messageStyledText id="Email" dataType="VARCHAR2" prompt="Email" viewName="xxPersonDetailsVO1" viewAttr="Email" maximumLength="100"/>
+                        <oa:link id="item1">
+                           <ui:primaryClientAction>
+                              <ui:fireAction event="deletePerson">
+                                 <ui:parameters>
+                                    <ui:parameter key="paramPersonId" value="${oa.xxPersonDetailsVO1.PersonId}"/>
+                                 </ui:parameters>
+                              </ui:fireAction>
+                           </ui:primaryClientAction>
+                           <ui:contents>
+                              <oa:image id="item2" source="deleteicon_enabled.gif"/>
+                           </ui:contents>
+                        </oa:link>
+                        <oa:link id="item4">
+                           <ui:primaryClientAction>
+                              <ui:fireAction event="updatePerson">
+                                 <ui:parameters>
+                                    <ui:parameter key="paramPersonId" value="${oa.xxPersonDetailsVO1.PersonId}"/>
+                                 </ui:parameters>
+                              </ui:fireAction>
+                           </ui:primaryClientAction>
+                           <ui:contents>
+                              <oa:image id="item5" source="updateicon_enabled.gif"/>
+                           </ui:contents>
+                        </oa:link>
+                     </ui:contents>
+                  </oa:table>
+               </ui:contents>
+            </oa:query>
+            <oa:messageComponentLayout id="region1">
+               <ui:contents>
+                  <oa:messageLayout id="messageLayout1">
+                     <ui:contents>
+                        <oa:submitButton id="item3" text="Create Person" prompt="Create Person">
+                           <ui:primaryClientAction>
+                              <ui:fireAction event="createPerson"/>
+                           </ui:primaryClientAction>
+                        </oa:submitButton>
+                     </ui:contents>
+                  </oa:messageLayout>
+               </ui:contents>
+            </oa:messageComponentLayout>
+         </ui:contents>
+      </oa:pageLayout>
+   </content>
+</page>

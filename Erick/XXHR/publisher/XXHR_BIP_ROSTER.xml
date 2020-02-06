@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Roster>
+ <Week>
+  <WeekNo>1</WeekNo>
+  <Monday>Thomas</Monday>
+  <Tuesday>Emily</Tuesday>
+  <Wednesday>Annie</Wednesday>
+  <Thursday>James</Thursday>
+  <Friday>Gordon</Friday>
+  <Saturday>Rosie</Saturday>
+  <Sunday>Henry</Sunday>
+ </Week>
+ <Week>
+  <WeekNo>2</WeekNo>
+  <Monday>Bertie</Monday>
+  <Tuesday>Harold</Tuesday>
+  <Wednesday>Toby</Wednesday>
+  <Thursday>Clarabel</Thursday>
+  <Friday>Percy</Friday>
+  <Saturday>Edward</Saturday>
+  <Sunday>Trevor</Sunday>
+ </Week>
+</Roster>
+
