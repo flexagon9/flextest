@@ -1,8 +1,8 @@
+package flexagon.examples.javaproc;
+
 import java.sql.*;
 import java.io.*;
 import oracle.jdbc.*;
-
-package flexagon.examples.javaproc;
 
 public class POManager
 {
