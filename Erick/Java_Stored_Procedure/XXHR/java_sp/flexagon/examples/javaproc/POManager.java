@@ -3,9 +3,12 @@ package flexagon.examples.javaproc;
 import java.sql.*;
 import java.io.*;
 import oracle.jdbc.*;
+import groovy.lang.*;
 
 public class POManager
 {
+  private static GroovyShell shell = new GroovyShell();
+  
   public static void addCustomer (int custNo, String custName, String street,
    String city, String state, String zipCode, String phoneNo) throws SQLException
   {
