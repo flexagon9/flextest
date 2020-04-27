@@ -9,6 +9,7 @@ create or replace PACKAGE XXHR_PING2_PKG AS
   * @rep:category BUSINESS_ENTITY AP_SUPPLIER
   * @flexdeploy-rep:alias ping2
   * @flexdeploy-rep:type SOAP
+  * @flexdeploy-rep:policy SAML
   */
 
 /*#
