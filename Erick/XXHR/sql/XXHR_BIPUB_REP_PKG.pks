@@ -1,6 +1,6 @@
 CREATE OR REPLACE PACKAGE xxhr_bipub_rep_pkg AS
 -----------------------------------------------------------------------------------------------------          
---abvcsdafasdfasdfddddd
+--abvcsdafasdfasdfdddddasdf
 --            NAME:   XXHR_BIPUB_REP_PKG
 --            TYPE:   Package Specification
 -- ORIGINAL AUTHOR:   Brian Badenhorst
