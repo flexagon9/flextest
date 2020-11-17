@@ -18,7 +18,7 @@ CREATE OR REPLACE PACKAGE xxhr_bipub_rep_pkg AS
 --     -------  -----------   ----------------    --------  --------------------------------------------
 --     1.0      25/07/2012    Brian Badenhorst    N/A       Initial Version
 -----------------------------------------------------------------------------------------------------
-
+-- a
                        
    PROCEDURE generate_xml(p_errbuf  OUT VARCHAR2
                          ,p_retcode OUT NUMBER);
