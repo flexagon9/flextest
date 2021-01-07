@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>  
 <!DOCTYPE html>
 <f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
-  <af:document title="Employees" id="d1">
+  <af:document title="Employees " id="d1">
     <af:messages id="m1"/>
     <af:pageTemplate viewId="/mainpagetemplate.jsf" id="pt1">
       <f:facet name="pageContent">
