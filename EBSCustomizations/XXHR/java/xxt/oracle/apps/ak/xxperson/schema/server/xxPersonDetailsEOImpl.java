@@ -13,7 +13,9 @@ import oracle.jbo.AttributeList;
 public class xxPersonDetailsEOImpl extends OAEntityImpl 
 {
   protected static final int PERSONID = 0;
+  
   protected static final int FIRSTNAME = 1;
+  
   protected static final int LASTNAME = 2;
   protected static final int EMAIL = 3;
   protected static final int STUDENTFLAG = 4;
