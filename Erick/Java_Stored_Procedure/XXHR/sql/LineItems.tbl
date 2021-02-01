@@ -1,0 +1,8 @@
+CREATE TABLE scott.LineItems (
+LineNo NUMBER(2),
+PONo NUMBER(5) REFERENCES scott.Orders,
+StockNo NUMBER(4) REFERENCES scott.StockItems,
+Quantity NUMBER(2),
+Discount NUMBER(4,2),
+PRIMARY KEY (LineNo, PONo)
+);

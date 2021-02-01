@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFix xmlns="http://flexagon.com/database/datafix">
+    <Description>Marking item as shipped for sales rep</Description>
+    <FixSQL> --marking item as shipped
+    update xxhr.xxhr_order_header_test set order_status = 1 where sales_rep_id = 1;</FixSQL>
+    <BackupSQL>create table xxhr.xxhr_order_hdr_tst_${{FD_PROJECT_VERSION}} as (select * from xxhr.xxhr_order_header_test)</BackupSQL>
+    <ConnectStringProperty></ConnectStringProperty>
+    <UserProperty>FDEBS_DB_USER</UserProperty>
+    <PasswordProperty>FDEBS_DB_PASSWORD</PasswordProperty>
+    <Validations>
+        <Validation> <!-- Can be one or more -->
+            <Description>Make sure only a few items were marked</Description>
+            <ValidationSQL>select count(*) from xxhr.xxhr_order_header_test where sales_rep_id = 1 and order_status = 1</ValidationSQL>
+            <Environment>
+                <EnvironmentCode>DEV</EnvironmentCode>
+                <After>
+                    <LessThanEqual>4</LessThanEqual>
+                </After>
+                <UpdateCount>
+                    <Equals>1</Equals>
+                    <LessThan>3</LessThan>
+                    <LessThanEqual>1</LessThanEqual>
+                    <GreaterThan>0</GreaterThan>
+                    <GreaterThanEqual>1</GreaterThanEqual>
+                    <NotEquals>7</NotEquals>
+                </UpdateCount>
+            </Environment>
+        </Validation>
+        <Validation> <!-- Can be one or more -->
+            <Description>Make sure all items sold by that rep were changed</Description>
+            <ValidationSQL>select count(*) from xxhr.xxhr_order_header_test where sales_rep_id = 1 and order_status &lt;&gt; 1</ValidationSQL>
+            <Environment>
+                <EnvironmentCode>Default</EnvironmentCode>
+                <After>
+                    <LessThanEqual>0</LessThanEqual>
+                </After>
+            </Environment>
+        </Validation>
+    </Validations>
+</DataFix>

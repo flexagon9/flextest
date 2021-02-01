@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!-- dbdrv: exec java oracle/jrad/tools/xml/importer XMLImporter.class java &phase=dat+24 checkfile:~PROD:~PATH:~FILE &fullpath:~PROD:~PATH:~FILE -username &un_apps -password &pw_apps -dbconnection &jdbc_db_addr  -userId "1" -rootPackage /oracle/apps/~PROD  -rootdir &fullpath:~PROD:mds:directory  -->
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="9.0.3.8.13_1550" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="region1" amDefName="xxt.oracle.apps.ak.xxperson.server.xxPersonAM" windowTitle="Insert and update person" title="Insert and update person" controllerClass="xxt.oracle.apps.ak.xxperson.webui.managePersonCO">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:defaultSingleColumn id="xxPersonDetailsVO1">
+               <ui:contents>
+                  <oa:messageTextInput id="PersonId" dataType="NUMBER" prompt="PersonId" viewName="xxPersonDetailsVO1" viewAttr="PersonId"/>
+                  <oa:messageTextInput id="FirstName" dataType="VARCHAR2" prompt="FirstName" viewName="xxPersonDetailsVO1" viewAttr="FirstName" maximumLength="50"/>
+                  <oa:messageTextInput id="LastName" dataType="VARCHAR2" prompt="LastName" viewName="xxPersonDetailsVO1" viewAttr="LastName" maximumLength="50"/>
+                  <oa:messageTextInput id="Email" dataType="VARCHAR2" prompt="Email" viewName="xxPersonDetailsVO1" viewAttr="Email" maximumLength="100"/>
+                  <oa:messageTextInput id="StudentFlag" dataType="VARCHAR2" prompt="StudentFlag" viewName="xxPersonDetailsVO1" viewAttr="StudentFlag" maximumLength="1"/>
+                  <oa:messageTextInput id="NameOfUniversity" dataType="VARCHAR2" prompt="NameOfUniversity" viewName="xxPersonDetailsVO1" viewAttr="NameOfUniversity" maximumLength="100"/>
+               </ui:contents>
+            </oa:defaultSingleColumn>
+            <oa:messageComponentLayout id="region2">
+               <ui:contents>
+                  <oa:messageLayout id="messageLayout1">
+                     <ui:contents>
+                        <oa:submitButton id="savePerson" text="Commit Data" prompt="Commit Data"/>
+                     </ui:contents>
+                  </oa:messageLayout>
+               </ui:contents>
+            </oa:messageComponentLayout>
+         </ui:contents>
+      </oa:pageLayout>
+   </content>
+</page>

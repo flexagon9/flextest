@@ -1,0 +1,5 @@
+CREATE TABLE scott.StockItems (
+StockNo NUMBER(4) PRIMARY KEY,
+Description VARCHAR2(20),
+Price NUMBER(6,2)
+);

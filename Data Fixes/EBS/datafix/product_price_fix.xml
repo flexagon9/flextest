@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFix xmlns="http://flexagon.com/database/datafix">
+    <Description>Fix list price of product ID 47809</Description>
+    <FixSQL>update xxhr.XXHR_PRODUCT_LIST set list_price = 150 where product_id = 47809;</FixSQL>
+    <BackupSQL>create table xxhr.xxhr_product_list_bkp as (select * from xxhr.xxhr_product_list)</BackupSQL>
+    <Validations>
+        <Validation> <!-- Can be one or more -->
+            <Description>Make sure product_id = 47809 has a list_price of 150</Description>
+            <ValidationSQL>select count(*) from xxhr.xxhr_product_list where list_price = 150 and product_id = 47809;</ValidationSQL>
+            <Environment>
+                <EnvironmentCode>DEV</EnvironmentCode>
+                <Before>
+                    <Equals>0</Equals>
+                </Before>
+                <After>
+                    <Equals>1</Equals>
+                </After>
+                <UpdateCount>
+                    <Equals>1</Equals>
+                </UpdateCount>
+            </Environment>
+        </Validation>
+    </Validations>
+</DataFix>

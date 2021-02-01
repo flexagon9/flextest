@@ -1,0 +1,1156 @@
+# $Header$
+
+# dbdrv: exec fnd bin FNDLOAD bin &phase=dat+52 checkfile:~PROD:~PATH:~FILE &ui_apps 0 Y UPLOAD @BNE:patch/115/import/bneintegrator.lct @~PROD:~PATH/~FILE
+LANGUAGE = "US"
+LDRCONFIG = "bneintegrator.lct 120.9.12010000.2"
+
+#Source Database EBS1DEV
+
+#RELEASE_NAME 12.1.3
+
+# -- Begin Entity Definitions -- 
+
+DEFINE BNE_INTEGRATORS
+  KEY   INTEGRATOR_ASN                  VARCHAR2(120)
+  KEY   INTEGRATOR_CODE                 VARCHAR2(30)
+  CTX   OWNER                           VARCHAR2(120)
+  BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+  BASE  ENABLED_FLAG                    VARCHAR2(1)
+  BASE  UPL                             REFERENCES BNE_PARAM_LISTS
+  BASE  UPL_SERV                        REFERENCES BNE_PARAM_LISTS
+  BASE  IMPORT                          REFERENCES BNE_PARAM_LISTS
+  BASE  DATE_FORMAT                     VARCHAR2(100)
+  BASE  IMPORT_TYPE                     VARCHAR2(50)
+  BASE  UPLOADER_CLASS                  VARCHAR2(240)
+  TRANS USER_NAME                       VARCHAR2(240)
+  TRANS UPLOAD_HEADER                   VARCHAR2(240)
+  TRANS UPLOAD_TITLE_BAR                VARCHAR2(240)
+  BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+  BASE  CREATE_DOC                      REFERENCES BNE_PARAM_LISTS
+  BASE  NEW_SESSION_FLAG                VARCHAR2(1)
+  BASE  LAYOUT_RESOLVER_CLASS           VARCHAR2(240)
+  BASE  LAYOUT_VERIFIER_CLASS           VARCHAR2(240)
+  BASE  SESSION_CONFIG_CLASS            VARCHAR2(240)
+  BASE  SESSION                         REFERENCES BNE_PARAM_LISTS
+  BASE  SECURITY                        REFERENCES BNE_SECURED_OBJECTS
+  BASE  DISPLAY_FLAG                    VARCHAR2(1)
+  BASE  SOURCE                          VARCHAR2(1)
+
+  DEFINE BNE_MENUS
+    KEY   MENU_ASN                        VARCHAR2(120)
+    KEY   MENU_CODE                       VARCHAR2(30)
+    CTX   OWNER                           VARCHAR2(120)
+    BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+    BASE  PARENT_MENU_ASN                 VARCHAR2(120)
+    BASE  PARENT_MENU_CODE                VARCHAR2(30)
+    BASE  SEQUENCE_NUM                    VARCHAR2(50)
+    BASE  RESOLVER_CLASS                  VARCHAR2(240)
+    BASE  ACCESS_POINT                    VARCHAR2(240)
+    BASE  PARAMS                          REFERENCES BNE_PARAM_LISTS
+    TRANS USER_NAME                       VARCHAR2(240)
+    BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+  END BNE_MENUS
+
+    DEFINE BNE_MAPPINGS
+      KEY   MAPPING_ASN                     VARCHAR2(120)
+      KEY   MAPPING_CODE                    VARCHAR2(50)
+      BASE  REPORTING_FLAG                  VARCHAR2(1)
+      BASE  REPORTING_INTERFACE_ASN         VARCHAR2(120)
+      BASE  REPORTING_INTERFACE_CODE        VARCHAR2(30)
+      TRANS USER_NAME                       VARCHAR2(240)
+      CTX   OWNER                           VARCHAR2(120)
+      BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+      BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+
+      DEFINE BNE_MAPPING_LINES
+        KEY   SEQUENCE_NUM                    VARCHAR2(50)
+        BASE  INTERFACE_ASN                   VARCHAR2(120)
+        BASE  INTERFACE_CODE                  VARCHAR2(30)
+        BASE  INTERFACE_SEQ_NUM               VARCHAR2(50)
+        CTX   OWNER                           VARCHAR2(120)
+        BASE  DECODE_FLAG                     VARCHAR2(1)
+        BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+        BASE  CONTENT_ASN                     VARCHAR2(120)
+        BASE  CONTENT_CODE                    VARCHAR2(30)
+        BASE  CONTENT_SEQ_NUM                 VARCHAR2(50)
+        BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+      END BNE_MAPPING_LINES
+    END BNE_MAPPINGS
+
+      DEFINE BNE_CONTENTS
+        KEY   CONTENT_ASN                     VARCHAR2(120)
+        KEY   CONTENT_CODE                    VARCHAR2(30)
+        BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+        CTX   OWNER                           VARCHAR2(120)
+        BASE  CONTENT                         REFERENCES BNE_PARAM_LISTS
+        BASE  CONTENT_CLASS                   VARCHAR2(240)
+        TRANS USER_NAME                       VARCHAR2(240)
+        BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+        BASE  ONCE_ONLY_DOWNLOAD_FLAG         VARCHAR2(1)
+
+        DEFINE BNE_STORED_SQL
+          BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+          BASE  QUERY                           VARCHAR2(2000)
+          BASE  BNE_QUERY                       REFERENCES BNE_QUERIES
+          CTX   OWNER                           VARCHAR2(120)
+          BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+        END BNE_STORED_SQL
+
+          DEFINE BNE_CONTENT_COLS
+            KEY   SEQUENCE_NUM                    VARCHAR2(50)
+            BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+            CTX   OWNER                           VARCHAR2(120)
+            BASE  COL_NAME                        VARCHAR2(240)
+            TRANS USER_NAME                       VARCHAR2(240)
+            BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+            BASE  READ_ONLY_FLAG                  VARCHAR2(1)
+          END BNE_CONTENT_COLS
+      END BNE_CONTENTS
+
+        DEFINE BNE_LAYOUTS
+          KEY   LAYOUT_ASN                      VARCHAR2(120)
+          KEY   LAYOUT_CODE                     VARCHAR2(30)
+          CTX   OWNER                           VARCHAR2(120)
+          BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+          BASE  STYLESHEET_ASN                  VARCHAR2(120)
+          BASE  STYLESHEET_CODE                 VARCHAR2(30)
+          BASE  STYLE                           VARCHAR2(2000)
+          BASE  STYLE_CLASS                     VARCHAR2(50)
+          BASE  REPORTING_FLAG                  VARCHAR2(1)
+          BASE  REPORTING_INTERFACE_ASN         VARCHAR2(120)
+          BASE  REPORT_INTERFACE_CODE           VARCHAR2(30)
+          TRANS USER_NAME                       VARCHAR2(240)
+          BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+          BASE  CREATE_DOC                      REFERENCES BNE_PARAM_LISTS
+
+          DEFINE BNE_LAYOUT_BLOCKS
+            KEY   BLOCK_ID                        VARCHAR2(50)
+            CTX   OWNER                           VARCHAR2(120)
+            BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+            BASE  PARENT_ID                       VARCHAR2(50)
+            BASE  LAYOUT_ELEMENT                  VARCHAR2(240)
+            BASE  STYLE_CLASS                     VARCHAR2(50)
+            BASE  STYLE                           VARCHAR2(2000)
+            BASE  ROW_STYLE_CLASS                 VARCHAR2(50)
+            BASE  ROW_STYLE                       VARCHAR2(2000)
+            BASE  COL_STYLE_CLASS                 VARCHAR2(50)
+            BASE  COL_STYLE                       VARCHAR2(2000)
+            BASE  PROMPT_DISPLAYED_FLAG           VARCHAR2(1)
+            BASE  PROMPT_STYLE_CLASS              VARCHAR2(50)
+            BASE  PROMPT_STYLE                    VARCHAR2(2000)
+            BASE  HINT_DISPLAYED_FLAG             VARCHAR2(1)
+            BASE  HINT_STYLE_CLASS                VARCHAR2(50)
+            BASE  HINT_STYLE                      VARCHAR2(2000)
+            BASE  ORIENTATION                     VARCHAR2(20)
+            BASE  LAYOUT_CONTROL                  VARCHAR2(20)
+            BASE  DISPLAY_FLAG                    VARCHAR2(1)
+            BASE  BLOCKSIZE                       VARCHAR2(50)
+            BASE  MINSIZE                         VARCHAR2(50)
+            BASE  MAXSIZE                         VARCHAR2(50)
+            BASE  SEQUENCE_NUM                    VARCHAR2(50)
+            BASE  PROMPT_COLSPAN                  VARCHAR2(50)
+            BASE  HINT_COLSPAN                    VARCHAR2(50)
+            BASE  ROW_COLSPAN                     VARCHAR2(50)
+            BASE  SUMMARY_STYLE_CLASS             VARCHAR2(50)
+            BASE  SUMMARY_STYLE                   VARCHAR2(2000)
+            TRANS USER_NAME                       VARCHAR2(240)
+            BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+            BASE  TITLE_STYLE_CLASS               VARCHAR2(50)
+            BASE  TITLE_STYLE                     VARCHAR2(2000)
+            BASE  PROMPT_ABOVE                    VARCHAR2(240)
+
+            DEFINE BNE_LAYOUT_COLS
+              KEY   SEQUENCE_NUM                    VARCHAR2(50)
+              CTX   OWNER                           VARCHAR2(120)
+              BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+              BASE  INTERFACE_ASN                   VARCHAR2(120)
+              BASE  INTERFACE_CODE                  VARCHAR2(30)
+              BASE  INTERFACE_SEQ_NUM               VARCHAR2(50)
+              BASE  STYLE_CLASS                     VARCHAR2(50)
+              BASE  STYLE                           VARCHAR2(2000)
+              BASE  PROMPT_STYLE_CLASS              VARCHAR2(50)
+              BASE  PROMPT_STYLE                    VARCHAR2(2000)
+              BASE  HINT_STYLE_CLASS                VARCHAR2(50)
+              BASE  HINT_STYLE                      VARCHAR2(2000)
+              BASE  DEFAULT_VALUE                   VARCHAR2(2000)
+              BASE  DEFAULT_TYPE                    VARCHAR2(30)
+              BASE  DISPLAY_WIDTH                   VARCHAR2(50)
+              BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+              BASE  READ_ONLY_FLAG                  VARCHAR2(1)
+            END BNE_LAYOUT_COLS
+          END BNE_LAYOUT_BLOCKS
+        END BNE_LAYOUTS
+
+          DEFINE BNE_DUPLICATE_PROFILES
+            KEY   DUP_PROFILE_ASN                 VARCHAR2(120)
+            KEY   DUP_PROFILE_CODE                VARCHAR2(30)
+            CTX   OWNER                           VARCHAR2(120)
+            BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+            TRANS USER_NAME                       VARCHAR2(240)
+            BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+
+            DEFINE BNE_DUP_INTERFACE_PROFILES
+              KEY   INTERFACE_ASN                   VARCHAR2(120)
+              KEY   INTERFACE_CODE                  VARCHAR2(30)
+              CTX   OWNER                           VARCHAR2(120)
+              BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+              BASE  DUP_HANDLING_CODE               VARCHAR2(30)
+              BASE  DEFAULT_RESOLVER_CLASSNAME      VARCHAR2(240)
+              BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+
+              DEFINE BNE_DUP_INTERFACE_COLS
+                KEY   INTERFACE_SEQ_NUM               VARCHAR2(50)
+                CTX   OWNER                           VARCHAR2(120)
+                BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+                BASE  RESOLVER_CLASSNAME              VARCHAR2(240)
+                BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+              END BNE_DUP_INTERFACE_COLS
+            END BNE_DUP_INTERFACE_PROFILES
+          END BNE_DUPLICATE_PROFILES
+
+            DEFINE BNE_IMPORT_PROGRAMS
+              KEY   SEQUENCE_NUM                    VARCHAR2(50)
+              CTX   OWNER                           VARCHAR2(120)
+              BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+              BASE  PARENT_SEQ_NUM                  VARCHAR2(50)
+              BASE  IMPORT_TYPE                     VARCHAR2(50)
+              BASE  IMPORT                          REFERENCES BNE_PARAM_LISTS
+              BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+
+              DEFINE BNE_IMPORT_PROGRAMS_LISTS
+                KEY   IMPORT_PARAM_LIST_ASN           VARCHAR2(120)
+                KEY   IMPORT_PARAM_LIST_CODE          VARCHAR2(30)
+              END BNE_IMPORT_PROGRAMS_LISTS
+            END BNE_IMPORT_PROGRAMS
+
+              DEFINE BNE_INTERFACES
+                KEY   INTERFACE_ASN                   VARCHAR2(120)
+                KEY   INTERFACE_CODE                  VARCHAR2(30)
+                CTX   OWNER                           VARCHAR2(120)
+                BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+                BASE  INTERFACE_NAME                  VARCHAR2(50)
+                BASE  UPLOAD_TYPE                     VARCHAR2(50)
+                BASE  UPLOAD_OBJ_NAME                 VARCHAR2(240)
+                BASE  UPLOAD_PARAMS                   REFERENCES BNE_PARAM_LISTS
+                BASE  UPLOAD_ORDER                    VARCHAR2(50)
+                TRANS USER_NAME                       VARCHAR2(240)
+                BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+
+                DEFINE BNE_INTERFACE_COLS
+                  KEY   SEQUENCE_NUM                    VARCHAR2(50)
+                  CTX   OWNER                           VARCHAR2(120)
+                  BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+                  BASE  INTERFACE_COL_TYPE              VARCHAR2(50)
+                  BASE  INTERFACE_COL_NAME              VARCHAR2(50)
+                  BASE  ENABLED_FLAG                    VARCHAR2(1)
+                  BASE  REQUIRED_FLAG                   VARCHAR2(1)
+                  BASE  DISPLAY_FLAG                    VARCHAR2(1)
+                  BASE  READ_ONLY_FLAG                  VARCHAR2(1)
+                  BASE  NOT_NULL_FLAG                   VARCHAR2(1)
+                  BASE  SUMMARY_FLAG                    VARCHAR2(1)
+                  BASE  MAPPING_ENABLED_FLAG            VARCHAR2(1)
+                  BASE  DATA_TYPE                       VARCHAR2(50)
+                  BASE  FIELD_SIZE                      VARCHAR2(50)
+                  BASE  DEFAULT_TYPE                    VARCHAR2(30)
+                  BASE  DEFAULT_VALUE                   VARCHAR2(200)
+                  BASE  SEGMENT_NUMBER                  VARCHAR2(50)
+                  BASE  GROUP_NAME                      VARCHAR2(30)
+                  BASE  OA_FLEX_CODE                    VARCHAR2(30)
+                  BASE  OA_CONCAT_FLEX                  VARCHAR2(30)
+                  BASE  VAL_TYPE                        VARCHAR2(20)
+                  BASE  VAL_ID_COL                      VARCHAR2(240)
+                  BASE  VAL_MEAN_COL                    VARCHAR2(240)
+                  BASE  VAL_DESC_COL                    VARCHAR2(240)
+                  BASE  VAL_OBJ_NAME                    VARCHAR2(240)
+                  BASE  VAL_ADDL_W_C                    VARCHAR2(2000)
+                  BASE  VAL_COMPONENT                   REFERENCES BNE_COMPONENTS
+                  BASE  OA_FLEX_NUM                     VARCHAR2(50)
+                  BASE  OA_FLEX_APPLICATION_ID          VARCHAR2(50)
+                  BASE  DISPLAY_ORDER                   VARCHAR2(50)
+                  BASE  UPLOAD_PARAM_LIST_ITEM_NUM      VARCHAR2(50)
+                  BASE  EXPANDED_SQL_QUERY              VARCHAR2(2000)
+                  TRANS USER_HINT                       VARCHAR2(2000)
+                  TRANS PROMPT_LEFT                     VARCHAR2(240)
+                  TRANS PROMPT_ABOVE                    VARCHAR2(240)
+                  TRANS USER_HELP_TEXT                  VARCHAR2(2000)
+                  BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+                  BASE  LOV_TYPE                        VARCHAR2(30)
+                  BASE  OFFLINE_LOV_ENABLED_FLAG        VARCHAR2(1)
+                  BASE  VARIABLE_DATA_TYPE_CLASS        VARCHAR2(240)
+                  BASE  VIEWER_GROUP                    VARCHAR2(30)
+                  BASE  EDIT_TYPE                       VARCHAR2(30)
+                  BASE  DISPLAY_WIDTH                   VARCHAR2(50)
+                  BASE  VAL_QUERY                       REFERENCES BNE_QUERIES
+                  BASE  EXPANDED_SQL                    REFERENCES BNE_QUERIES
+                END BNE_INTERFACE_COLS
+
+                  DEFINE BNE_INTERFACE_KEYS
+                    KEY   KEY_ASN                         VARCHAR2(120)
+                    KEY   KEY_CODE                        VARCHAR2(30)
+                    CTX   OWNER                           VARCHAR2(120)
+                    BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+                    BASE  KEY_TYPE                        VARCHAR2(30)
+                    BASE  KEY_CLASS                       VARCHAR2(240)
+                    BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+
+                    DEFINE BNE_INTERFACE_KEY_COLS
+                      KEY   SEQUENCE_NUM                    VARCHAR2(50)
+                      CTX   OWNER                           VARCHAR2(120)
+                      BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+                      BASE  INTERFACE_ASN                   VARCHAR2(120)
+                      BASE  INTERFACE_CODE                  VARCHAR2(30)
+                      BASE  INTERFACE_SEQ_NUM               VARCHAR2(50)
+                      BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+                    END BNE_INTERFACE_KEY_COLS
+                  END BNE_INTERFACE_KEYS
+              END BNE_INTERFACES
+
+                DEFINE BNE_INTEGRATOR_VIEWERS
+                  KEY   VIEWER_ASN                      VARCHAR2(120)
+                  KEY   VIEWER_CODE                     VARCHAR2(30)
+                  CTX   OWNER                           VARCHAR2(120)
+                  BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+                  BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+                END BNE_INTEGRATOR_VIEWERS
+
+                  DEFINE BNE_GRAPHS
+                    KEY   GRAPH_SEQ_NUM                   VARCHAR2(50)
+                    CTX   OWNER                           VARCHAR2(120)
+                    BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+                    BASE  LAYOUT_ASN                      VARCHAR2(120)
+                    BASE  LAYOUT_CODE                     VARCHAR2(30)
+                    BASE  GRAPH_DIMENSION_CODE            VARCHAR2(30)
+                    BASE  GRAPH_TYPE_CODE                 VARCHAR2(30)
+                    BASE  AUTO_GRAPH_FLAG                 VARCHAR2(1)
+                    TRANS CHART_TITLE                     VARCHAR2(240)
+                    TRANS X_AXIS_LABEL                    VARCHAR2(240)
+                    TRANS Y_AXIS_LABEL                    VARCHAR2(240)
+                    TRANS Z_AXIS_LABEL                    VARCHAR2(2000)
+                    BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+
+                    DEFINE BNE_GRAPH_COLUMNS
+                      KEY   GRAPH_COL_SEQ_NUM               VARCHAR2(50)
+                      CTX   OWNER                           VARCHAR2(120)
+                      BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+                      BASE  INTERFACE_ASN                   VARCHAR2(120)
+                      BASE  INTERFACE_CODE                  VARCHAR2(30)
+                      BASE  INTERFACE_SEQ_NUM               VARCHAR2(50)
+                      BASE  LOCATION_CODE                   VARCHAR2(30)
+                      BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+                    END BNE_GRAPH_COLUMNS
+                  END BNE_GRAPHS
+
+                    DEFINE BNE_INTEGRATOR_MENU_LISTS
+                      KEY   MENU_PARAM_LIST_ASN             VARCHAR2(120)
+                      KEY   MENU_PARAM_LIST_CODE            VARCHAR2(30)
+                    END BNE_INTEGRATOR_MENU_LISTS
+
+                      DEFINE BNE_INTEGRATOR_IMPORT_LISTS
+                        KEY   IMPORT_PARAM_LIST_ASN           VARCHAR2(120)
+                        KEY   IMPORT_PARAM_LIST_CODE          VARCHAR2(30)
+                      END BNE_INTEGRATOR_IMPORT_LISTS
+END BNE_INTEGRATORS
+
+DEFINE BNE_SECURED_OBJECTS
+  KEY   SECURED_OBJECT_ASN              VARCHAR2(120)
+  KEY   SECURED_OBJECT_CODE             VARCHAR2(30)
+  KEY   SECURED_OBJECT_TYPE             VARCHAR2(30)
+  BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+  BASE  RULE                            REFERENCES BNE_SECURITY_RULES
+  CTX   OWNER                           VARCHAR2(120)
+  BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+END BNE_SECURED_OBJECTS
+
+DEFINE BNE_QUERIES
+  KEY   QUERY_ASN                       VARCHAR2(120)
+  KEY   QUERY_CODE                      VARCHAR2(30)
+  CTX   OWNER                           VARCHAR2(120)
+  BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+  BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+  BASE  QUERY_CLASS                     VARCHAR2(240)
+  TRANS USER_NAME                       VARCHAR2(240)
+  BASE  CACHE                           REFERENCES BNE_CACHE_DIRECTIVES
+
+  DEFINE BNE_RAW_QUERY
+    KEY   SEQUENCE_NUM                    VARCHAR2(50)
+    CTX   OWNER                           VARCHAR2(120)
+    BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+    BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+    BASE  QUERY                           VARCHAR2(2000)
+  END BNE_RAW_QUERY
+
+    DEFINE BNE_SIMPLE_QUERY
+      CTX   OWNER                           VARCHAR2(120)
+      BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+      BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+      BASE  ID_COL                          VARCHAR2(2000)
+      BASE  ID_COL_ALIAS                    VARCHAR2(2000)
+      BASE  MEANING_COL                     VARCHAR2(2000)
+      BASE  MEANING_COL_ALIAS               VARCHAR2(2000)
+      BASE  DESCRIPTION_COL                 VARCHAR2(2000)
+      BASE  DESCRIPTION_COL_ALIAS           VARCHAR2(2000)
+      BASE  ADDITIONAL_COLS                 VARCHAR2(2000)
+      BASE  OBJECT_NAME                     VARCHAR2(2000)
+      BASE  ADDITIONAL_WHERE_CLAUSE         VARCHAR2(2000)
+      BASE  ORDER_BY_CLAUSE                 VARCHAR2(2000)
+    END BNE_SIMPLE_QUERY
+END BNE_QUERIES
+
+DEFINE BNE_PARAM_LISTS
+  KEY   PARAM_LIST_ASN                  VARCHAR2(120)
+  KEY   PARAM_LIST_CODE                 VARCHAR2(30)
+  CTX   OWNER                           VARCHAR2(120)
+  BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+  BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+  BASE  PERSISTENT_FLAG                 VARCHAR2(1)
+  BASE  COMMENTS                        VARCHAR2(240)
+  BASE  LIST                            REFERENCES BNE_ATTRIBUTES
+  BASE  LIST_RESOLVER                   VARCHAR2(240)
+  TRANS USER_TIP                        VARCHAR2(2000)
+  TRANS PROMPT_LEFT                     VARCHAR2(240)
+  TRANS PROMPT_ABOVE                    VARCHAR2(240)
+  TRANS USER_NAME                       VARCHAR2(240)
+
+  DEFINE BNE_PARAM_GROUPS
+    KEY   GROUP_SEQ_NUM                   VARCHAR2(50)
+    CTX   OWNER                           VARCHAR2(120)
+    BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+    BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+    BASE  GROUP_ITEM                      REFERENCES BNE_ATTRIBUTES
+    BASE  GROUP_RESOLVER                  VARCHAR2(240)
+    TRANS USER_NAME                       VARCHAR2(240)
+
+    DEFINE BNE_PARAM_GROUP_ITEMS
+      KEY   SEQUENCE_NUM                    VARCHAR2(50)
+      CTX   OWNER                           VARCHAR2(120)
+      BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+      BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+      BASE  PARAM_SEQ_NUM                   VARCHAR2(50)
+    END BNE_PARAM_GROUP_ITEMS
+  END BNE_PARAM_GROUPS
+
+    DEFINE BNE_PARAM_LIST_ITEMS
+      KEY   SEQUENCE_NUM                    VARCHAR2(50)
+      CTX   OWNER                           VARCHAR2(120)
+      BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+      BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+      BASE  DEFN                            REFERENCES BNE_PARAM_DEFNS
+      BASE  PARAM_NAME                      VARCHAR2(240)
+      BASE  LIST_ITEM                       REFERENCES BNE_ATTRIBUTES
+      BASE  STRING_VALUE                    VARCHAR2(2000)
+      BASE  DATE_VALUE                      VARCHAR2(19)
+      BASE  NUMBER_VALUE                    VARCHAR2(50)
+      BASE  BOOLEAN_VALUE_FLAG              VARCHAR2(1)
+      BASE  FORMULA_VALUE                   VARCHAR2(240)
+      BASE  DESC_VALUE                      VARCHAR2(240)
+    END BNE_PARAM_LIST_ITEMS
+END BNE_PARAM_LISTS
+
+DEFINE BNE_COMPONENTS
+  KEY   COMPONENT_ASN                   VARCHAR2(120)
+  KEY   COMPONENT_CODE                  VARCHAR2(30)
+  CTX   OWNER                           VARCHAR2(120)
+  BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+  BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+  BASE  COMPONENT_JAVA_CLASS            VARCHAR2(240)
+  BASE  PARAM                           REFERENCES BNE_PARAM_LISTS
+  TRANS USER_NAME                       VARCHAR2(240)
+END BNE_COMPONENTS
+
+DEFINE BNE_SECURITY_RULES
+  KEY   SECURITY_RULE_ASN               VARCHAR2(120)
+  KEY   SECURITY_RULE_CODE              VARCHAR2(30)
+  BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+  BASE  SECURITY_TYPE                   VARCHAR2(30)
+  BASE  SECURITY_VALUE                  VARCHAR2(2000)
+  CTX   OWNER                           VARCHAR2(120)
+  BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+END BNE_SECURITY_RULES
+
+DEFINE BNE_CACHE_DIRECTIVES
+  KEY   DIRECTIVE_ASN                   VARCHAR2(120)
+  KEY   DIRECTIVE_CODE                  VARCHAR2(30)
+  CTX   OWNER                           VARCHAR2(120)
+  BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+  BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+  BASE  MAX_SIZE                        VARCHAR2(50)
+  BASE  MAX_HITS                        VARCHAR2(50)
+  BASE  MAX_AGE                         VARCHAR2(240)
+  BASE  DISCRIMINATOR_TYPE              VARCHAR2(30)
+  BASE  DISCRIMINATOR_VALUE             VARCHAR2(2000)
+  TRANS USER_NAME                       VARCHAR2(240)
+END BNE_CACHE_DIRECTIVES
+
+DEFINE BNE_ATTRIBUTES
+  KEY   ATTRIBUTE_ASN                   VARCHAR2(120)
+  KEY   ATTRIBUTE_CODE                  VARCHAR2(30)
+  BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+  BASE  ATTRIBUTE1                      VARCHAR2(2000)
+  BASE  ATTRIBUTE2                      VARCHAR2(2000)
+  BASE  ATTRIBUTE3                      VARCHAR2(2000)
+  BASE  ATTRIBUTE4                      VARCHAR2(2000)
+  BASE  ATTRIBUTE5                      VARCHAR2(2000)
+  BASE  ATTRIBUTE6                      VARCHAR2(2000)
+  BASE  ATTRIBUTE7                      VARCHAR2(2000)
+  BASE  ATTRIBUTE8                      VARCHAR2(2000)
+  BASE  ATTRIBUTE9                      VARCHAR2(2000)
+  BASE  ATTRIBUTE10                     VARCHAR2(2000)
+  BASE  ATTRIBUTE11                     VARCHAR2(2000)
+  BASE  ATTRIBUTE12                     VARCHAR2(2000)
+  BASE  ATTRIBUTE13                     VARCHAR2(2000)
+  BASE  ATTRIBUTE14                     VARCHAR2(2000)
+  BASE  ATTRIBUTE15                     VARCHAR2(2000)
+  BASE  ATTRIBUTE16                     VARCHAR2(2000)
+  BASE  ATTRIBUTE17                     VARCHAR2(2000)
+  BASE  ATTRIBUTE18                     VARCHAR2(2000)
+  BASE  ATTRIBUTE19                     VARCHAR2(2000)
+  BASE  ATTRIBUTE20                     VARCHAR2(2000)
+  BASE  ATTRIBUTE21                     VARCHAR2(2000)
+  BASE  ATTRIBUTE22                     VARCHAR2(2000)
+  BASE  ATTRIBUTE23                     VARCHAR2(2000)
+  BASE  ATTRIBUTE24                     VARCHAR2(2000)
+  BASE  ATTRIBUTE25                     VARCHAR2(2000)
+  BASE  ATTRIBUTE26                     VARCHAR2(2000)
+  BASE  ATTRIBUTE27                     VARCHAR2(2000)
+  BASE  ATTRIBUTE28                     VARCHAR2(2000)
+  BASE  ATTRIBUTE29                     VARCHAR2(2000)
+  BASE  ATTRIBUTE30                     VARCHAR2(2000)
+  CTX   OWNER                           VARCHAR2(120)
+  BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+  BASE  ATTRIBUTE_NAME1                 VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME2                 VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME3                 VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME4                 VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME5                 VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME6                 VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME7                 VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME8                 VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME9                 VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME10                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME11                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME12                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME13                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME14                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME15                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME16                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME17                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME18                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME19                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME20                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME21                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME22                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME23                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME24                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME25                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME26                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME27                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME28                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME29                VARCHAR2(30)
+  BASE  ATTRIBUTE_NAME30                VARCHAR2(30)
+END BNE_ATTRIBUTES
+
+DEFINE BNE_PARAM_DEFNS
+  KEY   PARAM_DEFN_ASN                  VARCHAR2(120)
+  KEY   PARAM_DEFN_CODE                 VARCHAR2(30)
+  BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+  BASE  PARAM_NAME                      VARCHAR2(240)
+  BASE  PARAM_SOURCE                    VARCHAR2(240)
+  BASE  PARAM_CATEGORY                  VARCHAR2(50)
+  BASE  DATATYPE                        VARCHAR2(50)
+  BASE  DEFN                            REFERENCES BNE_ATTRIBUTES
+  BASE  PARAM_RESOLVER                  VARCHAR2(240)
+  BASE  DEFAULT_REQUIRED_FLAG           VARCHAR2(1)
+  BASE  DEFAULT_VISIBLE_FLAG            VARCHAR2(1)
+  BASE  DEFAULT_USER_MODIFYABLE_FLAG    VARCHAR2(1)
+  BASE  DEFAULT_STRING                  VARCHAR2(2000)
+  TRANS DEFAULT_STRING_TRANS            VARCHAR2(2000)
+  BASE  DEFAULT_STRING_TRANS_FLAG       VARCHAR2(1)
+  BASE  DEFAULT_DATE                    VARCHAR2(19)
+  BASE  DEFAULT_NUMBER                  VARCHAR2(50)
+  BASE  DEFAULT_BOOLEAN_FLAG            VARCHAR2(1)
+  BASE  DEFAULT_FORMULA                 VARCHAR2(240)
+  BASE  VAL_TYPE                        VARCHAR2(30)
+  BASE  VAL_VALUE                       VARCHAR2(30)
+  BASE  VAL_BNE_QUERY                   REFERENCES BNE_QUERIES
+  BASE  MAX_SIZE                        VARCHAR2(50)
+  BASE  DISPLAY_TYPE                    VARCHAR2(50)
+  BASE  DISPLAY_STYLE                   VARCHAR2(50)
+  BASE  DISPLAY_SIZE                    VARCHAR2(50)
+  BASE  HELP_URL                        VARCHAR2(240)
+  BASE  FORMAT_MASK                     VARCHAR2(240)
+  TRANS USER_NAME                       VARCHAR2(240)
+  TRANS DEFAULT_DESC                    VARCHAR2(240)
+  TRANS PROMPT_LEFT                     VARCHAR2(240)
+  TRANS PROMPT_ABOVE                    VARCHAR2(240)
+  TRANS USER_TIP                        VARCHAR2(2000)
+  TRANS ACCESS_KEY                      VARCHAR2(30)
+  CTX   OWNER                           VARCHAR2(120)
+  BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+  BASE  OA_FLEX_ASN                     VARCHAR2(120)
+  BASE  OA_FLEX_CODE                    VARCHAR2(30)
+  BASE  OA_FLEX_NUM                     VARCHAR2(2000)
+
+  DEFINE BNE_PARAM_DEFN_OVERRIDES
+    KEY   LVL                             VARCHAR2(50)
+    KEY   OVERRIDE_ID                     VARCHAR2(50)
+    BASE  OBJECT_VERSION_NUMBER           VARCHAR2(50)
+    BASE  REQUIRED_FLAG                   VARCHAR2(1)
+    BASE  VISIBLE_FLAG                    VARCHAR2(1)
+    BASE  USER_MODIFYABLE_FLAG            VARCHAR2(1)
+    BASE  DEFAULT_STRING                  VARCHAR2(2000)
+    BASE  DEFAULT_DATE                    VARCHAR2(19)
+    BASE  DEFAULT_NUMBER                  VARCHAR2(50)
+    BASE  DEFAULT_BOOLEAN_FLAG            VARCHAR2(1)
+    BASE  DEFAULT_FORMULA                 VARCHAR2(240)
+    BASE  DESC_VALUE                      VARCHAR2(240)
+    CTX   OWNER                           VARCHAR2(120)
+    BASE  LAST_UPDATE_DATE                VARCHAR2(10)
+  END BNE_PARAM_DEFN_OVERRIDES
+END BNE_PARAM_DEFNS
+
+# -- End Entity Definitions -- 
+
+
+BEGIN BNE_PARAM_DEFNS "XXATDAR" "ATDILVAN_UPL1"
+  OBJECT_VERSION_NUMBER = "2"
+  PARAM_NAME = "bne:rows"
+  PARAM_SOURCE = "DIF:Upload"
+  PARAM_CATEGORY = "1"
+  DATATYPE = "1"
+  DEFN = "" ""
+  DEFAULT_REQUIRED_FLAG = "Y"
+  DEFAULT_VISIBLE_FLAG = "Y"
+  DEFAULT_USER_MODIFYABLE_FLAG = "Y"
+  DEFAULT_STRING_TRANS = "Y"
+  DEFAULT_STRING_TRANS_FLAG = "Y"
+  VAL_TYPE = "3"
+  VAL_VALUE = "BNE_ROWS"
+  VAL_BNE_QUERY = "" ""
+  MAX_SIZE = "100"
+  DISPLAY_TYPE = "2"
+  DISPLAY_STYLE = "2"
+  DISPLAY_SIZE = "100"
+  USER_NAME = "bne:rows"
+  DEFAULT_DESC = "Flegged Rows"
+  PROMPT_LEFT = "Rows to Upload"
+  OWNER = "SKUCHIPUDI"
+  LAST_UPDATE_DATE = "2019/04/30"
+
+END BNE_PARAM_DEFNS
+
+BEGIN BNE_PARAM_DEFNS "XXATDAR" "ATDILVAN_UPL2"
+  OBJECT_VERSION_NUMBER = "2"
+  PARAM_NAME = "bne:validation"
+  PARAM_SOURCE = "DIF:Upload"
+  PARAM_CATEGORY = "1"
+  DATATYPE = "4"
+  DEFN = "" ""
+  DEFAULT_REQUIRED_FLAG = "N"
+  DEFAULT_VISIBLE_FLAG = "N"
+  DEFAULT_USER_MODIFYABLE_FLAG = "N"
+  DEFAULT_STRING_TRANS_FLAG = "N"
+  DEFAULT_BOOLEAN_FLAG = "Y"
+  VAL_TYPE = "1"
+  VAL_BNE_QUERY = "" ""
+  MAX_SIZE = "100"
+  DISPLAY_TYPE = "1"
+  DISPLAY_STYLE = "1"
+  DISPLAY_SIZE = "100"
+  USER_NAME = "bne:validation"
+  DEFAULT_DESC =
+ "Choose the type of validation to be used during the upload process"
+  PROMPT_LEFT = "Validate Before Upload"
+  PROMPT_ABOVE = "Validate Before Upload"
+  OWNER = "SKUCHIPUDI"
+  LAST_UPDATE_DATE = "2019/04/30"
+
+END BNE_PARAM_DEFNS
+
+BEGIN BNE_PARAM_DEFNS "XXATDAR" "ATDILVAN_UPL3"
+  OBJECT_VERSION_NUMBER = "2"
+  PARAM_NAME = "bne:import"
+  PARAM_SOURCE = "DIF:Upload"
+  PARAM_CATEGORY = "1"
+  DATATYPE = "4"
+  DEFN = "" ""
+  DEFAULT_REQUIRED_FLAG = "N"
+  DEFAULT_VISIBLE_FLAG = "N"
+  DEFAULT_USER_MODIFYABLE_FLAG = "N"
+  DEFAULT_STRING_TRANS_FLAG = "N"
+  VAL_TYPE = "1"
+  VAL_BNE_QUERY = "" ""
+  MAX_SIZE = "100"
+  DISPLAY_TYPE = "1"
+  DISPLAY_STYLE = "1"
+  DISPLAY_SIZE = "100"
+  USER_NAME = "bne:import"
+  PROMPT_LEFT = "Automatically Submit Import"
+  USER_TIP =
+ "Import will be automatically submitted on successful completion of the upload"
+  OWNER = "SKUCHIPUDI"
+  LAST_UPDATE_DATE = "2019/04/30"
+
+END BNE_PARAM_DEFNS
+
+BEGIN BNE_PARAM_DEFNS "XXATDAR" "ATDILVAN_UPL4"
+  OBJECT_VERSION_NUMBER = "4"
+  PARAM_NAME = "bne:commitrows"
+  PARAM_SOURCE = "DIF:Upload"
+  PARAM_CATEGORY = "6"
+  DATATYPE = "1"
+  DEFN = "" ""
+  DEFAULT_REQUIRED_FLAG = "Y"
+  DEFAULT_VISIBLE_FLAG = "N"
+  DEFAULT_USER_MODIFYABLE_FLAG = "Y"
+  DEFAULT_STRING_TRANS = "EACH_ROW"
+  DEFAULT_STRING_TRANS_FLAG = "Y"
+  VAL_TYPE = "3"
+  VAL_VALUE = "BNE_COMMITROWS"
+  VAL_BNE_QUERY = "" ""
+  MAX_SIZE = "100"
+  DISPLAY_TYPE = "2"
+  DISPLAY_STYLE = "2"
+  DISPLAY_SIZE = "100"
+  USER_NAME = "bne:commitrows"
+  DEFAULT_DESC = "EACH_ROW"
+  PROMPT_LEFT = "Commit Rows"
+  PROMPT_ABOVE = "Commit Rows"
+  OWNER = "RPOGULA"
+  LAST_UPDATE_DATE = "2019/04/30"
+
+END BNE_PARAM_DEFNS
+
+BEGIN BNE_PARAM_LISTS "XXATDAR" "ATDILVAN_UPL"
+  OWNER = "SKUCHIPUDI"
+  LAST_UPDATE_DATE = "2019/04/30"
+  OBJECT_VERSION_NUMBER = "1"
+  PERSISTENT_FLAG = "Y"
+  COMMENTS = "Upload Page"
+  LIST = "" ""
+  USER_NAME = "ATDI Load Location VAN - Uploader"
+
+  BEGIN BNE_PARAM_LIST_ITEMS "1"
+    OWNER = "SKUCHIPUDI"
+    LAST_UPDATE_DATE = "2019/04/30"
+    OBJECT_VERSION_NUMBER = "1"
+    DEFN = "XXATDAR" "ATDILVAN_UPL1"
+    PARAM_NAME = "bne:rows"
+    LIST_ITEM = "" ""
+  END BNE_PARAM_LIST_ITEMS
+  
+  BEGIN BNE_PARAM_LIST_ITEMS "2"
+    OWNER = "SKUCHIPUDI"
+    LAST_UPDATE_DATE = "2019/04/30"
+    OBJECT_VERSION_NUMBER = "1"
+    DEFN = "XXATDAR" "ATDILVAN_UPL2"
+    PARAM_NAME = "bne:validation"
+    LIST_ITEM = "" ""
+  END BNE_PARAM_LIST_ITEMS
+  
+  BEGIN BNE_PARAM_LIST_ITEMS "3"
+    OWNER = "SKUCHIPUDI"
+    LAST_UPDATE_DATE = "2019/04/30"
+    OBJECT_VERSION_NUMBER = "1"
+    DEFN = "XXATDAR" "ATDILVAN_UPL3"
+    PARAM_NAME = "bne:import"
+    LIST_ITEM = "" ""
+  END BNE_PARAM_LIST_ITEMS
+  
+  BEGIN BNE_PARAM_LIST_ITEMS "4"
+    OWNER = "RPOGULA"
+    LAST_UPDATE_DATE = "2019/04/30"
+    OBJECT_VERSION_NUMBER = "2"
+    DEFN = "XXATDAR" "ATDILVAN_UPL4"
+    PARAM_NAME = "bne:commitrows"
+    LIST_ITEM = "" ""
+  END BNE_PARAM_LIST_ITEMS
+  
+
+END BNE_PARAM_LISTS
+
+BEGIN BNE_ATTRIBUTES "XXATDAR" "ATDILVAN_XINTG_UPL1_A0"
+  OBJECT_VERSION_NUMBER = "1"
+  ATTRIBUTE1 = "FUNCTION"
+  ATTRIBUTE2 = "XXATDAR_LOAD_VENDOR_DATA_PKG.LOAD_DATA"
+  ATTRIBUTE3 = "VARCHAR2"
+  ATTRIBUTE4 = "Y"
+  ATTRIBUTE5 = "N"
+  OWNER = "SKUCHIPUDI"
+  LAST_UPDATE_DATE = "2019/04/30"
+END BNE_ATTRIBUTES
+
+BEGIN BNE_ATTRIBUTES "XXATDAR" "ATDILVAN_XINTG_UPL1_A1"
+  OBJECT_VERSION_NUMBER = "1"
+  ATTRIBUTE1 = "P_LOCATION"
+  ATTRIBUTE2 = "NUMBER"
+  ATTRIBUTE3 = "IN"
+  ATTRIBUTE4 = "N"
+  OWNER = "SKUCHIPUDI"
+  LAST_UPDATE_DATE = "2019/04/30"
+END BNE_ATTRIBUTES
+
+BEGIN BNE_ATTRIBUTES "XXATDAR" "ATDILVAN_XINTG_UPL1_A2"
+  OBJECT_VERSION_NUMBER = "1"
+  ATTRIBUTE1 = "P_PROG_NAME"
+  ATTRIBUTE2 = "VARCHAR2"
+  ATTRIBUTE3 = "IN"
+  ATTRIBUTE4 = "N"
+  ATTRIBUTE6 = "2000"
+  OWNER = "SKUCHIPUDI"
+  LAST_UPDATE_DATE = "2019/04/30"
+END BNE_ATTRIBUTES
+
+BEGIN BNE_ATTRIBUTES "XXATDAR" "ATDILVAN_XINTG_UPL1_A3"
+  OBJECT_VERSION_NUMBER = "1"
+  ATTRIBUTE1 = "P_PROG_START_DATE"
+  ATTRIBUTE2 = "VARCHAR2"
+  ATTRIBUTE3 = "IN"
+  ATTRIBUTE4 = "N"
+  ATTRIBUTE6 = "2000"
+  OWNER = "SKUCHIPUDI"
+  LAST_UPDATE_DATE = "2019/04/30"
+END BNE_ATTRIBUTES
+
+BEGIN BNE_ATTRIBUTES "XXATDAR" "ATDILVAN_XINTG_UPL1_A4"
+  OBJECT_VERSION_NUMBER = "1"
+  ATTRIBUTE1 = "P_PROG_END_DATE"
+  ATTRIBUTE2 = "VARCHAR2"
+  ATTRIBUTE3 = "IN"
+  ATTRIBUTE4 = "N"
+  ATTRIBUTE6 = "2000"
+  OWNER = "SKUCHIPUDI"
+  LAST_UPDATE_DATE = "2019/04/30"
+END BNE_ATTRIBUTES
+
+BEGIN BNE_ATTRIBUTES "XXATDAR" "ATDILVAN_XINTG_UPL1_A5"
+  OBJECT_VERSION_NUMBER = "1"
+  ATTRIBUTE1 = "P_VAN_NUM"
+  ATTRIBUTE2 = "VARCHAR2"
+  ATTRIBUTE3 = "IN"
+  ATTRIBUTE4 = "N"
+  ATTRIBUTE6 = "2000"
+  OWNER = "SKUCHIPUDI"
+  LAST_UPDATE_DATE = "2019/04/30"
+END BNE_ATTRIBUTES
+
+BEGIN BNE_PARAM_LISTS "XXATDAR" "ATDILVAN_XINTG_UPL1"
+  OWNER = "SKUCHIPUDI"
+  LAST_UPDATE_DATE = "2019/04/30"
+  OBJECT_VERSION_NUMBER = "1"
+  PERSISTENT_FLAG = "Y"
+  COMMENTS = "Parameter List for Interface ATDILVAN_XINTG_INTF1"
+  LIST = "XXATDAR" "ATDILVAN_XINTG_UPL1_A0"
+  USER_NAME = "Parameter List for Interface ATDILVAN_XINTG_INTF1"
+
+  BEGIN BNE_PARAM_LIST_ITEMS "1"
+    OWNER = "SKUCHIPUDI"
+    LAST_UPDATE_DATE = "2019/04/30"
+    OBJECT_VERSION_NUMBER = "1"
+    DEFN = "" ""
+    PARAM_NAME = "P_LOCATION"
+    LIST_ITEM = "XXATDAR" "ATDILVAN_XINTG_UPL1_A1"
+  END BNE_PARAM_LIST_ITEMS
+  
+  BEGIN BNE_PARAM_LIST_ITEMS "2"
+    OWNER = "SKUCHIPUDI"
+    LAST_UPDATE_DATE = "2019/04/30"
+    OBJECT_VERSION_NUMBER = "1"
+    DEFN = "" ""
+    PARAM_NAME = "P_PROG_NAME"
+    LIST_ITEM = "XXATDAR" "ATDILVAN_XINTG_UPL1_A2"
+  END BNE_PARAM_LIST_ITEMS
+  
+  BEGIN BNE_PARAM_LIST_ITEMS "3"
+    OWNER = "SKUCHIPUDI"
+    LAST_UPDATE_DATE = "2019/04/30"
+    OBJECT_VERSION_NUMBER = "1"
+    DEFN = "" ""
+    PARAM_NAME = "P_PROG_START_DATE"
+    LIST_ITEM = "XXATDAR" "ATDILVAN_XINTG_UPL1_A3"
+  END BNE_PARAM_LIST_ITEMS
+  
+  BEGIN BNE_PARAM_LIST_ITEMS "4"
+    OWNER = "SKUCHIPUDI"
+    LAST_UPDATE_DATE = "2019/04/30"
+    OBJECT_VERSION_NUMBER = "1"
+    DEFN = "" ""
+    PARAM_NAME = "P_PROG_END_DATE"
+    LIST_ITEM = "XXATDAR" "ATDILVAN_XINTG_UPL1_A4"
+  END BNE_PARAM_LIST_ITEMS
+  
+  BEGIN BNE_PARAM_LIST_ITEMS "5"
+    OWNER = "SKUCHIPUDI"
+    LAST_UPDATE_DATE = "2019/04/30"
+    OBJECT_VERSION_NUMBER = "1"
+    DEFN = "" ""
+    PARAM_NAME = "P_VAN_NUM"
+    LIST_ITEM = "XXATDAR" "ATDILVAN_XINTG_UPL1_A5"
+  END BNE_PARAM_LIST_ITEMS
+  
+
+END BNE_PARAM_LISTS
+
+BEGIN BNE_INTEGRATORS "XXATDAR" "ATDILVAN_XINTG"
+  OWNER = "SKUCHIPUDI"
+  OBJECT_VERSION_NUMBER = "2"
+  ENABLED_FLAG = "Y"
+  UPL = "XXATDAR" "ATDILVAN_UPL"
+  UPL_SERV = "" ""
+  IMPORT = "" ""
+  DATE_FORMAT = "yyyy-MM-dd"
+  USER_NAME = "ATDI Load Location VAN"
+  UPLOAD_HEADER = "Upload Parameters"
+  UPLOAD_TITLE_BAR = "Upload Page"
+  LAST_UPDATE_DATE = "2019/04/30"
+  CREATE_DOC = "" ""
+  SESSION = "" ""
+  SECURITY = "" "" ""
+  DISPLAY_FLAG = "Y"
+  SOURCE = "C"
+
+
+
+
+
+  BEGIN BNE_INTERFACES "XXATDAR" "ATDILVAN_XINTG_INTF1"
+    OWNER = "SKUCHIPUDI"
+    OBJECT_VERSION_NUMBER = "1"
+    INTERFACE_NAME = "LOAD_DATA"
+    UPLOAD_TYPE = "2"
+    UPLOAD_PARAMS = "XXATDAR" "ATDILVAN_XINTG_UPL1"
+    UPLOAD_ORDER = "1"
+    USER_NAME = "ATDI Load Location VAN"
+    LAST_UPDATE_DATE = "2019/04/30"
+  
+  
+    BEGIN BNE_INTERFACE_COLS "1"
+      OWNER = "SKUCHIPUDI"
+      OBJECT_VERSION_NUMBER = "2"
+      INTERFACE_COL_TYPE = "1"
+      INTERFACE_COL_NAME = "P_LOCATION"
+      ENABLED_FLAG = "Y"
+      REQUIRED_FLAG = "Y"
+      DISPLAY_FLAG = "Y"
+      READ_ONLY_FLAG = "N"
+      NOT_NULL_FLAG = "N"
+      SUMMARY_FLAG = "N"
+      MAPPING_ENABLED_FLAG = "Y"
+      DATA_TYPE = "1"
+      VAL_COMPONENT = "" ""
+      DISPLAY_ORDER = "1"
+      UPLOAD_PARAM_LIST_ITEM_NUM = "1"
+      PROMPT_LEFT = "Location Number"
+      PROMPT_ABOVE = "Location Number"
+      LAST_UPDATE_DATE = "2019/04/30"
+      VAL_QUERY = "" ""
+      EXPANDED_SQL = "" ""
+    END BNE_INTERFACE_COLS
+    
+    BEGIN BNE_INTERFACE_COLS "2"
+      OWNER = "SKUCHIPUDI"
+      OBJECT_VERSION_NUMBER = "2"
+      INTERFACE_COL_TYPE = "1"
+      INTERFACE_COL_NAME = "P_PROG_NAME"
+      ENABLED_FLAG = "Y"
+      REQUIRED_FLAG = "Y"
+      DISPLAY_FLAG = "Y"
+      READ_ONLY_FLAG = "N"
+      NOT_NULL_FLAG = "N"
+      SUMMARY_FLAG = "N"
+      MAPPING_ENABLED_FLAG = "Y"
+      DATA_TYPE = "2"
+      VAL_COMPONENT = "" ""
+      DISPLAY_ORDER = "2"
+      UPLOAD_PARAM_LIST_ITEM_NUM = "2"
+      PROMPT_LEFT = "Program Name"
+      PROMPT_ABOVE = "Program Name"
+      LAST_UPDATE_DATE = "2019/04/30"
+      VAL_QUERY = "" ""
+      EXPANDED_SQL = "" ""
+    END BNE_INTERFACE_COLS
+    
+    BEGIN BNE_INTERFACE_COLS "3"
+      OWNER = "SKUCHIPUDI"
+      OBJECT_VERSION_NUMBER = "2"
+      INTERFACE_COL_TYPE = "1"
+      INTERFACE_COL_NAME = "P_PROG_START_DATE"
+      ENABLED_FLAG = "Y"
+      REQUIRED_FLAG = "Y"
+      DISPLAY_FLAG = "Y"
+      READ_ONLY_FLAG = "N"
+      NOT_NULL_FLAG = "N"
+      SUMMARY_FLAG = "N"
+      MAPPING_ENABLED_FLAG = "Y"
+      DATA_TYPE = "2"
+      VAL_COMPONENT = "" ""
+      DISPLAY_ORDER = "3"
+      UPLOAD_PARAM_LIST_ITEM_NUM = "3"
+      PROMPT_LEFT = "Program Start Date"
+      PROMPT_ABOVE = "Program Start Date"
+      LAST_UPDATE_DATE = "2019/04/30"
+      VAL_QUERY = "" ""
+      EXPANDED_SQL = "" ""
+    END BNE_INTERFACE_COLS
+    
+    BEGIN BNE_INTERFACE_COLS "4"
+      OWNER = "SKUCHIPUDI"
+      OBJECT_VERSION_NUMBER = "2"
+      INTERFACE_COL_TYPE = "1"
+      INTERFACE_COL_NAME = "P_PROG_END_DATE"
+      ENABLED_FLAG = "Y"
+      REQUIRED_FLAG = "Y"
+      DISPLAY_FLAG = "Y"
+      READ_ONLY_FLAG = "N"
+      NOT_NULL_FLAG = "N"
+      SUMMARY_FLAG = "N"
+      MAPPING_ENABLED_FLAG = "Y"
+      DATA_TYPE = "2"
+      VAL_COMPONENT = "" ""
+      DISPLAY_ORDER = "4"
+      UPLOAD_PARAM_LIST_ITEM_NUM = "4"
+      PROMPT_LEFT = "Program End Date"
+      PROMPT_ABOVE = "Program End Date"
+      LAST_UPDATE_DATE = "2019/04/30"
+      VAL_QUERY = "" ""
+      EXPANDED_SQL = "" ""
+    END BNE_INTERFACE_COLS
+    
+    BEGIN BNE_INTERFACE_COLS "5"
+      OWNER = "SKUCHIPUDI"
+      OBJECT_VERSION_NUMBER = "2"
+      INTERFACE_COL_TYPE = "1"
+      INTERFACE_COL_NAME = "P_VAN_NUM"
+      ENABLED_FLAG = "Y"
+      REQUIRED_FLAG = "Y"
+      DISPLAY_FLAG = "Y"
+      READ_ONLY_FLAG = "N"
+      NOT_NULL_FLAG = "N"
+      SUMMARY_FLAG = "N"
+      MAPPING_ENABLED_FLAG = "Y"
+      DATA_TYPE = "2"
+      VAL_COMPONENT = "" ""
+      DISPLAY_ORDER = "5"
+      UPLOAD_PARAM_LIST_ITEM_NUM = "5"
+      PROMPT_LEFT = "VAN Number"
+      PROMPT_ABOVE = "VAN Number"
+      LAST_UPDATE_DATE = "2019/04/30"
+      VAL_QUERY = "" ""
+      EXPANDED_SQL = "" ""
+    END BNE_INTERFACE_COLS
+    
+  END BNE_INTERFACES
+  
+
+
+
+  BEGIN BNE_LAYOUTS "XXATDAR" "ATDILOADLOCATIONVAN"
+    OWNER = "SKUCHIPUDI"
+    OBJECT_VERSION_NUMBER = "3"
+    STYLESHEET_ASN = "BNE"
+    STYLESHEET_CODE = "DEFAULT"
+    STYLE = "protected:Y:BOOLEAN;"
+    STYLE_CLASS = "BNE_PAGE"
+    REPORTING_FLAG = "N"
+    USER_NAME = "ATDI Load Location VAN"
+    LAST_UPDATE_DATE = "2019/04/30"
+    CREATE_DOC = "" ""
+  
+    BEGIN BNE_LAYOUT_BLOCKS "1"
+      OWNER = "SKUCHIPUDI"
+      OBJECT_VERSION_NUMBER = "1"
+      LAYOUT_ELEMENT = "LINE"
+      STYLE_CLASS = "BNE_LINES"
+      ROW_STYLE_CLASS = "BNE_LINES_ROW"
+      PROMPT_DISPLAYED_FLAG = "Y"
+      PROMPT_STYLE_CLASS = "BNE_LINES_HEADER"
+      HINT_DISPLAYED_FLAG = "Y"
+      HINT_STYLE_CLASS = "BNE_LINES_HINT"
+      ORIENTATION = "VERTICAL"
+      LAYOUT_CONTROL = "TABLE_FLOW"
+      DISPLAY_FLAG = "Y"
+      BLOCKSIZE = "1000"
+      MINSIZE = "1"
+      MAXSIZE = "1"
+      SEQUENCE_NUM = "1"
+      PROMPT_COLSPAN = "2"
+      HINT_COLSPAN = "1"
+      ROW_COLSPAN = "2"
+      SUMMARY_STYLE_CLASS = "BNE_LINES_TOTAL"
+      USER_NAME = "Line"
+      LAST_UPDATE_DATE = "2019/04/30"
+      TITLE_STYLE_CLASS = "TITLE"
+    
+      BEGIN BNE_LAYOUT_COLS "10"
+        OWNER = "SKUCHIPUDI"
+        OBJECT_VERSION_NUMBER = "1"
+        INTERFACE_ASN = "XXATDAR"
+        INTERFACE_CODE = "ATDILVAN_XINTG_INTF1"
+        INTERFACE_SEQ_NUM = "1"
+        DISPLAY_WIDTH = "25"
+        LAST_UPDATE_DATE = "2019/04/30"
+        READ_ONLY_FLAG = "N"
+      END BNE_LAYOUT_COLS
+      
+      BEGIN BNE_LAYOUT_COLS "20"
+        OWNER = "SKUCHIPUDI"
+        OBJECT_VERSION_NUMBER = "1"
+        INTERFACE_ASN = "XXATDAR"
+        INTERFACE_CODE = "ATDILVAN_XINTG_INTF1"
+        INTERFACE_SEQ_NUM = "2"
+        DISPLAY_WIDTH = "25"
+        LAST_UPDATE_DATE = "2019/04/30"
+        READ_ONLY_FLAG = "N"
+      END BNE_LAYOUT_COLS
+      
+      BEGIN BNE_LAYOUT_COLS "30"
+        OWNER = "SKUCHIPUDI"
+        OBJECT_VERSION_NUMBER = "1"
+        INTERFACE_ASN = "XXATDAR"
+        INTERFACE_CODE = "ATDILVAN_XINTG_INTF1"
+        INTERFACE_SEQ_NUM = "3"
+        DISPLAY_WIDTH = "25"
+        LAST_UPDATE_DATE = "2019/04/30"
+        READ_ONLY_FLAG = "N"
+      END BNE_LAYOUT_COLS
+      
+      BEGIN BNE_LAYOUT_COLS "40"
+        OWNER = "SKUCHIPUDI"
+        OBJECT_VERSION_NUMBER = "1"
+        INTERFACE_ASN = "XXATDAR"
+        INTERFACE_CODE = "ATDILVAN_XINTG_INTF1"
+        INTERFACE_SEQ_NUM = "4"
+        DISPLAY_WIDTH = "25"
+        LAST_UPDATE_DATE = "2019/04/30"
+        READ_ONLY_FLAG = "N"
+      END BNE_LAYOUT_COLS
+      
+      BEGIN BNE_LAYOUT_COLS "50"
+        OWNER = "SKUCHIPUDI"
+        OBJECT_VERSION_NUMBER = "1"
+        INTERFACE_ASN = "XXATDAR"
+        INTERFACE_CODE = "ATDILVAN_XINTG_INTF1"
+        INTERFACE_SEQ_NUM = "5"
+        DISPLAY_WIDTH = "25"
+        LAST_UPDATE_DATE = "2019/04/30"
+        READ_ONLY_FLAG = "N"
+      END BNE_LAYOUT_COLS
+      
+    END BNE_LAYOUT_BLOCKS
+    
+  END BNE_LAYOUTS
+  
+
+  BEGIN BNE_CONTENTS "XXATDAR" "ATDILVAN_CNT1"
+    OBJECT_VERSION_NUMBER = "1"
+    OWNER = "SKUCHIPUDI"
+    CONTENT = "" ""
+    USER_NAME = "NONE"
+    LAST_UPDATE_DATE = "2019/04/30"
+  
+  
+  END BNE_CONTENTS
+  
+
+
+END BNE_INTEGRATORS
+

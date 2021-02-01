@@ -1,0 +1,6 @@
+CREATE TABLE XXDON_FD_TEST
+(
+  TEST_ID          NUMBER         NOT NULL,
+  TEST   		   VARCHAR2(100)
+)
+;

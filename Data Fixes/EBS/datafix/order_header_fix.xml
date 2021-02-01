@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFix xmlns="http://flexagon.com/database/datafix">
+    <Description>Fix total_price on order_header</Description>
+    <FixSQL>update XXHR.xxhr_order_header set order_total = 250 where order_id = 1;</FixSQL>
+    <BackupSQL>create table xxhr.xxhr_order_header_bkp as (select * from xxhr.xxhr_order_header)</BackupSQL>
+    <Validations>
+        <Validation>
+            <Description>Make sure order_header total_price is equal to the line_item total</Description>
+            <ValidationSQL>select case when o.order_total = l.line_item_total then 1 when o.order_total <> l.line_item_total then 0 end 
+			               as validation from
+                           (select order_id, order_total from xxhr.xxhr_order_header where order_id = 1) o, 
+                           (select order_id, sum(unit_price * quantity) as line_item_total 
+                           from XXHR.xxhr_order_items where order_id = 1 group by order_id) l
+                           where o.order_id = l.order_id</ValidationSQL>
+            <Environment>
+                <EnvironmentCode></EnvironmentCode>
+                <Before>
+                    <Equals>0</Equals>
+                </Before>
+                <After>
+                    <Equals>1</Equals>
+                </After>
+                <UpdateCount>
+                    <Equals>1</Equals>
+                </UpdateCount>
+            </Environment>
+            </Environment>
+        </Validation>
+    </Validations>
+</DataFix>

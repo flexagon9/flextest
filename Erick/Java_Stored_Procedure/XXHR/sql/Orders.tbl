@@ -1,0 +1,11 @@
+CREATE TABLE scott.Orders (
+PONo NUMBER(5),
+Custno NUMBER(3) REFERENCES scott.Customers,
+OrderDate DATE,
+ShipDate DATE,
+ToStreet VARCHAR2(20),
+ToCity VARCHAR2(20),
+ToState CHAR(2),
+ToZip VARCHAR2(10),
+PRIMARY KEY (PONo)
+);

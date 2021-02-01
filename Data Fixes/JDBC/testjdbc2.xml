@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFix xmlns="http://flexagon.com/database/datafix">
+    <Description>Update salary for programmers</Description>
+    <FixSQL>update hr.jobs set min_salary = min_salary * 10 where job_id='IT_PROG';
+update hr.jobs set max_salary = max_salary * 10 where job_id='IT_PROG';
+update hr.employees set salary = salary * 10 where JOB_ID='IT_PROG'; </FixSQL>
+    <BackupSQL>create table HR.jobs_${{FD_PROJECT_VERSION}} as (select * from HR.jobs)</BackupSQL>
+    <ConnectStringProperty></ConnectStringProperty>
+    <UserProperty>FDJDBC_USER</UserProperty>
+    <PasswordProperty></PasswordProperty>
+    <Validations>
+        <Validation> <!-- Can be one or more -->
+            <Description>Validate no programmers have salary less than min</Description>
+            <ValidationSQL>select * from hr.employees where job_id = 'IT_PROG' and salary &lt; (select min_salary from hr.jobs where job_id='IT_PROG')</ValidationSQL>
+            <Environment>
+                <EnvironmentCode>DEV</EnvironmentCode>
+                <After>
+                    <Equals>0</Equals>
+                </After>
+                <UpdateCount>
+                    <LessThan>10</LessThan>
+                    <GreaterThan>3</GreaterThan>
+                </UpdateCount>
+            </Environment>
+        </Validation>
+        <Validation> <!-- Can be one or more -->
+            <Description>Validate no programmers have salary more than max</Description>
+            <ValidationSQL>select * from hr.employees where job_id = 'IT_PROG' and salary &gt; (select max_salary from hr.jobs where job_id='IT_PROG')</ValidationSQL>
+            <Environment>
+                <EnvironmentCode>DEV</EnvironmentCode>
+                <After>
+                    <Equals>0</Equals>
+                </After>
+                <UpdateCount>
+                    <LessThan>10</LessThan>
+                    <GreaterThan>3</GreaterThan>
+                </UpdateCount>
+            </Environment>
+        </Validation>
+    </Validations>
+</DataFix>

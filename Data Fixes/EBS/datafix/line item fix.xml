@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFix xmlns="http://flexagon.com/database/datafix">
+    <Description>Fix line items for product ID 47809</Description>
+    <FixSQL>update XXHR.xxhr_order_items set unit_price = 100 where order_id = 1 and line_item_id = 2 and product_id = 47809;
+            update XXHR.xxhr_order_items set unit_price = 100 where order_id = 1 and line_item_id = 3 and product_id = 47809;</FixSQL>
+    <BackupSQL>create table xxhr.xxhr_order_items_bkp as (select * from xxhr.xxhr_order_items)</BackupSQL>
+    <ConnectStringProperty></ConnectStringProperty>
+    <UserProperty></UserProperty>
+    <PasswordProperty></PasswordProperty>
+    <Validations>
+        <Validation> <!-- Can be one or more --> 
+            <Description>Make sure two order_items are updated</Description>
+            <ValidationSQL></ValidationSQL>
+            <Environment>
+                <EnvironmentCode>DEFAULT</EnvironmentCode>
+                <UpdateCount>
+                    <Equals>2</Equals>
+                </UpdateCount>
+            </Environment>
+        </Validation>
+    </Validations>
+</DataFix>

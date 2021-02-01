@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig>
+   <AppModuleConfigBag>
+      <AppModuleConfig name="xxPersonAMLocal">
+         <AppModuleJndiName>xxt.oracle.apps.ak.xxperson.server.xxPersonAM</AppModuleJndiName>
+         <DeployPlatform>LOCAL</DeployPlatform>
+         <JDBCName>xx_dev02</JDBCName>
+         <ApplicationName>xxt.oracle.apps.ak.xxperson.server.xxPersonAM</ApplicationName>
+         <jbo.project>xxtoaf01</jbo.project>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <ConnectionDefinition name="xx_dev02">
+      <ENTRY name="JDBC_PORT" value="1543"/>
+      <ENTRY name="ConnectionType" value="JDBC"/>
+      <ENTRY name="HOSTNAME" value="ictdbs4.ad.ic.ac.uk"/>
+      <ENTRY name="user" value="apps"/>
+      <ENTRY name="ConnectionName" value="xx_dev02"/>
+      <ENTRY name="SID" value="ICPRJ02"/>
+      <ENTRY name="JdbcDriver" value="oracle.jdbc.driver.OracleDriver"/>
+      <ENTRY name="password">
+         <![CDATA[ch0ice]]>
+      </ENTRY>
+      <ENTRY name="ORACLE_JDBC_TYPE" value="thin"/>
+      <ENTRY name="DeployPassword" value="true"/>
+   </ConnectionDefinition>
+</BC4JConfig>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFix xmlns="http://flexagon.com/database/datafix">
+    <Description></Description>
+    <FixSQL>DECLARE
+   x NUMBER;
+BEGIN
+   update hr.jobs set max_salary = 6000 where job_id = 'PU_CLERK';
+   x := SQL%ROWCOUNT;
+END;</FixSQL>
+    <BackupSQL>create table HR.jobs_backup_${{FD_PROJECT_VERSION}} as (select * from HR.jobs) </BackupSQL>
+    <ConnectStringProperty></ConnectStringProperty>
+    <UserProperty></UserProperty>
+    <PasswordProperty></PasswordProperty>
+    <Validations>
+        <Validation> <!-- Can be one or more -->
+            <Description>Validate row count</Description>
+            <ValidationSQL>select count(*) from hr.jobs j where j.job_id = 'PU_CLERK'
+                   and j.max_salary = 6000</ValidationSQL>
+            <Environment>
+                <EnvironmentCode>Dev</EnvironmentCode>
+                <Before>
+                    <Equals>0</Equals>
+                </Before>
+                <After>
+                    <Equals>1</Equals>
+                </After>
+            </Environment>
+            <Environment>
+                <EnvironmentCode>QA</EnvironmentCode>
+                <Before>
+                    <Equals>0</Equals>
+                </Before>
+                <After>
+                    <Equals>1</Equals>
+                </After>
+            </Environment>
+        </Validation>
+    </Validations>
+</DataFix>
