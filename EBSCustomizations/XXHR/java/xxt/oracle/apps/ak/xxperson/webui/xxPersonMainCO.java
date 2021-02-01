@@ -22,8 +22,8 @@ import java.io.Serializable;
 public class xxPersonMainCO extends OAControllerImpl
 {
   public static final String RCS_ID="$Header$";
-  public static final boolean RCS_ID_RECORDED =
-        VersionInfo.recordClassVersion(RCS_ID, "%packagename%");
+  
+  public static final boolean RCS_ID_RECORDED = VersionInfo.recordClassVersion(RCS_ID, "%packagename%");
 
   /**
    * Layout and page setup logic for a region.
