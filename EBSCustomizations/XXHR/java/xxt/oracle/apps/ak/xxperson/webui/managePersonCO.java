@@ -33,8 +33,10 @@ public class managePersonCO extends OAControllerImpl
   {
     super.processRequest(pageContext, webBean);
     String paramPersonAction=pageContext.getParameter("xxParamActionOnPerson");
+	
     String paramPersonId=pageContext.getParameter("xxParamPersonId");
     OAApplicationModule personam = pageContext.getApplicationModule(webBean);
+	
     Serializable personParamList[]= {paramPersonAction,paramPersonId};
 
     if ( paramPersonAction!=null && paramPersonAction.equals("createPerson"))
