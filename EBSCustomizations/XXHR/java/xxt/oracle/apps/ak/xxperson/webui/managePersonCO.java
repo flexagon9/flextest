@@ -62,11 +62,11 @@ public class managePersonCO extends OAControllerImpl
   {
     super.processFormRequest(pageContext, webBean);
 
+	
     OAApplicationModule personam = pageContext.getApplicationModule(webBean);
 
     if ( pageContext.getParameter("savePerson") != null )
     {
-
       personam.invokeMethod("savePersonToDatabase") ;
 
       pageContext.setForwardURL(
