@@ -1,0 +1,205 @@
+prompt --application/shared_components/navigation/breadcrumbs/breadcrumb
+begin
+wwv_flow_api.create_menu(
+ p_id=>wwv_flow_api.id(44535708008096353023)
+,p_name=>' Breadcrumb'
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(711744894801686696)
+,p_short_name=>'Administration'
+,p_link=>'f?p=&APP_ID.:24:&SESSION.'
+,p_page_id=>24
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(727181094247478799)
+,p_parent_id=>wwv_flow_api.id(711744894801686696)
+,p_short_name=>'Preferences'
+,p_link=>'f?p=&APP_ID.:25:&SESSION.'
+,p_page_id=>25
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(727189641575486952)
+,p_parent_id=>wwv_flow_api.id(711744894801686696)
+,p_short_name=>'Manage Sample Data'
+,p_link=>'f?p=&APP_ID.:26:&SESSION.'
+,p_page_id=>26
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(727198142462493086)
+,p_parent_id=>wwv_flow_api.id(711744894801686696)
+,p_short_name=>'Application Theme Style'
+,p_link=>'f?p=&APP_ID.:27:&SESSION.'
+,p_page_id=>27
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(730643336684884976)
+,p_parent_id=>wwv_flow_api.id(711744894801686696)
+,p_short_name=>'Activity Calendar'
+,p_link=>'f?p=&APP_ID.:28:&SESSION.'
+,p_page_id=>28
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(730677178879951986)
+,p_parent_id=>wwv_flow_api.id(711744894801686696)
+,p_short_name=>'Page Views'
+,p_link=>'f?p=&APP_ID.:29:&SESSION.::&DEBUG.:::'
+,p_page_id=>29
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(730677336931953475)
+,p_parent_id=>wwv_flow_api.id(711744894801686696)
+,p_short_name=>'Top Users'
+,p_link=>'f?p=&APP_ID.:30:&SESSION.::&DEBUG.:::'
+,p_page_id=>30
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(792891715630334548)
+,p_parent_id=>wwv_flow_api.id(44535728127113353561)
+,p_short_name=>'&P31_TASK_NAME.'
+,p_link=>'f?p=&APP_ID.:31:&SESSION.::&DEBUG.:::'
+,p_page_id=>31
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(1082175792667852665)
+,p_parent_id=>0
+,p_short_name=>'To Dos'
+,p_link=>'f?p=&APP_ID.:14:&SESSION.::&DEBUG.:::'
+,p_page_id=>14
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(1082176956514852671)
+,p_parent_id=>wwv_flow_api.id(1082175792667852665)
+,p_short_name=>'Maintain To Do'
+,p_link=>'f?p=&APP_ID.:15:&SESSION.::&DEBUG.:::'
+,p_page_id=>15
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(1082628390927391808)
+,p_parent_id=>wwv_flow_api.id(1082636820799724740)
+,p_short_name=>'Gantt Chart'
+,p_link=>'f?p=&APP_ID.:17:&SESSION.::&DEBUG.:::'
+,p_page_id=>17
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(1082636820799724740)
+,p_parent_id=>0
+,p_short_name=>'Reports'
+,p_link=>'f?p=&APP_ID.:16:&SESSION.::&DEBUG.:::'
+,p_page_id=>16
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(1082673264046599904)
+,p_parent_id=>wwv_flow_api.id(1082636820799724740)
+,p_short_name=>'Tasks Review'
+,p_link=>'f?p=&APP_ID.:19:&SESSION.::&DEBUG.:::'
+,p_page_id=>19
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(1082677620526606301)
+,p_parent_id=>wwv_flow_api.id(1082636820799724740)
+,p_short_name=>'Project Tree'
+,p_link=>'f?p=&APP_ID.:18:&SESSION.'
+,p_page_id=>18
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(1082900765170843205)
+,p_parent_id=>wwv_flow_api.id(1082636820799724740)
+,p_short_name=>'Milestones Review'
+,p_link=>'f?p=&APP_ID.:20:&SESSION.'
+,p_page_id=>20
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(1082910259640885720)
+,p_parent_id=>wwv_flow_api.id(1082636820799724740)
+,p_short_name=>'Team Members Review'
+,p_link=>'f?p=&APP_ID.:21:&SESSION.'
+,p_page_id=>21
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(1082952930670355572)
+,p_short_name=>'Links'
+,p_link=>'f?p=&APP_ID.:22:&SESSION.'
+,p_page_id=>22
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(1082954096096355575)
+,p_parent_id=>wwv_flow_api.id(1082952930670355572)
+,p_short_name=>'Maintain Link'
+,p_link=>'f?p=&APP_ID.:23:&SESSION.'
+,p_page_id=>23
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26881733195893453972)
+,p_parent_id=>wwv_flow_api.id(44535717110330353302)
+,p_short_name=>'&P11_PROJECT_NAME.'
+,p_link=>'f?p=&APP_ID.:11:&SESSION.::&DEBUG.:::'
+,p_page_id=>11
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(28311721571387064288)
+,p_short_name=>'Comments'
+,p_link=>'f?p=&APP_ID.:12:&SESSION.'
+,p_page_id=>12
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(28311722754914064290)
+,p_parent_id=>wwv_flow_api.id(28311721571387064288)
+,p_short_name=>'Add Comment'
+,p_link=>'f?p=&APP_ID.:13:&SESSION.'
+,p_page_id=>13
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(44535708390159353030)
+,p_parent_id=>0
+,p_short_name=>'Home'
+,p_link=>'f?p=&APP_ID.:1:&APP_SESSION.::&DEBUG.'
+,p_page_id=>1
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(44538504493246414204)
+,p_short_name=>'Calendar'
+,p_link=>'f?p=&APP_ID.:10:&SESSION.'
+,p_page_id=>10
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(44535710655580353164)
+,p_parent_id=>0
+,p_option_sequence=>20
+,p_short_name=>'Team Members'
+,p_link=>'f?p=&APP_ID.:2:&SESSION.::&DEBUG.:::'
+,p_page_id=>2
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(44535717110330353302)
+,p_parent_id=>0
+,p_option_sequence=>30
+,p_short_name=>'Projects'
+,p_link=>'f?p=&APP_ID.:4:&SESSION.::&DEBUG.:::'
+,p_page_id=>4
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(44535722532000353437)
+,p_parent_id=>0
+,p_option_sequence=>40
+,p_short_name=>'Milestones'
+,p_link=>'f?p=&APP_ID.:6:&SESSION.::&DEBUG.:::'
+,p_page_id=>6
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(44535728127113353561)
+,p_parent_id=>0
+,p_option_sequence=>50
+,p_short_name=>'Tasks'
+,p_link=>'f?p=&APP_ID.:8:&SESSION.::&DEBUG.:::'
+,p_page_id=>8
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(44535731952124353702)
+,p_parent_id=>wwv_flow_api.id(44535728127113353561)
+,p_option_sequence=>60
+,p_short_name=>'Maintain Task'
+,p_link=>'f?p=&APP_ID.:9:&SESSION.::&DEBUG.:::'
+,p_page_id=>9
+);
+end;
+/

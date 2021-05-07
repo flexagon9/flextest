@@ -1,0 +1,47 @@
+prompt --application/shared_components/navigation/navigation_bar
+begin
+wwv_flow_api.create_icon_bar_item(
+ p_id=>wwv_flow_api.id(1232796784337365690)
+,p_icon_sequence=>10
+,p_icon_subtext=>'Preferences'
+,p_icon_target=>'f?p=&APP_ID.:43:&SESSION.::&DEBUG.::::'
+,p_nav_entry_is_feedback_yn=>'N'
+,p_begins_on_new_line=>'NO'
+,p_cell_colspan=>1
+);
+wwv_flow_api.create_icon_bar_item(
+ p_id=>wwv_flow_api.id(1232806432835372092)
+,p_icon_sequence=>20
+,p_icon_subtext=>'Mobile'
+,p_icon_target=>'f?p=&APP_ID.:HOME_JQM_SMARTPHONE:&SESSION.::&DEBUG.:::'
+,p_nav_entry_is_feedback_yn=>'N'
+,p_begins_on_new_line=>'NO'
+,p_cell_colspan=>1
+);
+wwv_flow_api.create_icon_bar_item(
+ p_id=>wwv_flow_api.id(1232806652783374067)
+,p_icon_sequence=>30
+,p_icon_subtext=>'Help'
+,p_icon_target=>'f?p=&APP_ID.:help:&SESSION.::&DEBUG.:::'
+,p_nav_entry_is_feedback_yn=>'N'
+,p_begins_on_new_line=>'NO'
+,p_cell_colspan=>1
+);
+wwv_flow_api.create_icon_bar_item(
+ p_id=>wwv_flow_api.id(9940656202158052768)
+,p_icon_sequence=>40
+,p_icon_subtext=>'Logout'
+,p_icon_target=>'&LOGOUT_URL.'
+,p_icon_image_alt=>'Logout'
+,p_icon_height=>32
+,p_icon_width=>32
+,p_icon_height2=>24
+,p_icon_width2=>24
+,p_nav_entry_is_feedback_yn=>'N'
+,p_icon_bar_disp_cond=>'27'
+,p_icon_bar_disp_cond_type=>'CURRENT_PAGE_NOT_IN_CONDITION'
+,p_begins_on_new_line=>'NO'
+,p_cell_colspan=>1
+);
+end;
+/

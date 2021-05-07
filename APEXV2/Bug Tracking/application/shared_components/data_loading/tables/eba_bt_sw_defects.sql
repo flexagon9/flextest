@@ -1,0 +1,125 @@
+prompt --application/shared_components/data_loading/tables/eba_bt_sw_defects
+begin
+wwv_flow_api.create_load_table(
+ p_id=>wwv_flow_api.id(4393975136756521238)
+,p_name=>'Upload Bugs'
+,p_owner=>'#OWNER#'
+,p_table_name=>'EBA_BT_SW_DEFECTS'
+,p_unique_column_1=>'BUG_NUMBER'
+,p_is_uk1_case_sensitive=>'N'
+,p_is_uk2_case_sensitive=>'N'
+,p_is_uk3_case_sensitive=>'N'
+,p_skip_validation=>'N'
+);
+wwv_flow_api.create_load_table_lookup(
+ p_id=>wwv_flow_api.id(4393975449664521248)
+,p_load_table_id=>wwv_flow_api.id(4393975136756521238)
+,p_load_column_name=>'ASSIGNED_TO_ID'
+,p_lookup_owner=>'#OWNER#'
+,p_lookup_table_name=>'EBA_BT_USERS'
+,p_key_column=>'ID'
+,p_display_column=>'USERNAME'
+,p_insert_new_value=>'N'
+);
+wwv_flow_api.create_load_table_lookup(
+ p_id=>wwv_flow_api.id(4393977253256521250)
+,p_load_table_id=>wwv_flow_api.id(4393975136756521238)
+,p_load_column_name=>'FIX_BY_VERSION_ID'
+,p_lookup_owner=>'#OWNER#'
+,p_lookup_table_name=>'EBA_BT_VERSION'
+,p_key_column=>'ID'
+,p_display_column=>'VERSION_NAME'
+,p_insert_new_value=>'N'
+);
+wwv_flow_api.create_load_table_lookup(
+ p_id=>wwv_flow_api.id(4393977059337521249)
+,p_load_table_id=>wwv_flow_api.id(4393975136756521238)
+,p_load_column_name=>'FIXED_VERSION_ID'
+,p_lookup_owner=>'#OWNER#'
+,p_lookup_table_name=>'EBA_BT_VERSION'
+,p_key_column=>'ID'
+,p_display_column=>'VERSION_NAME'
+,p_insert_new_value=>'N'
+);
+wwv_flow_api.create_load_table_lookup(
+ p_id=>wwv_flow_api.id(4393976836043521249)
+,p_load_table_id=>wwv_flow_api.id(4393975136756521238)
+,p_load_column_name=>'ASSIGNED_TO_GROUP_ID'
+,p_lookup_owner=>'#OWNER#'
+,p_lookup_table_name=>'EBA_BT_USER_GROUP'
+,p_key_column=>'ID'
+,p_display_column=>'GROUP_ID'
+,p_insert_new_value=>'N'
+);
+wwv_flow_api.create_load_table_lookup(
+ p_id=>wwv_flow_api.id(4393976644688521249)
+,p_load_table_id=>wwv_flow_api.id(4393975136756521238)
+,p_load_column_name=>'URGENCY_ID'
+,p_lookup_owner=>'#OWNER#'
+,p_lookup_table_name=>'EBA_BT_URGENCY'
+,p_key_column=>'ID'
+,p_display_column=>'URGENCY_NAME'
+,p_insert_new_value=>'N'
+);
+wwv_flow_api.create_load_table_lookup(
+ p_id=>wwv_flow_api.id(4393976441217521249)
+,p_load_table_id=>wwv_flow_api.id(4393975136756521238)
+,p_load_column_name=>'SEVERITY_ID'
+,p_lookup_owner=>'#OWNER#'
+,p_lookup_table_name=>'EBA_BT_SEVERITY'
+,p_key_column=>'ID'
+,p_display_column=>'SEVERITY_NAME'
+,p_insert_new_value=>'N'
+);
+wwv_flow_api.create_load_table_lookup(
+ p_id=>wwv_flow_api.id(4393976240568521248)
+,p_load_table_id=>wwv_flow_api.id(4393975136756521238)
+,p_load_column_name=>'STATUS_ID'
+,p_lookup_owner=>'#OWNER#'
+,p_lookup_table_name=>'EBA_BT_STATUS'
+,p_key_column=>'ID'
+,p_display_column=>'STATUS_NAME'
+,p_insert_new_value=>'N'
+);
+wwv_flow_api.create_load_table_lookup(
+ p_id=>wwv_flow_api.id(4393976030883521248)
+,p_load_table_id=>wwv_flow_api.id(4393975136756521238)
+,p_load_column_name=>'FOUND_VERSION_ID'
+,p_lookup_owner=>'#OWNER#'
+,p_lookup_table_name=>'EBA_BT_VERSION'
+,p_key_column=>'ID'
+,p_display_column=>'VERSION_NAME'
+,p_insert_new_value=>'N'
+);
+wwv_flow_api.create_load_table_lookup(
+ p_id=>wwv_flow_api.id(4393975841240521248)
+,p_load_table_id=>wwv_flow_api.id(4393975136756521238)
+,p_load_column_name=>'PRODUCT_ID'
+,p_lookup_owner=>'#OWNER#'
+,p_lookup_table_name=>'EBA_BT_PRODUCT'
+,p_key_column=>'ID'
+,p_display_column=>'PRODUCT_NAME'
+,p_insert_new_value=>'N'
+);
+wwv_flow_api.create_load_table_lookup(
+ p_id=>wwv_flow_api.id(4393975630345521248)
+,p_load_table_id=>wwv_flow_api.id(4393975136756521238)
+,p_load_column_name=>'CATEGORY_ID'
+,p_lookup_owner=>'#OWNER#'
+,p_lookup_table_name=>'EBA_BT_CATEGORY'
+,p_key_column=>'ID'
+,p_display_column=>'CATEGORY_NAME'
+,p_insert_new_value=>'N'
+);
+wwv_flow_api.create_load_table_lookup(
+ p_id=>wwv_flow_api.id(4393975259678521248)
+,p_load_table_id=>wwv_flow_api.id(4393975136756521238)
+,p_load_column_name=>'SUBMITTED_BY_ID'
+,p_lookup_owner=>'#OWNER#'
+,p_lookup_table_name=>'EBA_BT_USERS'
+,p_key_column=>'ID'
+,p_display_column=>'USERNAME'
+,p_insert_new_value=>'N'
+);
+end;
+/

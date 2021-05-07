@@ -1,0 +1,87 @@
+prompt --application/shared_components/navigation/lists/navigation_bar
+begin
+wwv_flow_api.create_list(
+ p_id=>wwv_flow_api.id(1435893168402075839)
+,p_name=>'Navigation Bar'
+,p_list_status=>'PUBLIC'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(1472095656704645590)
+,p_list_item_display_sequence=>10
+,p_list_item_link_text=>'Search'
+,p_list_item_link_target=>'f?p=&APP_ID.:96:&SESSION.::&DEBUG.:96:::'
+,p_list_item_icon=>'fa-search'
+,p_list_text_02=>'icon-only'
+,p_list_item_current_type=>'NEVER'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(1435893966868075841)
+,p_list_item_display_sequence=>20
+,p_list_item_link_text=>'Help'
+,p_list_item_link_target=>'f?p=&APP_ID.:1001:&SESSION.::&DEBUG.:1001:P1001_PAGE_ID:&APP_PAGE_ID.:'
+,p_list_item_icon=>'fa-question-circle-o'
+,p_list_item_disp_cond_type=>'CURRENT_PAGE_NOT_IN_CONDITION'
+,p_list_item_disp_condition=>'1000'
+,p_list_item_current_type=>'TARGET_PAGE'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(1435897962478117664)
+,p_list_item_display_sequence=>30
+,p_list_item_link_text=>'&APP_USER.'
+,p_list_item_link_target=>'#'
+,p_list_item_icon=>'fa-user'
+,p_list_text_02=>'has-username'
+,p_list_item_current_type=>'TARGET_PAGE'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(982467658003968332)
+,p_list_item_display_sequence=>50
+,p_list_item_link_text=>'My Dashboard'
+,p_list_item_link_target=>'f?p=&APP_ID.:37:&SESSION.::&DEBUG.:37:P37_ID:&CURRENT_USER_ID.:'
+,p_list_item_icon=>'fa-dashboard'
+,p_list_item_disp_cond_type=>'CURRENT_PAGE_NOT_IN_CONDITION'
+,p_list_item_disp_condition=>'1000'
+,p_parent_list_item_id=>wwv_flow_api.id(1435897962478117664)
+,p_list_item_current_type=>'TARGET_PAGE'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(1435893386119075840)
+,p_list_item_display_sequence=>60
+,p_list_item_link_text=>'Preferences'
+,p_list_item_link_target=>'f?p=&APP_ID.:43:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-heart-o'
+,p_list_item_disp_cond_type=>'CURRENT_PAGE_NOT_IN_CONDITION'
+,p_list_item_disp_condition=>'1000'
+,p_parent_list_item_id=>wwv_flow_api.id(1435897962478117664)
+,p_list_item_current_type=>'TARGET_PAGE'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(1018183450653368655)
+,p_list_item_display_sequence=>70
+,p_list_item_link_text=>'Customize Appearance'
+,p_list_item_link_target=>'#CUSTOMIZE_URL#'
+,p_list_item_icon=>'fa-wrench'
+,p_list_item_disp_cond_type=>'PLSQL_EXPRESSION'
+,p_list_item_disp_condition=>'''#CUSTOMIZE_URL#'' is not null'
+,p_parent_list_item_id=>wwv_flow_api.id(1435897962478117664)
+,p_list_item_current_type=>'TARGET_PAGE'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(1018185781513379673)
+,p_list_item_display_sequence=>75
+,p_list_item_link_text=>'---'
+,p_list_item_link_target=>'separator'
+,p_parent_list_item_id=>wwv_flow_api.id(1435897962478117664)
+,p_list_item_current_type=>'TARGET_PAGE'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(1435894230439075841)
+,p_list_item_display_sequence=>80
+,p_list_item_link_text=>'Sign Out'
+,p_list_item_link_target=>'&LOGOUT_URL.'
+,p_list_item_icon=>'fa-sign-out'
+,p_parent_list_item_id=>wwv_flow_api.id(1435897962478117664)
+,p_list_item_current_type=>'TARGET_PAGE'
+);
+end;
+/

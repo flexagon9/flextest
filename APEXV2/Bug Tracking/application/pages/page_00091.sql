@@ -1,0 +1,136 @@
+prompt --application/pages/page_00091
+begin
+wwv_flow_api.create_page(
+ p_id=>91
+,p_user_interface_id=>wwv_flow_api.id(2333082129878819730)
+,p_name=>'Add Update'
+,p_page_mode=>'MODAL'
+,p_step_title=>'Add Update'
+,p_autocomplete_on_off=>'OFF'
+,p_group_id=>wwv_flow_api.id(2506141455855818868)
+,p_page_template_options=>'#DEFAULT#'
+,p_last_upd_yyyymmddhh24miss=>'20180208112230'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(991172996171751869)
+,p_plug_name=>'Buttons'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(1225684792970288320)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(5251140740603344020)
+,p_plug_name=>'Add an Update'
+,p_region_name=>'add_comment'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(1225683798473288318)
+,p_plug_display_sequence=>10
+,p_plug_display_point=>'BODY'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+,p_attribute_03=>'N'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(1085096214733899794)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(991172996171751869)
+,p_button_name=>'ADD_NOTE'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--gapLeft'
+,p_button_template_id=>wwv_flow_api.id(1225705764797288347)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Add Update'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_warn_on_unsaved_changes=>null
+,p_grid_new_grid=>false
+,p_security_scheme=>wwv_flow_api.id(3797424040496072790)
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(1085095826256899792)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(991172996171751869)
+,p_button_name=>'CANCEL'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(1225705764797288347)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_EDIT'
+,p_warn_on_unsaved_changes=>null
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(1085096583807899798)
+,p_name=>'P91_NOTE'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(5251140740603344020)
+,p_prompt=>'Note'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>64
+,p_cMaxlength=>32767
+,p_cHeight=>9
+,p_grid_label_column_span=>0
+,p_field_template=>wwv_flow_api.id(1225704767981288342)
+,p_item_template_options=>'#DEFAULT#:t-Form-fieldContainer--stretchInputs'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(1096894236816874261)
+,p_name=>'P91_ID'
+,p_item_sequence=>70
+,p_item_plug_id=>wwv_flow_api.id(5251140740603344020)
+,p_display_as=>'NATIVE_HIDDEN'
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(991173037729751870)
+,p_name=>'Cancel Dialog'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(1085095826256899792)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(991173214590751871)
+,p_event_id=>wwv_flow_api.id(991173037729751870)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CANCEL'
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(1096893727394867924)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'add note'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'insert into EBA_BT_NOTES (bug_id, note) values (:P91_ID, :P91_NOTE);',
+'commit;',
+':P91_NOTE := null;'))
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(1085096214733899794)
+,p_process_success_message=>'Note Added.'
+,p_security_scheme=>wwv_flow_api.id(3797424040496072790)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(1096896415737896329)
+,p_process_sequence=>20
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_CLOSE_WINDOW'
+,p_process_name=>'Close Dialog'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+end;
+/

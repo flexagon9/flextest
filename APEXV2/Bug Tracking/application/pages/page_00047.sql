@@ -1,0 +1,164 @@
+prompt --application/pages/page_00047
+begin
+wwv_flow_api.create_page(
+ p_id=>47
+,p_user_interface_id=>wwv_flow_api.id(2333082129878819730)
+,p_name=>'Delete Version'
+,p_page_mode=>'MODAL'
+,p_step_title=>'Delete Version'
+,p_reload_on_submit=>'A'
+,p_warn_on_unsaved_changes=>'N'
+,p_autocomplete_on_off=>'ON'
+,p_group_id=>wwv_flow_api.id(2506141354470818444)
+,p_page_template_options=>'#DEFAULT#'
+,p_required_role=>wwv_flow_api.id(3797358846252064904)
+,p_last_upd_yyyymmddhh24miss=>'20180208112216'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(1096900524094896470)
+,p_plug_name=>'Buttons'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(1225684792970288320)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(10841125003199469264)
+,p_plug_name=>'Delete Confirmation'
+,p_icon_css_classes=>'fa-exclamation-triangle'
+,p_region_template_options=>'#DEFAULT#:t-Alert--wizard:t-Alert--customIcons:t-Alert--danger:t-Alert--removeHeading'
+,p_plug_template=>wwv_flow_api.id(1225681960450288316)
+,p_plug_display_sequence=>10
+,p_plug_display_point=>'BODY'
+,p_plug_query_headings_type=>'QUERY_COLUMNS'
+,p_plug_query_num_rows_type=>'NEXT_PREVIOUS_LINKS'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_query_show_nulls_as=>' - '
+,p_pagination_display_position=>'BOTTOM_RIGHT'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+,p_attribute_03=>'N'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(10841125402786469266)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(1096900524094896470)
+,p_button_name=>'DELETE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#:t-Button--simple:t-Button--danger'
+,p_button_template_id=>wwv_flow_api.id(1225705764797288347)
+,p_button_image_alt=>'Confirm'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_button_condition=>'select 1 from EBA_BT_SW_DEFECTS where ( FOUND_VERSION_ID = :P47_ID or FIXED_VERSION_ID = :P47_ID or FIX_BY_VERSION_ID = :P47_ID ) and rownum = 1'
+,p_button_condition_type=>'NOT_EXISTS'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(10841125206797469266)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(1096900524094896470)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(1225705764797288347)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_EDIT'
+,p_button_redirect_url=>'f?p=&APP_ID.:19:&SESSION.::&DEBUG.:RP,47::'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(10841126579533469270)
+,p_branch_action=>'f?p=&APP_ID.:17:&SESSION.::&DEBUG.::P17_ID:&P19_PRODUCT_ID.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_when_button_id=>wwv_flow_api.id(10841125402786469266)
+,p_branch_sequence=>10
+,p_save_state_before_branch_yn=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(10841125589740469266)
+,p_name=>'P47_DELETE_ERROR'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(10841125003199469264)
+,p_use_cache_before_default=>'NO'
+,p_source=>'Unable to delete Version <b>&P47_VERSION_NAME.</b> dependent data exists.'
+,p_source_type=>'STATIC'
+,p_display_as=>'NATIVE_DISPLAY_ONLY'
+,p_display_when=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select 1 from EBA_BT_SW_DEFECTS where FOUND_VERSION_ID = :P47_ID or FIXED_VERSION_ID = :P47_ID or FIX_BY_VERSION_ID = :P47_ID and rownum = 1 ',
+'',
+''))
+,p_display_when_type=>'EXISTS'
+,p_field_template=>wwv_flow_api.id(1225704860700288343)
+,p_item_template_options=>'#DEFAULT#'
+,p_escape_on_http_input=>'Y'
+,p_escape_on_http_output=>'N'
+,p_restricted_characters=>'WEB_SAFE'
+,p_attribute_01=>'N'
+,p_attribute_02=>'VALUE'
+,p_attribute_04=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(10841125795970469268)
+,p_name=>'P47_VERSION_NAME'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(10841125003199469264)
+,p_use_cache_before_default=>'NO'
+,p_source=>'&P47_VERSION_NAME.'
+,p_source_type=>'STATIC'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_escape_on_http_input=>'Y'
+,p_restricted_characters=>'WEB_SAFE'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(10841126001255469269)
+,p_name=>'P47_DELETE_TEXT'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(10841125003199469264)
+,p_use_cache_before_default=>'NO'
+,p_source=>'You have requested the permanent deletion of Version <b>&P47_VERSION_NAME.</b>, please confirm your delete request.'
+,p_source_type=>'STATIC'
+,p_display_as=>'NATIVE_DISPLAY_ONLY'
+,p_display_when=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select 1 from EBA_BT_SW_DEFECTS where ( FOUND_VERSION_ID = :P47_ID or FIXED_VERSION_ID = :P47_ID or FIX_BY_VERSION_ID = :P47_ID ) and rownum = 1 ',
+''))
+,p_display_when_type=>'NOT_EXISTS'
+,p_field_template=>wwv_flow_api.id(1225704860700288343)
+,p_item_template_options=>'#DEFAULT#'
+,p_escape_on_http_input=>'Y'
+,p_escape_on_http_output=>'N'
+,p_restricted_characters=>'WEB_SAFE'
+,p_attribute_01=>'N'
+,p_attribute_02=>'VALUE'
+,p_attribute_04=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(10841126203730469269)
+,p_name=>'P47_ID'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(10841125003199469264)
+,p_use_cache_before_default=>'NO'
+,p_source=>'&P47_ID.'
+,p_source_type=>'STATIC'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_restricted_characters=>'WEB_SAFE'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(10841126406947469269)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Delete Version'
+,p_process_sql_clob=>'delete from eba_bt_version where id = :p47_id ;'
+,p_process_when_button_id=>wwv_flow_api.id(10841125402786469266)
+,p_process_success_message=>'Version Succesfully Deleted.'
+);
+end;
+/

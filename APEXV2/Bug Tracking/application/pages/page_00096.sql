@@ -1,0 +1,95 @@
+prompt --application/pages/page_00096
+begin
+wwv_flow_api.create_page(
+ p_id=>96
+,p_user_interface_id=>wwv_flow_api.id(2333082129878819730)
+,p_name=>'Search'
+,p_page_mode=>'MODAL'
+,p_step_title=>'Search'
+,p_reload_on_submit=>'A'
+,p_warn_on_unsaved_changes=>'N'
+,p_first_item=>'AUTO_FIRST_ITEM'
+,p_autocomplete_on_off=>'ON'
+,p_step_template=>wwv_flow_api.id(1225680452518288315)
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_width=>'680'
+,p_help_text=>'No help is available for this page.'
+,p_last_upd_yyyymmddhh24miss=>'20180111134849'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(16603387620134807048)
+,p_plug_name=>'Search'
+,p_region_css_classes=>'search-dialog'
+,p_region_template_options=>'#DEFAULT#:t-Form--noPadding:t-Form--large:t-Form--stretchInputs:margin-top-md:margin-bottom-md:margin-left-md:margin-right-md'
+,p_plug_template=>wwv_flow_api.id(1225683798473288318)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_display_point=>'BODY'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(1456538911134607270)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(16603387620134807048)
+,p_button_name=>'Search'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#:t-Button--stretch'
+,p_button_template_id=>wwv_flow_api.id(1225705764797288347)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Search'
+,p_button_position=>'BODY'
+,p_button_css_classes=>'search-button'
+,p_grid_new_grid=>false
+,p_grid_new_row=>'N'
+,p_grid_new_column=>'Y'
+,p_grid_column_span=>3
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(1456540978581607315)
+,p_branch_name=>'Perform Search'
+,p_branch_action=>'f?p=&APP_ID.:66:&SESSION.::&DEBUG.:RP,66:P66_SEARCH:&P96_SEARCH.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'BEFORE_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>10
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(1456539326169607276)
+,p_name=>'P96_SEARCH'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(16603387620134807048)
+,p_item_default=>'null'
+,p_item_default_type=>'PLSQL_EXPRESSION'
+,p_prompt=>'Search'
+,p_placeholder=>'Search bugs'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>30
+,p_grid_label_column_span=>0
+,p_field_template=>wwv_flow_api.id(1225704767981288342)
+,p_item_icon_css_classes=>'fa-search'
+,p_item_template_options=>'#DEFAULT#:t-Form-fieldContainer--stretchInputs:t-Form-fieldContainer--large'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'BOTH'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(1456539974914607312)
+,p_name=>'Add autocomplete off to form'
+,p_event_sequence=>10
+,p_bind_type=>'bind'
+,p_bind_event_type=>'ready'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(1456540475712607314)
+,p_event_id=>wwv_flow_api.id(1456539974914607312)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'Y'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>'$(''form'').attr(''autocomplete'', ''off'' );'
+,p_stop_execution_on_error=>'Y'
+);
+end;
+/
