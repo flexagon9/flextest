@@ -18,7 +18,7 @@ wwv_flow_api.create_page(
 ||'the default product to report on in several other pages of the application. Click the <strong>Create Bug</strong> button to create a new bug. The "Recent Bugs" region has a <strong>+</strong> button that can be used to create a new bug as well. All c'
 ||'hart regions have a maximize button in their upper right-hand corner of their region. Most chart regions have a <strong>></strong> button that, when clicked, will display more details about the chart''s data.'
 ,p_last_updated_by=>'ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20190510062452'
+,p_last_upd_yyyymmddhh24miss=>'20210218122019'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(37836208666131722)
@@ -261,7 +261,7 @@ wwv_flow_api.create_jet_chart_axis(
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(883556854784459871)
-,p_plug_name=>'Open Bugs by Status'
+,p_plug_name=>'Open Bugs by Status - WS'
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:i-h320:t-Region--scrollBody'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>wwv_flow_api.id(1225690169574288324)

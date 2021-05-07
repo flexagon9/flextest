@@ -49,7 +49,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_03=>'ERROR_FUNC'
 ,p_substitution_value_03=>'eba_demo_projects_errors'
 ,p_last_updated_by=>'ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20201202060448'
+,p_last_upd_yyyymmddhh24miss=>'20210315163313'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>2
 ,p_ui_type_name => null
