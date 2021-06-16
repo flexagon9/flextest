@@ -4,7 +4,7 @@
         <application>Trailblazer</application>
         <visible>false</visible>
     </applicationVisibilities>
-    <description>Permission Set generated for access to custom object Waypoint for the app Trailblazer</description>
+    <description>Permission Set generated for access to custom object Waypoint for the Trailblazer app</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Trailblazer Developer</label>
     <license>Salesforce</license>
