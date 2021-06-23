@@ -7,4 +7,5 @@
     <wideComponents>standard-Calendar</wideComponents>
     <wideComponents>standard-Tasks</wideComponents>
     <wideComponents>standard-ProcessWorkitems</wideComponents>
+    <wideComponents>standard-Dashboard</wideComponents>
 </HomePageLayout>

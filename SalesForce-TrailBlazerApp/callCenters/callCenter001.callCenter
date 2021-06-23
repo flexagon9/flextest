@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CallCenter xmlns="http://soap.sforce.com/2006/04/metadata">
+    <adapterUrl>http://localhost:11000</adapterUrl>
+    <displayName>My Call Center</displayName>
+    <displayNameLabel>Display Name</displayNameLabel>
+    <internalNameLabel>Internal Name</internalNameLabel>
+    <sections>
+        <items>
+            <label>Description</label>
+            <name>reqDescription</name>
+            <value>Located in Green Bay</value>
+        </items>
+        <items>
+            <label>CTI Connector ProgId</label>
+            <name>reqProgId</name>
+            <value>MyAdapter.MyAdapter.1</value>
+        </items>
+        <items>
+            <label>Version</label>
+            <name>reqVersion</name>
+            <value>4.0</value>
+        </items>
+        <items>
+            <label>CTI Adapter URL</label>
+            <name>reqAdapterUrl</name>
+            <value>http://localhost:11000</value>
+        </items>
+        <label>General Info</label>
+        <name>reqGeneralInfo</name>
+    </sections>
+    <sections>
+        <items>
+            <label>Host A</label>
+            <name>HostA</name>
+            <value>Host A</value>
+        </items>
+        <items>
+            <label>Port A</label>
+            <name>PortA</name>
+            <value>Port A</value>
+        </items>
+        <items>
+            <label>Host B</label>
+            <name>HostB</name>
+            <value>Host B</value>
+        </items>
+        <items>
+            <label>Port B</label>
+            <name>PortB</name>
+            <value>Port B</value>
+        </items>
+        <items>
+            <label>Peripheral ID</label>
+            <name>PeripheralID</name>
+            <value>1000</value>
+        </items>
+        <label>CTI Server Info</label>
+        <name>ServerInfo</name>
+    </sections>
+    <sections>
+        <items>
+            <label>Outside Prefix</label>
+            <name>OutsidePrefix</name>
+            <value>1</value>
+        </items>
+        <items>
+            <label>Long Distance Prefix</label>
+            <name>LongDistPrefix</name>
+            <value>9</value>
+        </items>
+        <items>
+            <label>International Prefix</label>
+            <name>InternationalPrefix</name>
+            <value>01</value>
+        </items>
+        <label>Dialing Options</label>
+        <name>DialingOptions</name>
+    </sections>
+    <version>4</version>
+</CallCenter>
