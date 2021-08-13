@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>FD_About_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>FD_About_Label</shortDescription>
+        <value>FD About:</value>
+    </labels>
+    <labels>
+        <fullName>FD_Version_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>FD_Version_Label</shortDescription>
+        <value>FD Version</value>
+    </labels>
+</CustomLabels>
