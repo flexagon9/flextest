@@ -26,7 +26,8 @@ public with sharing class LIFXController {
     public static String setBrightness(String lightId, Decimal brightness) {
         return LIFXController.setState(lightId, '{"brightness": ' + (brightness / 100) + '}');
     }
-
+    
+	@AuraEnabled
     public static String setState(String lightId, String state) {
         HttpRequest req = new HttpRequest();
         Http http = new Http();

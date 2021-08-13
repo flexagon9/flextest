@@ -1,5 +1,5 @@
 public with sharing class PushPriceChangeNotification {
-    // some code changes445dd. test 123
+    // some code changes445dd.
     @InvocableMethod(label='Push Price Change Notification')
     public static void pushNotification(List<Id> propertyId) {
         String pushServerURL;
