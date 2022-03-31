@@ -9,7 +9,7 @@
 	
 	<properties>
 		<jdk.version>1.6</jdk.version>
-		<spring.version>2.5.6</spring.version>
+		<spring.version>5.3.18</spring.version>
 		<jstl.version>1.2</jstl.version>
 		<servletapi.version>2.5</servletapi.version>
 		
