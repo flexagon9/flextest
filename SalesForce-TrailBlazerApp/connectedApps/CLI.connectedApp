@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>flexagon9@flexagon.com</contactEmail>
+    <label>CLI</label>
+    <oauthConfig>
+        <callbackUrl>http://localhost:1717/OauthRedirect</callbackUrl>
+        <certificate>MIIDFDCCAfwCCQCG4SiEXHNCWzANBgkqhkiG9w0BAQsFADBMMQswCQYDVQQGEwJVUzELMAkGA1UECAwCV0kxEjAQBgNVBAcMCUdyZWVuIEJheTEcMBoGA1UECgwTRGVmYXVsdCBDb21wYW55IEx0ZDAeFw0yMDA1MTgwNTEwMjFaFw0yMTA1MTgwNTEwMjFaMEwxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJXSTESMBAGA1UEBwwJR3JlZW4gQmF5MRwwGgYDVQQKDBNEZWZhdWx0IENvbXBhbnkgTHRkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA49+AybnrjBT5q1X09tEdUK2pyfBA+FZerhYo7ho3Wjkkvq26t6NHKoNXA6R7cI/JOcmtsfvNmU9zunpta7Yhbom6RjcGBFUvzcgCsAI/oKobh8Y4ibQe5OfDdEd19Ddx8njWfHYUAQwCx62iQXu7edFS2XQWU0ESwMsc9AZR83F8qBe7azGsX2SaWc6QLLIPZq5Pp/8TlqF79eNOfZ8HRDl3CcvAQH4EOBNu9JDeSrauZeN7WGDKEH6S8wEBSUQdRpDE6UkE/IVqlYsGlJ8aplbBtCzHNWPX+GhMT6Ms7VjOaGsGqmPKCAW6H/iT37aUSi/yWHQXGi1iTXhDBU0m+wIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQCjjeWw2+OzhOQMfqfcAI6pX8B3O/Kp2FdEGB/GQkGPyC4NzJyk39+1UqpC8P/UvzvUPEQesdidVg5N8D3xLITO3gfJrnGrcqQuZGzUEUKgSdkwGp5JrqvjlPCMMwmoOKSRYezKPJYeoMPpAfoIGSn4c+jMeF3wM7n2KxNqFKTyLhK9wJZW0ZDadUj0vnMUu12ELf2iFgvBrhuPgrMZzEDICRRa66/A8haEwELjn5Bgrtjs0iIsDWluZwxfy8NypW+SyVXrXpglcSm7jtsmDLML48dOnWoOaxVKZcqNGdY0PTitJgySjTDhDBgtJ3Dk97mUPQ1EpJYHbQZ8D3/1no5F</certificate>
+        <consumerKey>3MVG9i1HRpGLXp.pB_VNJYhNFeuLprjjB2a4PUhq143aOztJiIh..joDAf84qKYn7NfvkVjxppJMO9i7Oq.2s</consumerKey>
+        <isAdminApproved>true</isAdminApproved>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+    <permissionSetName>FlexDeploy API Developer</permissionSetName>
+    <permissionSetName>Trailblazer Developer</permissionSetName>
+    <permissionSetName>Flex Developer</permissionSetName>
+    <permissionSetName>FlexDeploy Developer</permissionSetName>
+    <profileName>Analytics Cloud Integration User</profileName>
+    <profileName>Authenticated Website</profileName>
+    <profileName>System Administrator</profileName>
+    <profileName>Authenticated Website</profileName>
+    <profileName>testProfile310</profileName>
+    <profileName>FlexDeploy AdminUser</profileName>
+</ConnectedApp>

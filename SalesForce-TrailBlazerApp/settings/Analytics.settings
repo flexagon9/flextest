@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticsSettings xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <alwaysGenPreviews>false</alwaysGenPreviews>
+    <analyticsAdoptionMetadata>false</analyticsAdoptionMetadata>
+    <canAccessAnalyticsViaAPI>false</canAccessAnalyticsViaAPI>
+    <canAnnotateDashboards>false</canAnnotateDashboards>
+    <canEnableLiveMetrics xsi:nil="true"/>
+    <canEnableSavedView>true</canEnableSavedView>
+    <canExploreDataConversationally>false</canExploreDataConversationally>
+    <canShareAppsWithCommunities>false</canShareAppsWithCommunities>
+    <canSubscribeDashboardWidgets xsi:nil="true"/>
+    <canViewThumbnailAssets>false</canViewThumbnailAssets>
+    <enableAnalyticsSharingEnable>true</enableAnalyticsSharingEnable>
+    <enableAutoCompleteCombo>true</enableAutoCompleteCombo>
+    <enableDashboardComponentSnapshot>false</enableDashboardComponentSnapshot>
+    <enableDashboardFlexiTable>true</enableDashboardFlexiTable>
+    <enableEmailReportsToPortalUsers>false</enableEmailReportsToPortalUsers>
+    <enableFirebirdEditor>false</enableFirebirdEditor>
+    <enableFloatingReportHeaders>true</enableFloatingReportHeaders>
+    <enableInsights>true</enableInsights>
+    <enableLightningReportBuilder>false</enableLightningReportBuilder>
+    <enableLotusNotesImages>false</enableLotusNotesImages>
+    <enableMassEnableReportBuilder>true</enableMassEnableReportBuilder>
+    <enableNewChartsEngine>true</enableNewChartsEngine>
+    <enableOrgHasWatchlistEnabled>true</enableOrgHasWatchlistEnabled>
+    <enableQueryLiveConnectors>false</enableQueryLiveConnectors>
+    <enableRemoveFooterForRepDisplay>false</enableRemoveFooterForRepDisplay>
+    <enableRemoveFooterFromRepExp>false</enableRemoveFooterFromRepExp>
+    <enableReportNotificationsEnable>true</enableReportNotificationsEnable>
+    <enableS1AnalyticsEclairEnable>true</enableS1AnalyticsEclairEnable>
+    <enableS3OutputConnector>false</enableS3OutputConnector>
+    <enableSFXJoinedReportsEnable>false</enableSFXJoinedReportsEnable>
+    <enableSnowflakeOutputConnector>false</enableSnowflakeOutputConnector>
+    <enableSubscriptionAttachmentPref xsi:nil="true"/>
+    <enableUseOldChartsLookAndFeel>false</enableUseOldChartsLookAndFeel>
+    <enableWaveRecordNavigation>false</enableWaveRecordNavigation>
+    <enableWaveReplication>false</enableWaveReplication>
+    <enableWaveSharingInheritance>false</enableWaveSharingInheritance>
+    <enableWaveTrendedDatasetCleanup>false</enableWaveTrendedDatasetCleanup>
+    <replaceBlankMeasuresWithNulls>false</replaceBlankMeasuresWithNulls>
+    <turnOnTimeZones>false</turnOnTimeZones>
+</AnalyticsSettings>

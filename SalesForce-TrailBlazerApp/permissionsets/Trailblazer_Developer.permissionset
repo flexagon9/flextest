@@ -4,7 +4,7 @@
         <application>Trailblazer</application>
         <visible>false</visible>
     </applicationVisibilities>
-    <description>Permission Set generated for access to custom object Waypoint for the Trailblazer app</description>
+    <description>Permission Set generated for access to custom object Waypoint for the Trailblazer app.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Trailblazer Developer</label>
     <license>Salesforce</license>
@@ -17,8 +17,4 @@
         <object>Waypoint__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <tabSettings>
-        <tab>Waypoint__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
 </PermissionSet>
