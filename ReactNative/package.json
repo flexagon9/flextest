@@ -1,21 +1,21 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
+  "dependencies": {
+    "expo": "^46.0.0",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-native": "0.69.4",
+    "react-native-web": "~0.18.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6"
+  },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject",
-    "lint": "eslint ."
+    "web": "expo start --web"
   },
-  "dependencies": {
-    "expo": "^38.0.0",
-    "react": "16.11.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz"
-  },
-  "devDependencies": {
-    "babel-preset-expo": "^8.2.3",
-    "eslint": "^7.4.0",
-    "eslint-config-handlebarlabs": "^0.0.6"
-  },
-  "private": true
+  "version": "1.0.0",
+  "private": true,
+  "name": "calculatorapp"
 }
