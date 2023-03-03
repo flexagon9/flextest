@@ -1,0 +1,1 @@
+--            NAME:   XXHR_PER_SOCIETIES
