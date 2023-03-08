@@ -9,7 +9,7 @@ begin
     DBMS_OUTPUT.put_line('New table to be created.');
   else
      DBMS_OUTPUT.put_line('Deleting existing tables');
-     execute immediate 'DROP table APPS.Customer';
+     execute immediate 'DROP table APPS.CUSTOMER';
   end if;
 end;
 /
@@ -22,9 +22,7 @@ CREATE TABLE apps.Customer
    Age NUMBER(20), 
    Country VARCHAR2(20), 
    Designation VARCHAR2(20)
-   );
-   
-   
+   );   
 --------------------------------------------------------
 --  DDL for Index Customer_PK
 --------------------------------------------------------
