@@ -1,6 +1,5 @@
 -- Create USER PLSQL block
-set serveroutput on;
-/
+
 declare
   tableexists integer;
 begin
@@ -12,7 +11,7 @@ begin
      execute immediate 'DROP table APPS.CUSTOMER';
   end if;
 end;
-/
+
 --------------------------------------------------------
 --  DDL for Table Customer
 --------------------------------------------------------
