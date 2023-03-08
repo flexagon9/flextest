@@ -26,22 +26,22 @@ CREATE TABLE apps.Customer
 --------------------------------------------------------
 --  DDL for Index Customer_PK
 --------------------------------------------------------
-  /
+
   CREATE UNIQUE INDEX Customer_PK ON apps.Customer (CUSTOMER_ID) ;
   
 --------------------------------------------------------
 --  Constraints for Table Customer
 --------------------------------------------------------
-  /
+  
   ALTER TABLE apps.Customer ADD CONSTRAINT Customer_PK PRIMARY KEY (CUSTOMER_ID)  ENABLE;
-  /
+  
   ALTER TABLE apps.Customer MODIFY (CUSTOMER_ID NOT NULL ENABLE);
-  /
+  
   Insert into apps.Customer values(1,'Smith',31,'Sweden','Senior Developer');
-  /
+  
   Insert into apps.Customer values(2,'Nio',40,'Norway','Architect');
-  /
+  
   Insert into apps.Customer values(3,'Morvious',45,'Ireland','Senior Manager');
-  /
+  
   Insert into apps.Customer values(4,'Trinity',38,'Japan','Architect');
 
