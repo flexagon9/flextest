@@ -1,5 +1,5 @@
 create or replace package test_customer as
-  -- %suite(Customer validation)
+  -- %suite(CustomerValidation)
   
   -- %test(Check count of Architect)
   procedure check_architect;
