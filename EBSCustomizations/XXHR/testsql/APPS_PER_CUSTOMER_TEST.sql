@@ -1,10 +1,10 @@
 create or replace package   apps_test.test_customers  AUTHID CURRENT_USER as
   -- %suite(CustomerValidations)
   
-  -- %test(Check count of Architect)
+  -- %test(Validate Customer designations)
   procedure check_architect;
   
-   -- %test(Returns employee from Norway)
+   -- %test(Verify customers from specific region)
   procedure check_Norway_employee;
 end;
 /
