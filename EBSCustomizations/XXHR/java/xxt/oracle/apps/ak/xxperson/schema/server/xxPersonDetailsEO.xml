@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding='windows-1252'?>
 <!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
 
+
 <Entity
    Name="xxPersonDetailsEO"
    DBObjectType="table"
