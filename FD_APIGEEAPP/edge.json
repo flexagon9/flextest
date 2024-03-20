@@ -3,9 +3,9 @@
   "orgConfig": {
         "apiProducts": [
       {
-        "name": "99weatherProduct",
-        "displayName": "99weather Product",
-        "description": "99weather Product",
+        "name": "98weatherProduct",
+        "displayName": "98weather Product",
+        "description": "98weather Product",
         "apiResources": [
 			"/test21",
             "/test22",
