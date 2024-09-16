@@ -1,0 +1,28 @@
+{
+  "LookupType" : "TEST_TR",
+  "ModuleId" : "E081646114446842E040F00A1720391E",
+  "Meaning" : "created l JR3 btrb",
+  "Description" : "created through postman12",
+  "CustomizationLevel" : "U",
+  "RestAccessSecured" : "SECURE",
+  "CreatedBy" : "CURTIS.FEITTY",
+  "CreationDate" : "2024-09-13T11:15:19+00:00",
+  "LastUpdateDate" : "2024-09-13T11:15:19.222+00:00",
+  "LastUpdateLogin" : "21760EBD420E517AE063B065F00A2F96",
+  "LastUpdatedBy" : "CURTIS.FEITTY",
+  "lookupCodes" : [ {
+    "LookupCode" : "CODE1",
+    "Meaning" : "CODE1",
+    "Description" : "CODE1",
+    "EnabledFlag" : "Y",
+    "StartDateActive" : null,
+    "EndDateActive" : null,
+    "DisplaySequence" : 1,
+    "Tag" : "CODE1",
+    "CreatedBy" : "CURTIS.FEITTY",
+    "CreationDate" : "2024-09-13T11:15:19.098+00:00",
+    "LastUpdateDate" : "2024-09-13T11:15:19.261+00:00",
+    "LastUpdateLogin" : "21760EBD420E517AE063B065F00A2F96",
+    "LastUpdatedBy" : "CURTIS.FEITTY"
+  } ]
+}

@@ -1,0 +1,14 @@
+{
+  "LookupType" : "PROFESSION",
+  "ModuleId" : "61ECAF4AAB36E990E040449821C61C97",
+  "Meaning" : "Profession",
+  "Description" : "Person's profession.",
+  "CustomizationLevel" : "E",
+  "RestAccessSecured" : "AUTH",
+  "CreatedBy" : "SEED_DATA_FROM_APPLICATION",
+  "CreationDate" : "2013-08-08T06:23:57.333+00:00",
+  "LastUpdateDate" : "2024-07-24T09:34:02.885+00:00",
+  "LastUpdateLogin" : "-1",
+  "LastUpdatedBy" : "SEED_DATA_FROM_APPLICATION",
+  "lookupCodes" : [ ]
+}

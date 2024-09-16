@@ -1,0 +1,42 @@
+{
+  "LookupType" : "TIME_DEF_FREQUENCY",
+  "ModuleId" : "6345B48C2E118CB4E040449821C64847",
+  "Meaning" : "Pay Time Definition Frequency",
+  "Description" : null,
+  "CustomizationLevel" : "U",
+  "RestAccessSecured" : "SECURE",
+  "CreatedBy" : "SEED_DATA_FROM_APPLICATION",
+  "CreationDate" : "2017-09-19T17:50:48.321+00:00",
+  "LastUpdateDate" : "2024-07-24T09:34:02.885+00:00",
+  "LastUpdateLogin" : "-1",
+  "LastUpdatedBy" : "SEED_DATA_FROM_APPLICATION",
+  "lookupCodes" : [ {
+    "LookupCode" : "STANDARD",
+    "Meaning" : "Standard",
+    "Description" : null,
+    "EnabledFlag" : "Y",
+    "StartDateActive" : "0001-01-01",
+    "EndDateActive" : "4712-12-31",
+    "DisplaySequence" : null,
+    "Tag" : null,
+    "CreatedBy" : "SEED_DATA_FROM_APPLICATION",
+    "CreationDate" : "2017-09-19T17:50:48.367+00:00",
+    "LastUpdateDate" : "2024-07-24T09:34:10.770+00:00",
+    "LastUpdateLogin" : "-1",
+    "LastUpdatedBy" : "SEED_DATA_FROM_APPLICATION"
+  }, {
+    "LookupCode" : "TIMESPAN",
+    "Meaning" : "Time Span",
+    "Description" : null,
+    "EnabledFlag" : "Y",
+    "StartDateActive" : "0001-01-01",
+    "EndDateActive" : "4712-12-31",
+    "DisplaySequence" : null,
+    "Tag" : null,
+    "CreatedBy" : "SEED_DATA_FROM_APPLICATION",
+    "CreationDate" : "2017-09-19T17:50:48.415+00:00",
+    "LastUpdateDate" : "2024-07-24T09:34:10.770+00:00",
+    "LastUpdateLogin" : "-1",
+    "LastUpdatedBy" : "SEED_DATA_FROM_APPLICATION"
+  } ]
+}

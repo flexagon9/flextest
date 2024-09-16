@@ -1,0 +1,42 @@
+{
+  "LookupType" : "TEST_RGT_POST5",
+  "ModuleId" : "E081646114446842E040F00A1720391E",
+  "Meaning" : "created throughpl6 Postman",
+  "Description" : "created through postman12",
+  "CustomizationLevel" : "U",
+  "RestAccessSecured" : "SECURE",
+  "CreatedBy" : "CURTIS.FEITTY",
+  "CreationDate" : "2024-09-06T06:46:43+00:00",
+  "LastUpdateDate" : "2024-09-06T06:46:43.292+00:00",
+  "LastUpdateLogin" : "1F529DB7F8CE9C8CE063B065F00A15D8",
+  "LastUpdatedBy" : "CURTIS.FEITTY",
+  "lookupCodes" : [ {
+    "LookupCode" : "code5",
+    "Meaning" : "yyyyy",
+    "Description" : null,
+    "EnabledFlag" : "Y",
+    "StartDateActive" : null,
+    "EndDateActive" : null,
+    "DisplaySequence" : 0,
+    "Tag" : null,
+    "CreatedBy" : "CURTIS.FEITTY",
+    "CreationDate" : "2024-09-06T06:50:28+00:00",
+    "LastUpdateDate" : "2024-09-10T13:37:37+00:00",
+    "LastUpdateLogin" : "2178679B995B2BEEE063CE65F00AFBDF",
+    "LastUpdatedBy" : "CURTIS.FEITTY"
+  }, {
+    "LookupCode" : "CODE01",
+    "Meaning" : "CODE1",
+    "Description" : "CODE16",
+    "EnabledFlag" : "Y",
+    "StartDateActive" : null,
+    "EndDateActive" : null,
+    "DisplaySequence" : 1,
+    "Tag" : "CODE1",
+    "CreatedBy" : "CURTIS.FEITTY",
+    "CreationDate" : "2024-09-06T08:02:48+00:00",
+    "LastUpdateDate" : "2024-09-06T08:03:18+00:00",
+    "LastUpdateLogin" : "1F5064AF93FA9241E063CE65F00A6B68",
+    "LastUpdatedBy" : "CURTIS.FEITTY"
+  } ]
+}

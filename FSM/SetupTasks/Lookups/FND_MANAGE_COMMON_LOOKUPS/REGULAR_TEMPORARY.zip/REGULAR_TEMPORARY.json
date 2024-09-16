@@ -1,0 +1,42 @@
+{
+  "LookupType" : "REGULAR_TEMPORARY",
+  "ModuleId" : "61ECAF4AAB36E990E040449821C61C97",
+  "Meaning" : "Regular or Temporary",
+  "Description" : "Classifies if a job or position is regular or temporary.",
+  "CustomizationLevel" : "S",
+  "RestAccessSecured" : "AUTH",
+  "CreatedBy" : "SEED_DATA_FROM_APPLICATION",
+  "CreationDate" : "2013-08-08T06:23:58.274+00:00",
+  "LastUpdateDate" : "2024-07-24T09:34:02.885+00:00",
+  "LastUpdateLogin" : "-1",
+  "LastUpdatedBy" : "SEED_DATA_FROM_APPLICATION",
+  "lookupCodes" : [ {
+    "LookupCode" : "R",
+    "Meaning" : "Regular",
+    "Description" : null,
+    "EnabledFlag" : "Y",
+    "StartDateActive" : "0001-01-01",
+    "EndDateActive" : "4712-12-31",
+    "DisplaySequence" : 1,
+    "Tag" : null,
+    "CreatedBy" : "SEED_DATA_FROM_APPLICATION",
+    "CreationDate" : "2013-08-08T06:23:58.285+00:00",
+    "LastUpdateDate" : "2024-07-24T09:34:10.770+00:00",
+    "LastUpdateLogin" : "-1",
+    "LastUpdatedBy" : "SEED_DATA_FROM_APPLICATION"
+  }, {
+    "LookupCode" : "T",
+    "Meaning" : "Temporary",
+    "Description" : null,
+    "EnabledFlag" : "Y",
+    "StartDateActive" : "0001-01-01",
+    "EndDateActive" : "4712-12-31",
+    "DisplaySequence" : 2,
+    "Tag" : null,
+    "CreatedBy" : "SEED_DATA_FROM_APPLICATION",
+    "CreationDate" : "2013-08-08T06:23:58.291+00:00",
+    "LastUpdateDate" : "2024-07-24T09:34:10.770+00:00",
+    "LastUpdateLogin" : "-1",
+    "LastUpdatedBy" : "SEED_DATA_FROM_APPLICATION"
+  } ]
+}

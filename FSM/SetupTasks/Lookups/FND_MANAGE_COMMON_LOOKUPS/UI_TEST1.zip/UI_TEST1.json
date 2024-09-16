@@ -1,0 +1,42 @@
+{
+  "LookupType" : "UI_TEST1",
+  "ModuleId" : "61ECAF4AAF25E990E040449821C61C97",
+  "Meaning" : "test 099",
+  "Description" : "testtttt",
+  "CustomizationLevel" : "U",
+  "RestAccessSecured" : "SECURE",
+  "CreatedBy" : "CURTIS.FEITTY",
+  "CreationDate" : "2024-09-12T12:35:29+00:00",
+  "LastUpdateDate" : "2024-09-12T12:35:53.015+00:00",
+  "LastUpdateLogin" : "217636E888DC5198E063B065F00A261B",
+  "LastUpdatedBy" : "CURTIS.FEITTY",
+  "lookupCodes" : [ {
+    "LookupCode" : "UI_TEST2",
+    "Meaning" : "test012364",
+    "Description" : "test01254",
+    "EnabledFlag" : "Y",
+    "StartDateActive" : "2024-09-16",
+    "EndDateActive" : null,
+    "DisplaySequence" : 1,
+    "Tag" : "max",
+    "CreatedBy" : "CURTIS.FEITTY",
+    "CreationDate" : "2024-09-12T12:35:55.726+00:00",
+    "LastUpdateDate" : "2024-09-12T12:36:48.655+00:00",
+    "LastUpdateLogin" : "217636E888DC5198E063B065F00A261B",
+    "LastUpdatedBy" : "CURTIS.FEITTY"
+  }, {
+    "LookupCode" : "UI_TEST3",
+    "Meaning" : "UITESTy",
+    "Description" : null,
+    "EnabledFlag" : "Y",
+    "StartDateActive" : null,
+    "EndDateActive" : null,
+    "DisplaySequence" : 1,
+    "Tag" : null,
+    "CreatedBy" : "CURTIS.FEITTY",
+    "CreationDate" : "2024-09-12T12:36:25.359+00:00",
+    "LastUpdateDate" : "2024-09-12T12:36:48.707+00:00",
+    "LastUpdateLogin" : "217636E888DC5198E063B065F00A261B",
+    "LastUpdatedBy" : "CURTIS.FEITTY"
+  } ]
+}

@@ -1,0 +1,28 @@
+{
+  "LookupType" : "TEST_RGT_POST9",
+  "ModuleId" : "E081646114446842E040F00A1720391E",
+  "Meaning" : "created throughpl6 Postman129",
+  "Description" : "created through postman12",
+  "CustomizationLevel" : "U",
+  "RestAccessSecured" : "SECURE",
+  "CreatedBy" : "CURTIS.FEITTY",
+  "CreationDate" : "2024-09-10T10:44:45+00:00",
+  "LastUpdateDate" : "2024-09-10T10:44:45.231+00:00",
+  "LastUpdateLogin" : "2178679B94D62BEEE063CE65F00AFBDF",
+  "LastUpdatedBy" : "CURTIS.FEITTY",
+  "lookupCodes" : [ {
+    "LookupCode" : "CODE01",
+    "Meaning" : "CODE12",
+    "Description" : "CODE16",
+    "EnabledFlag" : "Y",
+    "StartDateActive" : null,
+    "EndDateActive" : null,
+    "DisplaySequence" : 1,
+    "Tag" : "CODE1",
+    "CreatedBy" : "CURTIS.FEITTY",
+    "CreationDate" : "2024-09-10T10:44:45.123+00:00",
+    "LastUpdateDate" : "2024-09-10T10:44:45.301+00:00",
+    "LastUpdateLogin" : "2178679B94D62BEEE063CE65F00AFBDF",
+    "LastUpdatedBy" : "CURTIS.FEITTY"
+  } ]
+}
